@@ -1,35 +1,94 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
+  /* Brand Core Variables */
   --forest: #174C38;
   --forest-deep: #103729;
+  --forest-light: #25664E;
   --beige: #F3EFE5;
   --ivory: #FAF8F2;
+  --white: #FFFFFF;
   --champagne: #B99B68;
+  --champagne-light: #E8DFC9;
   --ink: #242A26;
-  --muted: #6E756F;
+  --stone: #6E756F;
   --border: #DDD8CC;
+  --border-subtle: #EBE7DC;
+
+  --success: #2D6A4F;
+  --warning: #A36A00;
+  --error: #9E2A2B;
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
-html { scroll-behavior: smooth; }
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
 
 body {
   margin: 0;
-  background: var(--ivory);
+  background-color: var(--ivory);
   color: var(--ink);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), sans-serif;
+  line-height: 1.6;
 }
 
-a { color: inherit; }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
+/* Tabular numbers for all gemological data */
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Accessible focus styling */
 :focus-visible {
   outline: 3px solid var(--champagne);
-  outline-offset: 3px;
+  outline-offset: 2px;
 }
 
 ::selection {
   background: var(--forest);
-  color: white;
+  color: #ffffff;
+}
+
+/* Accessible skip to content link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 1rem;
+  z-index: 100;
+  background-color: var(--forest);
+  color: #ffffff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 9999px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: top 0.2s ease;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+/* Reduced motion safeguard */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

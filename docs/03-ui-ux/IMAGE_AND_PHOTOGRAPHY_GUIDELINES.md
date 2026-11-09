@@ -139,3 +139,4 @@ $$\text{Alt Text} = \text{[Gemstone Name]} + \text{[Form/Cut]} + \text{[Key Visu
 
 ---
 *Document produced as part of LibraGems Phase 01 Deliverables.*
+

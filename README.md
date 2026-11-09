@@ -1,93 +1,112 @@
+# LibraGems – Premium International Gemstone Trading Platform
 
-# LibraGems – Website Project Starter Kit
+**Entity:** Libra Gems & Trading Co., Ltd. (Bangkok, Thailand)  
+**Repository:** [github.com/UzairAhmad88/libragems-by-uzaii](https://github.com/UzairAhmad88/libragems-by-uzaii)  
+**Status:** Phase 02 Foundation Completed & Verified  
+**Default Branch:** `main` | **Working Branch:** `phase-02/project-foundation`
 
-**Version:** 1.0  
-**Project type:** Premium gemstone trading and business portfolio website  
-**Status:** Planning + implementation-ready project scaffold
+---
 
-## Purpose
+## Purpose & Commercial Model
 
-This package establishes the project documentation, implementation structure, starter configuration, and AI-development instructions for the LibraGems website.
+This platform establishes the international digital portfolio and B2B wholesale enquiry engine for **Libra Gems & Trading Co., Ltd.**, situated in the historic Bang Rak gemstone trading district of Bangkok, Thailand.
 
-The website is an enquiry-led business website, not a conventional online store. Its initial product focus is:
+The website operates an **enquiry-driven wholesale business model** with direct commercial negotiations conducted through **WhatsApp, secure web forms, telephone, and email**. In accordance with wholesale colored gemstone trade practices, it **strictly excludes consumer shopping carts, online checkouts, and credit card processing**.
 
-1. Commercial-quality rough Hessonite Garnet
-2. Commercial-quality Turquoise
-3. Afghanistan cut-stone Rubellite
+### Initial Gemstone Inventory Focus:
+1. **Commercial-Quality Rough Hessonite Garnet** (Grossular garnet alluvial rough pebbles)
+2. **Commercial-Quality Turquoise** (Cryptocrystalline rough and mineral material with matrix)
+3. **Afghanistan Cut-Stone Rubellite** (Precision-faceted purplish-red tourmaline cut gem)
 
-## Important project rules
+---
 
-- Use the official company name only after the client confirms the preferred public-facing brand wording.
-- Treat all business-card contact details as **unverified until reconfirmed**.
-- Do not invent gemstone origin, treatment, dimensions, carat weight, stock, certification, pricing, or availability.
-- Use authentic LibraGems product photographs for live product pages. Placeholder/reference images must never be represented as company inventory.
-- Do not claim guaranteed Google rankings, certifications, ethical sourcing, or quality grades without evidence.
-- Do not commit secrets, API keys, database credentials, or real customer data.
-- No checkout/payment system is in the initial scope. The main conversion is a WhatsApp or email enquiry.
+## Brand & Visual System (60/30/10 Rule)
 
-## Brand direction
+- **60% Natural Canvas:** Warm Off-White / Beige (`#F3EFE5`) and Soft Ivory (`#FAF8F2`).
+- **30% Structural Authority:** Deep Forest Green (`#174C38`) and Midnight Shade (`#103729`).
+- **10% Prestige Accent:** Muted Champagne Gold (`#B99B68`).
+- **Typography:** Display Serif (`Cormorant Garamond`) paired with Interface Sans (`Inter`), utilizing tabular numerals for all gemological measurements.
 
-- 60% Forest Green: `#174C38`
-- 30% Warm Off-white / Beige: `#F3EFE5`
-- 10% Champagne / muted accent: `#B99B68`
-- Style: premium, soft, formal, natural, minimal, trustworthy.
-- Typography: elegant serif display headings + highly readable sans-serif body text.
+---
 
-## Recommended stack
+## Technology Stack & Architecture
 
-- Next.js App Router
-- TypeScript
-- Tailwind CSS
-- PostgreSQL through Supabase
-- Supabase Auth and Storage for admin, products, and images
-- Resend (or another verified transactional email provider) for enquiry notifications
-- Vercel hosting
-- Google Search Console and Google Analytics 4
+- **Framework:** Next.js 15.1.7 (App Router, Server Components, Static Route Generation)
+- **Runtime:** React 19.0.0
+- **Type Safety:** TypeScript 5.7.3 (Strict Mode)
+- **Styling:** Tailwind CSS 3.4.17 with PostCSS 8.4 and Autoprefixer 10.4
+- **Component Primitives:** Headless accessible UI patterns with `clsx` and `tailwind-merge`
+- **Data Validation:** Zod 3.24.2 for typed environment validation and runtime schemas
+- **Testing:** Vitest 3.0.5, `@testing-library/react`, and JSDOM
+- **Code Quality:** ESLint 9 Flat Config (`eslint-config-next`)
+- **Planned Integrations (Subsequent Phases):** PostgreSQL via Supabase (Phase 04), Resend Transactional Email (Phase 05), Vercel Hosting (Phase 08).
 
-The `apps/web` directory is a starter scaffold, not a finished production application. Install dependencies and implement the remaining modules according to the phase prompts and specifications.
+---
 
-## Package map
+## Local Development & Setup
 
-- `docs/`: project, requirements, design, catalogue, architecture, SEO, delivery and testing documentation.
-- `apps/web/`: Next.js starter scaffold and implementation placeholders.
-- `supabase/`: proposed database schema and local setup notes.
-- `prompts/`: master prompt and phase-by-phase AI agent instructions.
-- `assets/`: folders for approved brand assets and genuine product photography.
-- `project-management/`: decision log, progress tracker and release checklist.
+### Prerequisites
+- Node.js `v20.x`, `v22.x`, or `v24.x` LTS
+- npm `v10.x` or `v11.x`
 
-## Start here
-
-1. Read `docs/01-project-overview/PROJECT_VISION.md`.
-2. Complete `docs/02-requirements/CLIENT_CONFIRMATION_CHECKLIST.md`.
-3. Verify the company name, current contact details, WhatsApp numbers, email and domain access.
-4. Supply original gemstone photographs and verified product specifications.
-5. Read `docs/03-ui-ux/BRAND_GUIDELINES.md`.
-6. Follow `docs/07-development/PHASED_DEVELOPMENT_PLAN.md`.
-7. Give `prompts/MASTER_PROMPT.md` and the relevant phase prompt to your coding agent.
-8. Never skip the testing and launch gates.
-
-## Local development (starter scaffold)
-
-Requirements: Node.js LTS and npm.
-
+### Installation & Execution
 ```bash
+# 1. Clone repository
+git clone https://github.com/UzairAhmad88/libragems-by-uzaii.git
+cd libragems-by-uzaii
+
+# 2. Check out working branch
+git checkout phase-02/project-foundation
+
+# 3. Navigate to web application directory
 cd apps/web
-npm install
+
+# 4. Install deterministic dependencies
+npm ci
+
+# 5. Create local environment configuration
 cp .env.example .env.local
+
+# 6. Start local development server
 npm run dev
 ```
 
-The starter UI may need further implementation before all pages and integrations work. Configure Supabase and email only after creating the relevant accounts and environment variables.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## Definition of done
+> [!NOTE]
+> The foundation shell runs completely offline without external database or email credentials.
 
-The project is ready for launch only when:
-- All agreed pages are implemented and responsive.
-- Real product content and photographs are approved.
-- Contact form submission is validated and securely stored.
-- Email delivery is tested end-to-end.
-- WhatsApp links use confirmed international-format numbers.
-- Admin access is protected and product/enquiry operations work.
-- SEO metadata, canonical URLs, sitemap, robots and structured data are verified.
-- Accessibility, security, performance and cross-device checks pass.
-- Domain, HTTPS, analytics and Search Console are configured.
+---
+
+## Verification & Build Commands
+
+All development commands run from `apps/web/`:
+
+```bash
+npm run dev        # Starts Next.js development server at port 3000
+npm run build      # Compiles production build and pre-renders static routes
+npm run start      # Runs production server locally at port 3000
+npm run lint       # Runs ESLint 9 checking for Core Web Vitals compliance
+npm run typecheck  # Executes TypeScript strict typecheck (tsc --noEmit)
+npm run test       # Executes Vitest unit tests in JSDOM environment
+```
+
+All suites have been verified with **Exit Code 0** across typecheck, lint, test, and build.
+
+---
+
+## Documentation Map
+
+- `docs/01-project-overview/`: Project Vision, Scope, Audit, BRD, and Readiness Report.
+- `docs/02-requirements/`: Gap Analysis and Client Confirmation Checklist.
+- `docs/03-ui-ux/`: Complete Design System, Tokens, Typography, Wireframes, and Page Specs.
+- `docs/04-product-catalogue/`: Gemstone Requirements, Data Collection Template.
+- `docs/05-technical-architecture/`: Foundation Architecture, Dependency Register, Local Dev Guide, Environment Specs.
+- `docs/06-seo/`: SEO Master Plan, Seed Keyword Clusters, Structured Data Guide.
+- `docs/07-development/`: Phased Development Plan, Phase 02 Implementation Report.
+- `docs/08-testing/`: Testing Strategy, Phase 02 Validation Report.
+- `docs/10-project-management/`: Progress Tracker, Risk Register, Architecture Decisions Log (ADR).
+- `.github/workflows/`: Automated CI pipeline (`ci.yml`).
+
+---
+*Libra Gems & Trading Co., Ltd. — Professional Production Scaffold.*

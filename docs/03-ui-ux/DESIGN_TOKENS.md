@@ -191,3 +191,4 @@ LibraGems employs an **8-point geometric grid system** (with a 4px sub-grid for 
 
 ---
 *Document produced as part of LibraGems Phase 01 Deliverables.*
+

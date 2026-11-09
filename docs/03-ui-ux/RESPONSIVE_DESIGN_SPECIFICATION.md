@@ -106,3 +106,4 @@ Dense gemological data tables ($ct$, $mm$, $g$, refractive index) risk severe ho
 
 ---
 *Document produced as part of LibraGems Phase 01 Deliverables.*
+

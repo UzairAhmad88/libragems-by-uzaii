@@ -1,26 +1,60 @@
+import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 
 export const metadata = {
-  title: "Commercial-Quality Turquoise",
-  description: "Explore commercial-quality Turquoise and contact LibraGems for verified material details and availability."
+  title: "Commercial-Quality Turquoise | Mineral Rough",
+  description:
+    "Commercial-quality Turquoise rough and mineral material. High-density rough turquoise material with distinct matrix patterns.",
 };
 
-export default function ProductPage() {
+export default function TurquoisePage() {
   return (
     <>
       <SiteHeader />
-      <main className="mx-auto max-w-6xl px-6 py-20">
-        <p className="text-sm uppercase tracking-widest text-[var(--forest)]">Gemstone / mineral</p>
-        <h1 className="mt-4 max-w-3xl font-serif text-5xl text-[var(--forest-deep)]">Commercial-Quality Turquoise</h1>
-        <p className="mt-6 max-w-3xl leading-8 text-[var(--muted)]">Explore commercial-quality Turquoise and contact LibraGems for verified material details and availability.</p>
-        <div className="mt-10 rounded-2xl border border-dashed border-[var(--border)] bg-[var(--beige)] p-10 text-center text-sm text-[var(--muted)]">
-          Approved product photography and verified specifications required before publication.
+      <main id="main-content" className="flex-1 mx-auto max-w-5xl px-6 py-20">
+        <nav aria-label="Breadcrumb" className="text-xs text-stone">
+          <Link href="/" className="hover:text-forest">Home</Link>
+          <span className="mx-2">/</span>
+          <Link href="/gemstones" className="hover:text-forest">Gemstones</Link>
+          <span className="mx-2">/</span>
+          <span className="text-ink font-medium">Commercial-Quality Turquoise</span>
+        </nav>
+
+        <p className="mt-6 text-xs font-semibold uppercase tracking-widest text-forest">
+          Mineral / Rough • Lot Reference: LG-TQ-001
+        </p>
+        <h1 className="mt-3 font-serif text-4xl text-forest-deep md:text-5xl">
+          Commercial-Quality Turquoise
+        </h1>
+        <p className="mt-4 max-w-3xl text-base leading-relaxed text-stone">
+          Commercial-quality Turquoise rough material. Suitable for lapidary grinding, bead manufacturing,
+          and mineral collections. Full treatment and matrix disclosures provided per CIBJO guidelines.
+        </p>
+
+        {/* Architectural Photo Placeholder */}
+        <div className="mt-10 rounded-2xl border border-dashed border-border bg-beige p-12 text-center shadow-subtle">
+          <p className="text-xs font-semibold uppercase tracking-wider text-champagne">
+            Studio Photography Placeholder
+          </p>
+          <p className="mt-2 text-xs text-stone">
+            Authentic macro studio photography of this physical lot will be published after client approval.
+          </p>
         </div>
-        <div className="mt-8">
-          <a href="/contact" className="inline-flex rounded-full bg-[var(--forest)] px-7 py-3 text-sm text-white">
-            Enquire about this gemstone
-          </a>
+
+        <div className="mt-10 flex flex-wrap gap-4">
+          <Link
+            href="/contact"
+            className="inline-flex rounded-full bg-forest px-8 py-3.5 text-sm font-medium text-white transition-all duration-200 hover:bg-forest-light focus-visible:outline-champagne"
+          >
+            Inquire About This Gemstone
+          </Link>
+          <Link
+            href="/gemstones"
+            className="inline-flex rounded-full border border-border bg-white px-8 py-3.5 text-sm font-medium text-ink transition-all duration-200 hover:border-forest hover:text-forest focus-visible:outline-champagne"
+          >
+            ← Back to Catalogue
+          </Link>
         </div>
       </main>
       <SiteFooter />

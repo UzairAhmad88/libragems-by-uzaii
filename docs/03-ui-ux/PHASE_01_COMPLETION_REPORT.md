@@ -162,3 +162,4 @@ The following items are awaiting client confirmation via the previously issued q
 
 ---
 *Document produced as part of LibraGems Phase 01 Deliverables.*
+

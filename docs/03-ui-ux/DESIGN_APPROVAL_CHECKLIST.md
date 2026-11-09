@@ -94,3 +94,4 @@ All 14 design deliverables for Phase 01 have been produced, cross-referenced, an
 
 ---
 *Document produced as part of LibraGems Phase 01 Deliverables.*
+

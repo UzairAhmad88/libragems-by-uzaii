@@ -1,7 +1,7 @@
 import type { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://libragems.net";
   const paths = [
     "",
     "/about",
@@ -9,10 +9,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/gemstones/hessonite-garnet",
     "/gemstones/turquoise",
     "/gemstones/afghanistan-rubellite",
-    "/contact"
+    "/quality-sourcing",
+    "/insights",
+    "/contact",
+    "/privacy",
+    "/terms",
   ];
+
   return paths.map((path) => ({
     url: `${baseUrl}${path}`,
-    lastModified: new Date()
+    lastModified: new Date(),
+    changeFrequency: path === "" || path.startsWith("/gemstones") ? "weekly" : "monthly",
+    priority: path === "" ? 1.0 : path.startsWith("/gemstones/") ? 0.9 : 0.7,
   }));
 }

@@ -1,0 +1,46 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main, "phase-*/**"]
+  pull_request:
+    branches: [main]
+
+jobs:
+  validate:
+    name: Lint, Typecheck, Test & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js LTS
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+
+      - name: Install Dependencies
+        working-directory: apps/web
+        run: npm ci
+
+      - name: Run ESLint
+        working-directory: apps/web
+        run: npm run lint
+
+      - name: Run TypeScript Typecheck
+        working-directory: apps/web
+        run: npm run typecheck
+
+      - name: Run Unit Tests
+        working-directory: apps/web
+        run: npm run test
+
+      - name: Production Build
+        working-directory: apps/web
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SITE_URL: https://libragems.net
+          NODE_ENV: production
