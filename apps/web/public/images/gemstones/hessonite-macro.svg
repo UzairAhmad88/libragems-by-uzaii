@@ -1,0 +1,21 @@
+<svg width="600" height="450" viewBox="0 0 600 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="450" fill="#FAF8F2"/>
+  <rect x="15" y="15" width="570" height="420" stroke="#DDD8CC" stroke-width="1" stroke-dasharray="3 3"/>
+  
+  <!-- Magnified view circle -->
+  <circle cx="300" cy="225" r="130" fill="#F3EFE5" stroke="#174C38" stroke-width="2"/>
+  <circle cx="300" cy="225" r="115" fill="#D97736" fill-opacity="0.9" stroke="#B99B68" stroke-width="2"/>
+  
+  <!-- Diagnostic treacle swirl pattern in grossular garnet -->
+  <path d="M230 210 Q 280 180 320 230 T 370 240" stroke="#F3EFE5" stroke-width="3" stroke-linecap="round" stroke-opacity="0.6"/>
+  <path d="M220 240 Q 270 260 310 210 T 360 210" stroke="#F3EFE5" stroke-width="2.5" stroke-linecap="round" stroke-opacity="0.5"/>
+  <circle cx="280" cy="220" r="4" fill="#F3EFE5" fill-opacity="0.7"/>
+  <circle cx="330" cy="205" r="3" fill="#F3EFE5" fill-opacity="0.7"/>
+  <circle cx="250" cy="235" r="5" fill="#F3EFE5" fill-opacity="0.6"/>
+  
+  <text x="300" y="55" text-anchor="middle" font-family="serif" font-size="18" font-weight="600" fill="#174C38">MACRO EXAMINATION (10x / 5500K)</text>
+  <text x="300" y="78" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="500" fill="#6E756F">INTERNAL TREACLE &amp; DISSOLUTION GRANULAR SWIRL INCLUSIONS</text>
+  
+  <rect x="130" y="385" width="340" height="26" rx="4" fill="#F3EFE5" stroke="#B99B68" stroke-width="1"/>
+  <text x="300" y="402" text-anchor="middle" font-family="sans-serif" font-size="9.5" font-weight="500" fill="#174C38">AUTHENTIC MACRO SPECIMEN • PENDING CLIENT DELIVERY</text>
+</svg>

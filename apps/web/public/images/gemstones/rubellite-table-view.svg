@@ -1,0 +1,23 @@
+<svg width="600" height="450" viewBox="0 0 600 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="450" fill="#FAF8F2"/>
+  <rect x="15" y="15" width="570" height="420" stroke="#DDD8CC" stroke-width="1" stroke-dasharray="3 3"/>
+  
+  <!-- Direct Table Facet Diagram of Custom Mixed Oval Cut -->
+  <!-- Outer Girdle -->
+  <polygon points="230,170 370,170 430,225 370,280 230,280 170,225" fill="#C23B58" stroke="#103729" stroke-width="2.5"/>
+  <!-- Inner Table -->
+  <polygon points="260,195 340,195 380,225 340,255 260,255 220,225" fill="#98223E" stroke="#FAF8F2" stroke-width="1.8"/>
+  <!-- Star and Kite Facet Junctions -->
+  <line x1="230" y1="170" x2="260" y2="195" stroke="#FAF8F2" stroke-width="1.5"/>
+  <line x1="370" y1="170" x2="340" y2="195" stroke="#FAF8F2" stroke-width="1.5"/>
+  <line x1="430" y1="225" x2="380" y2="225" stroke="#FAF8F2" stroke-width="1.5"/>
+  <line x1="370" y1="280" x2="340" y2="255" stroke="#FAF8F2" stroke-width="1.5"/>
+  <line x1="230" y1="280" x2="260" y2="255" stroke="#FAF8F2" stroke-width="1.5"/>
+  <line x1="170" y1="225" x2="220" y2="225" stroke="#FAF8F2" stroke-width="1.5"/>
+  
+  <text x="300" y="65" text-anchor="middle" font-family="serif" font-size="18" font-weight="600" fill="#174C38">CROWN TABLE PERSPECTIVE</text>
+  <text x="300" y="90" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="500" fill="#6E756F">AFGHANISTAN CUT RUBELLITE TOURMALINE (LG-RUB-AFGHAN)</text>
+  
+  <rect x="120" y="380" width="360" height="26" rx="4" fill="#F3EFE5" stroke="#B99B68" stroke-width="1"/>
+  <text x="300" y="397" text-anchor="middle" font-family="sans-serif" font-size="9.5" font-weight="500" fill="#174C38">FACET SYMMETRY INSPECTION • PENDING CLIENT DELIVERY</text>
+</svg>

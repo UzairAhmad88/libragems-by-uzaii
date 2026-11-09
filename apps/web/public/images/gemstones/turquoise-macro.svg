@@ -1,0 +1,22 @@
+<svg width="600" height="450" viewBox="0 0 600 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="450" fill="#FAF8F2"/>
+  <rect x="15" y="15" width="570" height="420" stroke="#DDD8CC" stroke-width="1" stroke-dasharray="3 3"/>
+  
+  <!-- Magnified round lens -->
+  <circle cx="300" cy="225" r="130" fill="#F3EFE5" stroke="#174C38" stroke-width="2"/>
+  <circle cx="300" cy="225" r="115" fill="#2E9E9B" stroke="#103729" stroke-width="2"/>
+  
+  <!-- Detailed micro-spiderweb limonite pattern -->
+  <path d="M210 200 Q 260 220 300 180 T 380 210" stroke="#103729" stroke-width="3" stroke-linecap="round"/>
+  <path d="M260 220 Q 250 280 290 310" stroke="#103729" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M300 180 Q 330 250 360 280" stroke="#103729" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M300 240 Q 270 270 310 290" stroke="#103729" stroke-width="2" stroke-linecap="round"/>
+  <path d="M230 250 Q 260 260 280 240" stroke="#103729" stroke-width="2" stroke-linecap="round"/>
+  <path d="M340 190 Q 370 230 390 260" stroke="#103729" stroke-width="2" stroke-linecap="round"/>
+  
+  <text x="300" y="55" text-anchor="middle" font-family="serif" font-size="18" font-weight="600" fill="#174C38">MACRO MATRIX DETAIL (15x)</text>
+  <text x="300" y="78" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="500" fill="#6E756F">NATURAL LIMONITE VEINING IN CRYPTOCRYSTALLINE AGGREGATE</text>
+  
+  <rect x="130" y="385" width="340" height="26" rx="4" fill="#F3EFE5" stroke="#B99B68" stroke-width="1"/>
+  <text x="300" y="402" text-anchor="middle" font-family="sans-serif" font-size="9.5" font-weight="500" fill="#174C38">MACRO STUDIO INSPECTION • PENDING CLIENT DELIVERY</text>
+</svg>

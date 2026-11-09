@@ -1,62 +1,279 @@
+import type { Metadata } from "next";
 import Link from "next/link";
-import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
+import { notFound } from "next/navigation";
+import { ShieldCheck, Sparkles } from "lucide-react";
+import { SiteHeader } from "@/components/layout/site-header";
+import { SiteFooter } from "@/components/layout/site-footer";
+import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { ProductGallery } from "@/components/gemstones/product-gallery";
+import { SpecTable } from "@/components/gemstones/spec-table";
+import { WhatsAppCta } from "@/components/gemstones/whatsapp-cta";
+import { StickyMobileActionBar } from "@/components/gemstones/sticky-mobile-action-bar";
+import { FaqAccordion } from "@/components/ui/faq-accordion";
+import { EnquiryForm } from "@/components/forms/enquiry-form";
+import { ProductCard } from "@/components/gemstones/product-card";
+import { Badge } from "@/components/ui/badge";
+import { getGemstoneBySlug, getAllGemstones } from "@/data/gemstones";
 
-export const metadata = {
-  title: "Rough Hessonite Garnet | Commercial Lot",
+export const metadata: Metadata = {
+  title: "Rough Hessonite Garnet | Commercial Parcel LG-HG-001",
   description:
-    "Commercial-quality rough Hessonite Garnet. Grossular garnet rough pebbles selected for commercial cabochon and bead cutting.",
+    "Commercial-quality rough hessonite garnet parcel (5,000g). Natural untreated grossular garnet from Sri Lanka featuring warm cinnamon-orange hues and diagnostic treacle inclusions.",
+  alternates: {
+    canonical: "https://libragems.net/gemstones/hessonite-garnet",
+  },
+  openGraph: {
+    title: "Rough Hessonite Garnet Commercial Parcel | LibraGems Bangkok",
+    description:
+      "Alluvial rough hessonite garnet pebbles (8mm to 22mm) for wholesale cabochon and bead manufacturing. Natural untreated (CIBJO N).",
+    url: "https://libragems.net/gemstones/hessonite-garnet",
+    siteName: "LibraGems",
+    type: "website",
+  },
 };
 
-export default function HessonitePage() {
+export default function HessoniteGarnetPage() {
+  const product = getGemstoneBySlug("hessonite-garnet");
+  if (!product) notFound();
+
+  const otherProducts = getAllGemstones().filter((g) => g.slug !== product.slug);
+
+  const breadcrumbs = [
+    { label: "Home", href: "/" },
+    { label: "Gemstone Catalogue", href: "/gemstones" },
+    { label: "Rough Hessonite Garnet" },
+  ];
+
+  const productJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: product.name,
+    image: `https://libragems.net${product.images[0]?.src}`,
+    description: product.fullOverview,
+    sku: product.lotReference,
+    category: product.form,
+    offers: {
+      "@type": "AggregateOffer",
+      priceCurrency: "USD",
+      price: "0",
+      priceValidUntil: "2027-12-31",
+      availability: "https://schema.org/InStock",
+      priceSpecification: {
+        "@type": "UnitPriceSpecification",
+        priceType: "https://schema.org/PriceOnApplication",
+      },
+    },
+    additionalProperty: [
+      { "@type": "PropertyValue", name: "Species", value: product.species },
+      { "@type": "PropertyValue", name: "Hardness", value: product.hardness },
+      { "@type": "PropertyValue", name: "Specific Gravity", value: product.specificGravity },
+      { "@type": "PropertyValue", name: "Treatment", value: product.treatment.name },
+      { "@type": "PropertyValue", name: "CIBJO Code", value: product.treatment.cibjoCode },
+    ],
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
+      />
       <SiteHeader />
-      <main id="main-content" className="flex-1 mx-auto max-w-5xl px-6 py-20">
-        <nav aria-label="Breadcrumb" className="text-xs text-stone">
-          <Link href="/" className="hover:text-forest">Home</Link>
-          <span className="mx-2">/</span>
-          <Link href="/gemstones" className="hover:text-forest">Gemstones</Link>
-          <span className="mx-2">/</span>
-          <span className="text-ink font-medium">Rough Hessonite Garnet</span>
-        </nav>
 
-        <p className="mt-6 text-xs font-semibold uppercase tracking-widest text-forest">
-          Rough Gemstone • Lot Reference: LG-HG-001
-        </p>
-        <h1 className="mt-3 font-serif text-4xl text-forest-deep md:text-5xl">
-          Commercial-Quality Rough Hessonite Garnet
-        </h1>
-        <p className="mt-4 max-w-3xl text-base leading-relaxed text-stone">
-          Explore commercial-quality rough Hessonite Garnet parcels held in Bangkok. Translucent to
-          semi-transparent grossular garnet rough pebbles selected for commercial lapidary cutting.
-        </p>
-
-        {/* Architectural Photo Placeholder */}
-        <div className="mt-10 rounded-2xl border border-dashed border-border bg-beige p-12 text-center shadow-subtle">
-          <p className="text-xs font-semibold uppercase tracking-wider text-champagne">
-            Studio Photography Placeholder
-          </p>
-          <p className="mt-2 text-xs text-stone">
-            Authentic daylight photography of this physical lot will be published after client approval.
-          </p>
+      <main id="main-content" className="flex-1 pb-16">
+        {/* Breadcrumb Strip */}
+        <div className="border-b border-border bg-beige/40">
+          <div className="mx-auto max-w-7xl px-6">
+            <Breadcrumbs items={breadcrumbs} />
+          </div>
         </div>
 
-        <div className="mt-10 flex flex-wrap gap-4">
-          <Link
-            href="/contact"
-            className="inline-flex rounded-full bg-forest px-8 py-3.5 text-sm font-medium text-white transition-all duration-200 hover:bg-forest-light focus-visible:outline-champagne"
-          >
-            Inquire About This Gemstone
-          </Link>
-          <Link
-            href="/gemstones"
-            className="inline-flex rounded-full border border-border bg-white px-8 py-3.5 text-sm font-medium text-ink transition-all duration-200 hover:border-forest hover:text-forest focus-visible:outline-champagne"
-          >
-            ← Back to Catalogue
-          </Link>
-        </div>
+        {/* Product Hero Dossier */}
+        <section className="mx-auto max-w-7xl px-6 py-10 lg:py-16">
+          <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
+            {/* Left: Product Image Gallery (7 cols) */}
+            <div className="lg:col-span-7">
+              <ProductGallery images={product.images} productName={product.name} />
+            </div>
+
+            {/* Right: Commercial Lot Summary Pane (5 cols) */}
+            <div className="lg:col-span-5 space-y-6">
+              {/* Badges Strip */}
+              <div className="flex flex-wrap items-center gap-2">
+                <Badge variant="untreated">
+                  {product.treatment.name} (Code {product.treatment.cibjoCode})
+                </Badge>
+                <Badge variant="accent">Lot Ref: {product.lotReference}</Badge>
+                <Badge variant="default">{product.form}</Badge>
+              </div>
+
+              {/* Title & Subtitle */}
+              <div>
+                <h1 className="font-serif text-3xl font-medium leading-tight text-forest-deep sm:text-4xl md:text-5xl">
+                  {product.name}
+                </h1>
+                <p className="mt-2 text-xs font-semibold uppercase tracking-wider text-forest">
+                  {product.tradeTitle}
+                </p>
+                <p className="mt-3 text-sm leading-relaxed text-stone">
+                  {product.subtitle}
+                </p>
+              </div>
+
+              {/* Commercial Key Highlights */}
+              <div className="rounded-xl border border-border bg-white p-5 shadow-subtle space-y-3">
+                <div className="flex items-center justify-between border-b border-border/60 pb-2 text-xs">
+                  <span className="text-stone">Parcel Availability</span>
+                  <span className="font-medium text-forest-deep tabular-nums">
+                    {product.lotWeight}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between border-b border-border/60 pb-2 text-xs">
+                  <span className="text-stone">Piece Sizing</span>
+                  <span className="font-medium text-forest-deep">
+                    {product.dimensionsOrSieve}
+                  </span>
+                </div>
+                <div className="flex items-center justify-between border-b border-border/60 pb-2 text-xs">
+                  <span className="text-stone">Minimum Order (MOQ)</span>
+                  <span className="font-medium text-forest-deep tabular-nums">{product.moq}</span>
+                </div>
+                <div className="flex items-center justify-between text-xs">
+                  <span className="text-stone">Trade Origin</span>
+                  <span className="font-medium text-forest-deep">
+                    {product.origin.country} ({product.origin.region})
+                  </span>
+                </div>
+              </div>
+
+              {/* WhatsApp Action & Direct Inquiries */}
+              <div className="space-y-3 pt-2">
+                <WhatsAppCta
+                  productTitle={product.name}
+                  lotReference={product.lotReference}
+                />
+                <Link
+                  href={`/contact?gemstone=${encodeURIComponent(product.lotReference)}`}
+                  className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full border border-forest bg-forest/5 px-6 text-xs font-semibold uppercase tracking-wider text-forest hover:bg-forest hover:text-white transition-colors"
+                >
+                  <span>Submit Written Lot Inquiry</span>
+                </Link>
+              </div>
+
+              {/* Verification & Trust Note */}
+              <div className="rounded-lg border border-border/70 bg-ivory p-3.5 text-[11px] text-stone space-y-1">
+                <div className="flex items-center gap-1.5 font-medium text-forest-deep">
+                  <ShieldCheck className="h-4 w-4 text-forest shrink-0" />
+                  <span>Trade Verification Protocol</span>
+                </div>
+                <p className="leading-relaxed">
+                  Held at our Bang Rak facility in Bangkok. Video inspection available prior to parcel
+                  settlement. 48-hour inspection period granted to accredited wholesale accounts.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Gemological Specs & Editorial Analysis */}
+        <section className="border-t border-border bg-beige/30 py-16 lg:py-20">
+          <div className="mx-auto max-w-7xl px-6 space-y-16">
+            {/* Gemological Specs Table */}
+            <div className="max-w-4xl mx-auto">
+              <SpecTable product={product} />
+            </div>
+
+            {/* Editorial Geological & Lapidary Context */}
+            <div className="max-w-4xl mx-auto grid gap-8 md:grid-cols-2">
+              <div className="rounded-2xl border border-border bg-white p-8 shadow-subtle space-y-3">
+                <h3 className="font-serif text-2xl font-medium text-forest-deep">
+                  Geological Occurrence
+                </h3>
+                <p className="text-xs leading-relaxed text-stone">
+                  {product.geologicalContext}
+                </p>
+              </div>
+
+              <div className="rounded-2xl border border-border bg-white p-8 shadow-subtle space-y-3">
+                <h3 className="font-serif text-2xl font-medium text-forest-deep">
+                  Lapidary Working Yield
+                </h3>
+                <p className="text-xs leading-relaxed text-stone">
+                  {product.lapidaryCharacteristics}
+                </p>
+              </div>
+            </div>
+
+            {/* Commercial Applications Checklist */}
+            <div className="max-w-4xl mx-auto rounded-2xl border border-border bg-white p-8 shadow-subtle">
+              <h3 className="font-serif text-2xl font-medium text-forest-deep">
+                Recommended Commercial Applications
+              </h3>
+              <ul className="mt-4 grid gap-3 sm:grid-cols-2 text-xs text-stone">
+                {product.commercialApplications.map((app, idx) => (
+                  <li key={idx} className="flex items-start gap-2.5">
+                    <Sparkles className="h-4 w-4 text-champagne shrink-0 mt-0.5" />
+                    <span>{app}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Buyer FAQs */}
+            <div className="max-w-4xl mx-auto space-y-6">
+              <div>
+                <h3 className="font-serif text-2xl font-medium text-forest-deep sm:text-3xl">
+                  Frequently Asked Questions
+                </h3>
+                <p className="text-xs text-stone">
+                  Answers to commercial questions regarding parcel splitting, inspection, and lab reports.
+                </p>
+              </div>
+              <FaqAccordion items={product.faqs} />
+            </div>
+
+            {/* Inline Trade Enquiry Form */}
+            <div className="max-w-3xl mx-auto pt-6">
+              <EnquiryForm
+                initialGemstone={`${product.name} (${product.lotReference})`}
+              />
+            </div>
+
+            {/* Related Gemstones Strip */}
+            <div className="max-w-7xl mx-auto pt-8 border-t border-border">
+              <div className="flex items-center justify-between mb-8">
+                <div>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-forest">
+                    Explore Other Holdings
+                  </span>
+                  <h3 className="font-serif text-2xl font-medium text-forest-deep">
+                    Related Gemstone Materials
+                  </h3>
+                </div>
+                <Link
+                  href="/gemstones"
+                  className="text-xs font-semibold uppercase tracking-wider text-forest hover:underline"
+                >
+                  View All Materials →
+                </Link>
+              </div>
+
+              <div className="grid gap-8 sm:grid-cols-2">
+                {otherProducts.map((gem) => (
+                  <ProductCard key={gem.slug} product={gem} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
+
+      {/* Sticky Mobile Action Bar */}
+      <StickyMobileActionBar
+        productTitle={product.name}
+        lotReference={product.lotReference}
+      />
+
       <SiteFooter />
     </>
   );

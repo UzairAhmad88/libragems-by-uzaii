@@ -1,0 +1,20 @@
+<svg width="600" height="450" viewBox="0 0 600 450" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="450" fill="#FAF8F2"/>
+  <rect x="15" y="15" width="570" height="420" stroke="#DDD8CC" stroke-width="1" stroke-dasharray="3 3"/>
+  
+  <!-- Sawed lapidary slab (rectangular with irregular perimeter) -->
+  <path d="M160 160 L440 150 L460 300 L140 310 Z" fill="#2E9E9B" stroke="#103729" stroke-width="2"/>
+  
+  <!-- Matrix network across slab face -->
+  <path d="M170 190 Q 230 240 300 210 T 430 250" stroke="#103729" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M240 160 Q 280 230 270 290" stroke="#103729" stroke-width="2" stroke-linecap="round"/>
+  <path d="M350 150 Q 380 220 370 280" stroke="#103729" stroke-width="2" stroke-linecap="round"/>
+  <path d="M190 270 Q 240 260 280 280" stroke="#103729" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M360 220 Q 400 240 430 210" stroke="#103729" stroke-width="1.8" stroke-linecap="round"/>
+  
+  <text x="300" y="60" text-anchor="middle" font-family="serif" font-size="18" font-weight="600" fill="#174C38">SAWED LAPIDARY SLAB VIEW</text>
+  <text x="300" y="85" text-anchor="middle" font-family="sans-serif" font-size="11" font-weight="500" fill="#6E756F">CROSS-SECTIONAL DENSITY AND MATRIX DISTRIBUTION</text>
+  
+  <rect x="130" y="380" width="340" height="26" rx="4" fill="#F3EFE5" stroke="#B99B68" stroke-width="1"/>
+  <text x="300" y="397" text-anchor="middle" font-family="sans-serif" font-size="9.5" font-weight="500" fill="#174C38">STABILIZED SLAB SPECIMEN • PENDING CLIENT DELIVERY</text>
+</svg>
