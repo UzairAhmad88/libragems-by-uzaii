@@ -209,3 +209,4 @@ To streamline buyer communication, each gemstone will generate customized enquir
 
 ---
 *Document produced as part of LibraGems Phase 00 Deliverables.*
+
