@@ -8,8 +8,8 @@ Update this file at the end of every development session.
 | **Brand and UX (Phase 01)** | ✅ **Completed** | `MASTER_DESIGN_DIRECTION.md`, `COMPLETE_DESIGN_SYSTEM.md`, `DESIGN_TOKENS.md`, `TYPOGRAPHY_SYSTEM.md`, `RESPONSIVE_DESIGN_SPECIFICATION.md`, `COMPONENT_LIBRARY.md`, `HOMEPAGE_WIREFRAME.md`, `PRODUCT_PAGE_WIREFRAME.md`, `ALL_PAGE_DESIGN_SPECIFICATIONS.md`, `HCI_ACCESSIBILITY_GUIDELINES.md`, `IMAGE_AND_PHOTOGRAPHY_GUIDELINES.md`, `INTERACTION_SPECIFICATIONS.md`, `DESIGN_APPROVAL_CHECKLIST.md`, `PHASE_01_COMPLETION_REPORT.md` | None (Design architecture complete and approved) |
 | **Project foundation (Phase 02)** | ✅ **Completed** | `PHASE_02_FOUNDATION_ARCHITECTURE.md`, `DEPENDENCY_REGISTER.md`, `LOCAL_DEVELOPMENT_GUIDE.md`, `PHASE_02_IMPLEMENTATION_REPORT.md`, `PHASE_02_VALIDATION_REPORT.md`, `package-lock.json`, `tailwind.config.ts`, `vitest.config.ts`, `ci.yml` | None (Foundation verified & all tests pass) |
 | **Public website (Phase 03)** | ✅ **Completed** | `PHASE_03_FRONTEND_IMPLEMENTATION_REPORT.md`, `PHASE_03_FRONTEND_VALIDATION_REPORT.md`, `PHASE_03_IMPLEMENTED_DESIGN_REVIEW.md`, `FRONTEND_COMPONENT_ARCHITECTURE.md`, 11 public routes, 7 test suites | Client return of confirmed contact numbers & authentic macro photography |
-| **Database and admin (Phase 04)** | ⏳ **Next in Queue** | Supabase PostgreSQL schema, RLS policies, admin authentication, product CRUD | Dependent on user authorization to begin Phase 04 |
-| **Enquiry integrations (Phase 05)** | Not started | | Dependent on Phase 04 & verified WhatsApp/Resend |
+| **Database and admin (Phase 04)** | ✅ **Completed** | `supabase/migrations/` (5 files), RLS policies, storage bucket, `@supabase/ssr` integration, 7 admin routes, 10 test suites (29 tests passed), `PHASE_04_COMPLETION_REPORT.md` | None (Local preview & zero-secret fallback active; cloud keys ready for Phase 05) |
+| **Enquiry integrations (Phase 05)** | ⏳ **Next in Queue** | Resend transactional email, WhatsApp link generator, enquiry state machine | Dependent on user authorization to begin Phase 05 |
 | **SEO and analytics (Phase 06)** | Not started | | Dependent on Phase 05 & live crawlable URLs |
 | **QA and hardening (Phase 07)** | Not started | | Dependent on Phase 06 |
 | **Deployment and handover (Phase 08)** | Not started | | Dependent on Phase 07 & DNS access |
@@ -18,6 +18,110 @@ Update this file at the end of every development session.
 ---
 
 ## Session Reports
+
+### Session 05 – Phase 04: Supabase Database Architecture, Authentication & Admin Dashboard
+- **Date:** November 10, 2026
+- **Phase:** Phase 04 – Supabase Database Architecture, Secure Authentication & Admin Dashboard
+- **Branch:** `phase-04/supabase-admin-foundation`
+- **Work completed:**
+  - Initialized Supabase CLI configuration (`supabase/config.toml`).
+  - Authored 5 PostgreSQL migrations under `supabase/migrations/`:
+    - `20261110000001_initial_schema.sql`: 6 normalized tables (`gemstone_categories`, `gemstones`, `gemstone_images`, `enquiries`, `admin_profiles`, `activity_logs`), `updated_at` auto-triggers, and `generate_enquiry_reference()` sequence trigger format `ENQ-YYYY-XXXXX`.
+    - `20261110000002_indexes_constraints.sql`: Performance indexes, partial indexes, and English full-text search index (`idx_gemstones_search`).
+    - `20261110000003_rls_policies.sql`: Production RLS with `SECURITY DEFINER` helper functions (`is_admin()`, `get_admin_role()`, `has_role()`), dual-clause `UPDATE` policies (`USING` + `WITH CHECK`), public read isolation on enquiries and admin profiles.
+    - `20261110000004_storage_policies.sql`: `gemstone-images` bucket creation with public CDN read and admin-only upload/delete policies.
+    - `20261110000005_seed_reference_data.sql`: 4 baseline categories, 3 initial gemstones matching the Phase 03 catalogue (`LG-HG-001`, `LG-TQ-001`, `LG-RUB-AFGHAN`), and architectural SVG image records.
+  - Authored `supabase/seed/development_seed.sql` with 4 sample enquiries across diverse lifecycle states.
+  - Pinned and installed `@supabase/supabase-js@2.119.0` and `@supabase/ssr@0.12.7` in `apps/web/package.json`.
+  - Created complete TypeScript schema definitions in `apps/web/src/types/database.types.ts`.
+  - Implemented modular Supabase client factories in `apps/web/src/lib/supabase/`:
+    - `config.ts`: Environment detection and fallback verification.
+    - `client.ts`: Browser singleton client via `createBrowserClient`.
+    - `server.ts`: Next.js 15 async cookie-based server client via `createServerClient`.
+    - `admin.ts`: Service-role client for background server jobs via `createAdminClient`.
+    - `middleware.ts`: Token refresh and session protection helper.
+  - Configured Next.js Edge Middleware in `apps/web/src/middleware.ts` protecting all `/admin/*` routes.
+  - Implemented Role-Based Access Control (RBAC) in `apps/web/src/lib/auth/`:
+    - 4 strict roles: `super_admin`, `administrator`, `product_manager`, `enquiry_manager`.
+    - Public registration disabled; closed authentication verified against `public.admin_profiles`.
+    - Server actions `loginAdminAction` and `logoutAdminAction` with immutable audit logging.
+  - Built quiet luxury administrative portal:
+    - `/admin/login`: Accessible luxury login form with React Suspense boundary.
+    - `/admin/(dashboard)/layout.tsx`: Navigation sidebar with Bangkok trading desk indicator and active role badge.
+    - `/admin/dashboard`: Real-time KPIs, recent commercial enquiries, active inventory lots.
+    - `/admin/gemstones`: Catalogue inventory table with CIBJO codes and publication status.
+    - `/admin/gemstones/new` & `[id]`: Gemstone lot editor (`GemstoneForm`).
+    - `/admin/categories`: Gemstone taxonomy management.
+    - `/admin/enquiries` & `[id]`: Commercial enquiries inbox, filtering, status advancement, and pre-filled email client reply.
+    - `/admin/team`: Administrative personnel table and RBAC permissions matrix.
+    - `/admin/activity`: Tamper-evident activity audit trail.
+    - `/admin/settings`: System environmental health, Supabase connection status, and storage configuration.
+  - Integrated public enquiry intake:
+    - Created `/api/enquiries` API route handler with Zod validation, IP hashing, honeypot spam protection, and Supabase sequence persistence.
+    - Updated `apps/web/src/components/forms/enquiry-form.tsx` to transmit submissions to `/api/enquiries`, display real tracking reference number (`ENQ-YYYY-XXXXX`), and offer one-click reference copy and pre-filled direct email dispatch.
+  - Executed full quality gates:
+    - Vitest: 10 test files, 29 tests passed (100%).
+    - TypeScript: `tsc --noEmit` exited with 0 errors.
+    - ESLint 9: `next lint` exited with 0 warnings, 0 errors.
+    - Next.js Build: 27 routes compiled successfully with clean static page generation.
+  - Authored all 10 Phase 04 documentation deliverables.
+- **Files created:**
+  - `supabase/config.toml`
+  - `supabase/migrations/20261110000001_initial_schema.sql`
+  - `supabase/migrations/20261110000002_indexes_constraints.sql`
+  - `supabase/migrations/20261110000003_rls_policies.sql`
+  - `supabase/migrations/20261110000004_storage_policies.sql`
+  - `supabase/migrations/20261110000005_seed_reference_data.sql`
+  - `supabase/seed/development_seed.sql`
+  - `apps/web/src/types/database.types.ts`
+  - `apps/web/src/lib/supabase/config.ts`
+  - `apps/web/src/lib/supabase/config.test.ts`
+  - `apps/web/src/lib/supabase/client.ts`
+  - `apps/web/src/lib/supabase/server.ts`
+  - `apps/web/src/lib/supabase/admin.ts`
+  - `apps/web/src/lib/supabase/middleware.ts`
+  - `apps/web/src/middleware.ts`
+  - `apps/web/src/lib/auth/permissions.ts`
+  - `apps/web/src/lib/auth/permissions.test.ts`
+  - `apps/web/src/lib/auth/session.ts`
+  - `apps/web/src/lib/auth/actions.ts`
+  - `apps/web/src/app/api/enquiries/route.ts`
+  - `apps/web/src/app/api/enquiries/route.test.ts`
+  - `apps/web/src/app/admin/page.tsx`
+  - `apps/web/src/app/admin/login/page.tsx`
+  - `apps/web/src/app/admin/(dashboard)/layout.tsx`
+  - `apps/web/src/app/admin/(dashboard)/dashboard/page.tsx`
+  - `apps/web/src/app/admin/(dashboard)/gemstones/page.tsx`
+  - `apps/web/src/app/admin/(dashboard)/gemstones/new/page.tsx`
+  - `apps/web/src/app/admin/(dashboard)/gemstones/[id]/page.tsx`
+  - `apps/web/src/app/admin/(dashboard)/categories/page.tsx`
+  - `apps/web/src/app/admin/(dashboard)/enquiries/page.tsx`
+  - `apps/web/src/app/admin/(dashboard)/enquiries/[id]/page.tsx`
+  - `apps/web/src/app/admin/(dashboard)/team/page.tsx`
+  - `apps/web/src/app/admin/(dashboard)/activity/page.tsx`
+  - `apps/web/src/app/admin/(dashboard)/settings/page.tsx`
+  - `apps/web/src/components/admin/gemstone-form.tsx`
+  - `docs/05-technical-architecture/ADMIN_AUTHENTICATION_ARCHITECTURE.md`
+  - `docs/05-technical-architecture/ADMIN_MIDDLEWARE_SPECIFICATION.md`
+  - `docs/06-database/POSTGRES_SCHEMA_SPECIFICATION.md`
+  - `docs/06-database/ROW_LEVEL_SECURITY_POLICIES.md`
+  - `docs/06-database/STORAGE_BUCKET_SPECIFICATION.md`
+  - `docs/06-database/DATABASE_SEED_SPECIFICATION.md`
+  - `docs/07-development/ADMIN_PORTAL_USER_GUIDE.md`
+  - `docs/07-development/LOCAL_SUPABASE_DEVELOPMENT_GUIDE.md`
+  - `docs/08-testing/SECURITY_TESTING_REPORT.md`
+  - `PHASE_04_COMPLETION_REPORT.md`
+- **Files updated:**
+  - `apps/web/package.json`
+  - `apps/web/package-lock.json`
+  - `apps/web/src/components/forms/enquiry-form.tsx`
+  - `docs/10-project-management/DECISIONS_LOG.md`
+  - `docs/10-project-management/PROGRESS_TRACKER.md`
+  - `README.md`
+- **Next exact step:**
+  - Push branch `phase-04/supabase-admin-foundation` to origin and prepare pull request for Phase 05 authorization.
+
+---
 
 ### Session 04 – Phase 03: Complete Public Website Frontend Development
 - **Date:** November 10, 2026

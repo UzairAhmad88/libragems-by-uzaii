@@ -1,0 +1,422 @@
+export type Json =
+  | string
+  | number
+  | boolean
+  | null
+  | { [key: string]: Json | undefined }
+  | Json[];
+
+export type FormType = 'rough_parcel' | 'mineral_rough' | 'cut_stone' | 'calibrated_beads';
+export type WeightUnit = 'g' | 'kg' | 'ct' | 'pcs';
+export type OriginVerificationStatus = 'verified' | 'trade_consensus' | 'unverified';
+export type TreatmentStatus = 'natural_untreated' | 'stabilized' | 'enhanced' | 'unverified';
+export type CibjoCode = 'N' | 'T' | 'E';
+export type CertificationStatus = 'certified' | 'pending_verification' | 'available_on_request';
+export type AvailabilityStatus = 'in_stock' | 'reserved' | 'sold' | 'archived';
+export type PriceType = 'price_on_application';
+export type ImageViewType = 'overview' | 'macro' | 'scale' | 'table' | 'pavilion' | 'facet' | 'matrix';
+export type EnquiryType = 'gemstone_lot' | 'parcel_split' | 'custom_sourcing' | 'showroom_appointment' | 'general_wholesale';
+export type EnquiryStatus = 'new' | 'in_review' | 'replied' | 'qualified' | 'converted' | 'closed' | 'spam';
+export type EnquiryPriority = 'low' | 'normal' | 'high' | 'urgent';
+export type AdminRole = 'super_admin' | 'administrator' | 'product_manager' | 'enquiry_manager';
+export type ActivityAction = 'create' | 'update' | 'delete' | 'publish' | 'unpublish' | 'archive' | 'status_change' | 'assign' | 'role_change' | 'login' | 'logout';
+export type ActivityEntityType = 'gemstone' | 'category' | 'enquiry' | 'admin' | 'auth' | 'system';
+
+export interface Database {
+  public: {
+    Tables: {
+      gemstone_categories: {
+        Row: {
+          id: string;
+          name: string;
+          slug: string;
+          description: string | null;
+          display_order: number;
+          is_active: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          name: string;
+          slug: string;
+          description?: string | null;
+          display_order?: number;
+          is_active?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          name?: string;
+          slug?: string;
+          description?: string | null;
+          display_order?: number;
+          is_active?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      gemstones: {
+        Row: {
+          id: string;
+          category_id: string;
+          name: string;
+          slug: string;
+          reference_code: string;
+          trade_title: string | null;
+          subtitle: string | null;
+          short_description: string;
+          description: string;
+          geological_context: string | null;
+          lapidary_characteristics: string | null;
+          commercial_applications: string[];
+          gemstone_type: string;
+          species: string;
+          variety: string;
+          chemical_formula: string | null;
+          crystal_system: string | null;
+          hardness: string | null;
+          specific_gravity: string | null;
+          refractive_index: string | null;
+          optical_character: string | null;
+          form: FormType;
+          lot_weight: number | null;
+          weight_unit: WeightUnit;
+          weight_display: string;
+          dimensions_or_sieve: string;
+          cut_style: string | null;
+          color_tone: string;
+          clarity_description: string;
+          moq: string;
+          origin_country: string;
+          origin_region: string | null;
+          origin_verification_status: OriginVerificationStatus;
+          origin_disclosure_note: string;
+          treatment_status: TreatmentStatus;
+          cibjo_code: CibjoCode;
+          treatment_name: string;
+          treatment_disclosure: string;
+          certification_status: CertificationStatus;
+          available_labs: string[];
+          certification_memo_reference: string | null;
+          certification_note: string;
+          availability_status: AvailabilityStatus;
+          price_type: PriceType;
+          price_on_application: boolean;
+          is_featured: boolean;
+          is_published: boolean;
+          display_order: number;
+          created_at: string;
+          updated_at: string;
+          created_by: string | null;
+          updated_by: string | null;
+        };
+        Insert: {
+          id?: string;
+          category_id: string;
+          name: string;
+          slug: string;
+          reference_code: string;
+          trade_title?: string | null;
+          subtitle?: string | null;
+          short_description: string;
+          description: string;
+          geological_context?: string | null;
+          lapidary_characteristics?: string | null;
+          commercial_applications?: string[];
+          gemstone_type?: string;
+          species: string;
+          variety: string;
+          chemical_formula?: string | null;
+          crystal_system?: string | null;
+          hardness?: string | null;
+          specific_gravity?: string | null;
+          refractive_index?: string | null;
+          optical_character?: string | null;
+          form: FormType;
+          lot_weight?: number | null;
+          weight_unit: WeightUnit;
+          weight_display: string;
+          dimensions_or_sieve: string;
+          cut_style?: string | null;
+          color_tone: string;
+          clarity_description: string;
+          moq: string;
+          origin_country: string;
+          origin_region?: string | null;
+          origin_verification_status: OriginVerificationStatus;
+          origin_disclosure_note: string;
+          treatment_status: TreatmentStatus;
+          cibjo_code: CibjoCode;
+          treatment_name: string;
+          treatment_disclosure: string;
+          certification_status: CertificationStatus;
+          available_labs?: string[];
+          certification_memo_reference?: string | null;
+          certification_note: string;
+          availability_status?: AvailabilityStatus;
+          price_type?: PriceType;
+          price_on_application?: boolean;
+          is_featured?: boolean;
+          is_published?: boolean;
+          display_order?: number;
+          created_at?: string;
+          updated_at?: string;
+          created_by?: string | null;
+          updated_by?: string | null;
+        };
+        Update: {
+          id?: string;
+          category_id?: string;
+          name?: string;
+          slug?: string;
+          reference_code?: string;
+          trade_title?: string | null;
+          subtitle?: string | null;
+          short_description?: string;
+          description?: string;
+          geological_context?: string | null;
+          lapidary_characteristics?: string | null;
+          commercial_applications?: string[];
+          gemstone_type?: string;
+          species?: string;
+          variety?: string;
+          chemical_formula?: string | null;
+          crystal_system?: string | null;
+          hardness?: string | null;
+          specific_gravity?: string | null;
+          refractive_index?: string | null;
+          optical_character?: string | null;
+          form?: FormType;
+          lot_weight?: number | null;
+          weight_unit?: WeightUnit;
+          weight_display?: string;
+          dimensions_or_sieve?: string;
+          cut_style?: string | null;
+          color_tone?: string;
+          clarity_description?: string;
+          moq?: string;
+          origin_country?: string;
+          origin_region?: string | null;
+          origin_verification_status?: OriginVerificationStatus;
+          origin_disclosure_note?: string;
+          treatment_status?: TreatmentStatus;
+          cibjo_code?: CibjoCode;
+          treatment_name?: string;
+          treatment_disclosure?: string;
+          certification_status?: CertificationStatus;
+          available_labs?: string[];
+          certification_memo_reference?: string | null;
+          certification_note?: string;
+          availability_status?: AvailabilityStatus;
+          price_type?: PriceType;
+          price_on_application?: boolean;
+          is_featured?: boolean;
+          is_published?: boolean;
+          display_order?: number;
+          created_at?: string;
+          updated_at?: string;
+          created_by?: string | null;
+          updated_by?: string | null;
+        };
+        Relationships: [];
+      };
+      gemstone_images: {
+        Row: {
+          id: string;
+          gemstone_id: string;
+          storage_path: string;
+          alt_text: string;
+          caption: string | null;
+          view_type: ImageViewType;
+          display_order: number;
+          is_primary: boolean;
+          is_placeholder: boolean;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          gemstone_id: string;
+          storage_path: string;
+          alt_text: string;
+          caption?: string | null;
+          view_type?: ImageViewType;
+          display_order?: number;
+          is_primary?: boolean;
+          is_placeholder?: boolean;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          gemstone_id?: string;
+          storage_path?: string;
+          alt_text?: string;
+          caption?: string | null;
+          view_type?: ImageViewType;
+          display_order?: number;
+          is_primary?: boolean;
+          is_placeholder?: boolean;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+      enquiries: {
+        Row: {
+          id: string;
+          reference_number: string;
+          gemstone_id: string | null;
+          customer_name: string;
+          company_name: string | null;
+          email: string;
+          phone: string | null;
+          country: string | null;
+          gemstone_interest: string;
+          quantity_specs: string | null;
+          subject: string;
+          message: string;
+          enquiry_type: EnquiryType;
+          status: EnquiryStatus;
+          priority: EnquiryPriority;
+          internal_notes: string | null;
+          assigned_to: string | null;
+          source_page: string | null;
+          ip_hash: string | null;
+          created_at: string;
+          updated_at: string;
+          resolved_at: string | null;
+        };
+        Insert: {
+          id?: string;
+          reference_number?: string;
+          gemstone_id?: string | null;
+          customer_name: string;
+          company_name?: string | null;
+          email: string;
+          phone?: string | null;
+          country?: string | null;
+          gemstone_interest: string;
+          quantity_specs?: string | null;
+          subject: string;
+          message: string;
+          enquiry_type?: EnquiryType;
+          status?: EnquiryStatus;
+          priority?: EnquiryPriority;
+          internal_notes?: string | null;
+          assigned_to?: string | null;
+          source_page?: string | null;
+          ip_hash?: string | null;
+          created_at?: string;
+          updated_at?: string;
+          resolved_at?: string | null;
+        };
+        Update: {
+          id?: string;
+          reference_number?: string;
+          gemstone_id?: string | null;
+          customer_name?: string;
+          company_name?: string | null;
+          email?: string;
+          phone?: string | null;
+          country?: string | null;
+          gemstone_interest?: string;
+          quantity_specs?: string | null;
+          subject?: string;
+          message?: string;
+          enquiry_type?: EnquiryType;
+          status?: EnquiryStatus;
+          priority?: EnquiryPriority;
+          internal_notes?: string | null;
+          assigned_to?: string | null;
+          source_page?: string | null;
+          ip_hash?: string | null;
+          created_at?: string;
+          updated_at?: string;
+          resolved_at?: string | null;
+        };
+        Relationships: [];
+      };
+      admin_profiles: {
+        Row: {
+          id: string;
+          full_name: string;
+          email: string;
+          role: AdminRole;
+          is_active: boolean;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id: string;
+          full_name: string;
+          email: string;
+          role?: AdminRole;
+          is_active?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          full_name?: string;
+          email?: string;
+          role?: AdminRole;
+          is_active?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      activity_logs: {
+        Row: {
+          id: string;
+          admin_id: string;
+          action: ActivityAction;
+          entity_type: ActivityEntityType;
+          entity_id: string | null;
+          description: string;
+          metadata: Json;
+          created_at: string;
+        };
+        Insert: {
+          id?: string;
+          admin_id: string;
+          action: ActivityAction;
+          entity_type: ActivityEntityType;
+          entity_id?: string | null;
+          description: string;
+          metadata?: Json;
+          created_at?: string;
+        };
+        Update: {
+          id?: string;
+          admin_id?: string;
+          action?: ActivityAction;
+          entity_type?: ActivityEntityType;
+          entity_id?: string | null;
+          description?: string;
+          metadata?: Json;
+          created_at?: string;
+        };
+        Relationships: [];
+      };
+    };
+    Views: Record<string, never>;
+    Functions: {
+      is_admin: {
+        Args: Record<PropertyKey, never>;
+        Returns: boolean;
+      };
+      get_admin_role: {
+        Args: Record<PropertyKey, never>;
+        Returns: string | null;
+      };
+      has_role: {
+        Args: {
+          allowed_roles: string[];
+        };
+        Returns: boolean;
+      };
+    };
+  };
+}
