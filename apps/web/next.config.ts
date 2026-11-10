@@ -1,6 +1,11 @@
 import type { NextConfig } from "next";
 
 const securityHeaders = [
+  // HTTP Strict Transport Security (HSTS)
+  {
+    key: "Strict-Transport-Security",
+    value: "max-age=63072000; includeSubDomains; preload",
+  },
   // Prevent MIME type sniffing
   {
     key: "X-Content-Type-Options",
@@ -25,6 +30,22 @@ const securityHeaders = [
   {
     key: "X-XSS-Protection",
     value: "1; mode=block",
+  },
+  // Content Security Policy
+  {
+    key: "Content-Security-Policy",
+    value: [
+      "default-src 'self'",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval'",
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+      "font-src 'self' https://fonts.gstatic.com data:",
+      "img-src 'self' data: blob: https://*.supabase.co https://*.supabase.in",
+      "connect-src 'self' https://*.supabase.co https://*.supabase.in https://api.resend.com",
+      "frame-ancestors 'none'",
+      "form-action 'self'",
+      "base-uri 'self'",
+      "object-src 'none'",
+    ].join("; "),
   },
 ];
 

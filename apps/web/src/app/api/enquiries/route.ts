@@ -23,8 +23,23 @@ const enquirySchema = z.object({
   websiteUrlTrap: z.string().optional().default(""), // Honeypot field
 });
 
+// In-memory sliding window fallback for environments without an active database
+const inMemoryRateLimit = new Map<string, number[]>();
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
+const MAX_ENQUIRIES_PER_WINDOW = 5;
+const MAX_PAYLOAD_BYTES = 64 * 1024; // 64 KB
+
 export async function POST(request: NextRequest) {
   try {
+    // 0. Payload size check (prevent DoS via oversized requests)
+    const contentLength = request.headers.get("content-length");
+    if (contentLength && parseInt(contentLength, 10) > MAX_PAYLOAD_BYTES) {
+      return NextResponse.json(
+        { success: false, error: "Payload exceeds 64KB maximum limit." },
+        { status: 413 }
+      );
+    }
+
     const json = await request.json();
 
     // 1. Honeypot check: If the hidden honeypot is filled, silently return simulated success
@@ -50,10 +65,58 @@ export async function POST(request: NextRequest) {
 
     const data = parseResult.data;
 
-    // 3. Compute client IP hash for audit trail
+    // 3. Compute client IP hash for audit trail and rate limiting
     const forwardedFor = request.headers.get("x-forwarded-for");
     const clientIp = forwardedFor ? forwardedFor.split(",")[0].trim() : "127.0.0.1";
     const ipHash = crypto.createHash("sha256").update(clientIp + "libragems-salt").digest("hex").slice(0, 16);
+
+    // 4. Rate Limiting Enforcement (5 submissions per 10 minutes)
+    if (isSupabaseConfigured()) {
+      const adminClient = createAdminClient();
+      const client = adminClient || (await createClient());
+      if (client) {
+        const windowStart = new Date(Date.now() - RATE_LIMIT_WINDOW_MS).toISOString();
+        const { count, error: countError } = await client
+          .from("enquiries")
+          .select("id", { count: "exact", head: true })
+          .eq("ip_hash", ipHash)
+          .gte("created_at", windowStart);
+
+        if (!countError && count !== null && count >= MAX_ENQUIRIES_PER_WINDOW) {
+          return NextResponse.json(
+            {
+              success: false,
+              error: "Too many trade enquiry submissions from this connection. Please wait 10 minutes before submitting again.",
+            },
+            {
+              status: 429,
+              headers: { "Retry-After": "600" },
+            }
+          );
+        }
+      }
+    } else {
+      // In-memory rate limiting fallback
+      const now = Date.now();
+      const clientTimestamps = (inMemoryRateLimit.get(ipHash) || []).filter(
+        (ts) => now - ts < RATE_LIMIT_WINDOW_MS
+      );
+
+      if (clientTimestamps.length >= MAX_ENQUIRIES_PER_WINDOW) {
+        return NextResponse.json(
+          {
+            success: false,
+            error: "Too many trade enquiry submissions from this connection. Please wait 10 minutes before submitting again.",
+          },
+          {
+            status: 429,
+            headers: { "Retry-After": "600" },
+          }
+        );
+      }
+      clientTimestamps.push(now);
+      inMemoryRateLimit.set(ipHash, clientTimestamps);
+    }
 
     const subject = `Trade Enquiry: ${data.gemstoneInterest} — ${data.companyName || data.fullName}`;
 

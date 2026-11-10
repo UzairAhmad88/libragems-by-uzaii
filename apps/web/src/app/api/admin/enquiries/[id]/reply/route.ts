@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getCurrentAdmin } from "@/lib/auth/session";
+import { canManageEnquiries } from "@/lib/auth/permissions";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { defaultEmailService } from "@/lib/email/email-service";
@@ -12,11 +13,22 @@ export async function POST(
     const { id } = await params;
     const admin = await getCurrentAdmin();
 
-    // Verify authentication if Supabase is active
-    if (isSupabaseConfigured() && !admin) {
+    // 1. Mandatory authentication check
+    if (!admin) {
       return NextResponse.json(
-        { success: false, error: "Unauthorized. Admin session required." },
+        { success: false, error: "Unauthorized. Active administrative session required." },
         { status: 401 }
+      );
+    }
+
+    // 2. Strict RBAC authorization check (enquiries:write required)
+    if (!canManageEnquiries(admin.role)) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: `Forbidden. Role '${admin.role}' does not possess permissions to respond to commercial enquiries.`,
+        },
+        { status: 403 }
       );
     }
 

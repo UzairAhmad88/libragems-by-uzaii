@@ -23,9 +23,11 @@ export function SiteFooter() {
             <div className="flex items-start gap-2 pt-2 text-xs text-white/70">
               <MapPin className="h-4 w-4 shrink-0 text-champagne" />
               <span>
-                1394 Charoen Krung Road, Bang Rak
+                Bang Rak Gemstone Trading District
                 <br />
                 Bangkok 10500, Thailand
+                <br />
+                <span className="text-[11px] text-white/50">(Showroom viewing by scheduled trade appointment)</span>
               </span>
             </div>
           </div>
@@ -122,10 +124,10 @@ export function SiteFooter() {
                 </a>
               </div>
               <div className="rounded-lg border border-white/10 bg-white/5 p-3">
-                <p className="font-medium text-white/90">Telephone &amp; WhatsApp Status</p>
+                <p className="font-medium text-white/90">Trade Desk Direct Access</p>
                 <p className="mt-1 text-[11px] leading-relaxed text-white/60">
-                  Landline (+66 2 238 1934) and executive WhatsApp channels are pending final client
-                  business card re-verification. Inquire online or via corporate email.
+                  Direct telephone and executive WhatsApp channels are provided to verified trade accounts.
+                  Inquire online or contact our Bangkok desk via corporate email.
                 </p>
               </div>
               <div className="pt-2">

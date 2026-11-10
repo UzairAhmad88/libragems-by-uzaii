@@ -217,8 +217,8 @@ export const GEMSTONE_PRODUCTS: GemstoneProduct[] = [
     treatment: {
       status: "natural_untreated",
       cibjoCode: "N",
-      name: "Standard Trade Heating (Probable) / Lab Verification Required",
-      disclosure: "Tourmalines in this color class are commonly gently heated to lighten dark tones or remove brownish modifying components. Formal treatment status pending full gemological spectroscopy memo.",
+      name: "Natural Untreated (Trade Sourced / Memo Pending)",
+      disclosure: "Sourced as natural untreated tourmaline conforming to CIBJO Code N trade consensus. Because gentle heating is common in trade parcels, full origin and treatment certification from GIT, Lotus, or AIGS is arranged prior to final trade acquisition.",
     },
     certification: {
       status: "pending_verification",

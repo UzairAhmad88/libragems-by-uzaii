@@ -11,13 +11,62 @@ Update this file at the end of every development session.
 | **Database and admin (Phase 04)** | ✅ **Completed** | `supabase/migrations/` (5 files), RLS policies, storage bucket, `@supabase/ssr` integration, 7 admin routes, 10 test suites (29 tests passed), `PHASE_04_COMPLETION_REPORT.md` | None (Local preview & zero-secret fallback active; cloud keys ready for Phase 05) |
 | **Enquiry integrations (Phase 05)** | ✅ **Completed** | `supabase/migrations/20261110000006_email_communications.sql`, Resend v6.38.0, Universal Email Provider, Outbox Engine, Webhooks, Admin Composer, 15 test suites (50 tests passed), `PHASE_05_IMPLEMENTATION_REPORT.md` | None (Simulated fallback active; production API keys documented) |
 | **SEO and analytics (Phase 06)** | ✅ **Completed** | Dynamic XML sitemap, robots.txt, Schema.org / JSON-LD, centralized canonical domain, 5 new test suites (77 tests passed), 9 documentation reports | None (Production ready for GSC submission) |
-| **QA and hardening (Phase 07)** | ⏳ **Next in Queue** | Comprehensive cross-device QA, security hardening, audit runs | Dependent on Phase 07 start |
-| **Deployment and handover (Phase 08)** | Not started | | Dependent on Phase 07 & DNS access |
+| **QA and hardening (Phase 07)** | ✅ **Completed** | Comprehensive QA audit, security hardening (Cron, Rate Limiting, RBAC, Storage SVG XSS, Headers), 25 test suites (94 tests passed), 5 reports | Conditionally Ready — Manual approval required for client contact credentials & DNS |
+| **Deployment and handover (Phase 08)** | ⏳ **Next in Queue** | Production deployment to Vercel, Supabase migration push, DNS records, Google Search Console onboarding | Dependent on Phase 08 launch & DNS access |
 | **Ongoing improvement (Phase 09)** | Not started | | Post-launch |
 
 ---
 
 ## Session Reports
+
+### Session 08 – Phase 07: Comprehensive QA, Security Hardening & Pre-Launch Audit
+- **Date:** November 10, 2026
+- **Phase:** Phase 07 – Comprehensive QA, Security Hardening & Pre-Launch Audit
+- **Branch:** `phase-07/qa-security-prelaunch-audit`
+- **Work completed:**
+  - Audited existing baseline and checked out new working branch `phase-07/qa-security-prelaunch-audit`.
+  - Independently verified the baseline repository: tests (77/77), typecheck (0 errors), lint (0 warnings), build (33 routes).
+  - Executed comprehensive multi-dimensional audit covering 13 domains: functionality, responsive behavior, auth/session security, database/RLS, API security, email/webhook, storage, SEO, accessibility, performance, security headers, environment variables, and deployment readiness.
+  - Identified and remediated 9 security and business accuracy findings:
+    - **SEC-01 (Critical):** Fixed fail-open cron execution on `/api/cron/process-outbox`. Enforced mandatory server-side `CRON_SECRET` validation (fails closed with 500) and prohibited query string secrets (400 Bad Request) to prevent credential leakage in proxy/server logs.
+    - **SEC-02 (High):** Implemented public enquiry rate limiting on `/api/enquiries` (sliding-window: 5 requests per 10 minutes per IP hash; database-backed in production, in-memory in local/test) and enforced 64KB request payload size limit (HTTP 413).
+    - **SEC-03 (High):** Enforced strict server-side RBAC authorization on Admin Action APIs (`/api/admin/enquiries/[id]/reply` and `/status`), requiring active authentication and `enquiries:write` permission via `canManageEnquiries` (HTTP 403 on unauthorized roles like `product_manager`).
+    - **SEC-04 (High):** Authored migration `20261110000007_storage_hardening.sql`, restricting public storage bucket `gemstone-images` strictly to non-executable raster formats (`image/jpeg`, `image/png`, `image/webp`), eliminating Stored XSS vectors from active SVG scripts.
+    - **SEC-05 (Medium):** Fixed webhook verification fail-open on `/api/webhooks/resend`, ensuring missing `RESEND_WEBHOOK_SECRET` in production immediately halts processing with HTTP 500.
+    - **SEC-06 (Medium):** Configured HTTP Security Headers in `next.config.ts`: HTTP Strict Transport Security (HSTS) with preload, Content-Security-Policy (CSP) restricting scripts, fonts, frames (`frame-ancestors 'none'`), and forms.
+    - **SEC-07 (Medium):** Hardened notification outbox concurrency in `outbox-processor.ts`: added `.select("id")` and row verification to atomic lock updates to prevent duplicate emails during concurrent runs; implemented automatic recovery of abandoned processing jobs stuck for $>15$ minutes.
+    - **SEC-08 (Low):** Sanitized public footer (`site-footer.tsx`), removing unverified phone digits (`+66 2 238 1934`) and unconfirmed street numbers in compliance with ADR-09.
+    - **SEC-09 (Low):** Harmonized CIBJO disclosure for Afghanistan Rubellite in `data/gemstones.ts`, stating trade consensus sourcing with formal Bangkok laboratory memo arranged upon acquisition.
+  - Added 17 new automated tests across 5 new test files (`cron route.test.ts`, `enquiries-admin-api.test.ts`, `rate-limit.test.ts`, `outbox-concurrency.test.ts`, `security-headers.test.ts`), bringing the total test suite to 25 test files and 94 passing tests (100% pass rate).
+  - Executed all quality gates: Vitest (94 tests passed), TypeScript `tsc --noEmit` (0 errors), ESLint `next lint` (0 warnings, 0 errors), Next.js `next build` (33 routes compiled cleanly).
+  - Authored all 5 required Phase 07 documentation deliverables:
+    - `docs/08-testing/PHASE_07_QA_SECURITY_AUDIT.md`
+    - `docs/08-testing/PHASE_07_SECURITY_FINDINGS.md`
+    - `docs/08-testing/PHASE_07_TEST_RESULTS.md`
+    - `docs/08-testing/PHASE_07_PRELAUNCH_CHECKLIST.md`
+    - `docs/07-development/PRODUCTION_DEPLOYMENT_GUIDE.md`
+  - Evaluated pre-launch readiness gates and designated final status: **CONDITIONALLY READY — MANUAL APPROVAL REQUIRED** (all code and security gates pass; pending client business card contact details and DNS provisioning).
+- **Files created/modified:**
+  - `apps/web/next.config.ts`
+  - `apps/web/src/app/api/cron/process-outbox/route.ts`
+  - `apps/web/src/app/api/cron/process-outbox/route.test.ts`
+  - `apps/web/src/app/api/enquiries/route.ts`
+  - `apps/web/src/app/api/enquiries/rate-limit.test.ts`
+  - `apps/web/src/app/api/webhooks/resend/route.ts`
+  - `apps/web/src/app/api/admin/enquiries/[id]/reply/route.ts`
+  - `apps/web/src/app/api/admin/enquiries/[id]/status/route.ts`
+  - `apps/web/src/app/api/admin/enquiries/enquiries-admin-api.test.ts`
+  - `apps/web/src/lib/email/outbox-processor.ts`
+  - `apps/web/src/lib/email/outbox-concurrency.test.ts`
+  - `apps/web/src/config/security-headers.test.ts`
+  - `apps/web/src/components/layout/site-footer.tsx`
+  - `apps/web/src/data/gemstones.ts`
+  - `supabase/migrations/20261110000007_storage_hardening.sql`
+  - `docs/08-testing/PHASE_07_QA_SECURITY_AUDIT.md`
+  - `docs/08-testing/PHASE_07_SECURITY_FINDINGS.md`
+  - `docs/08-testing/PHASE_07_TEST_RESULTS.md`
+  - `docs/08-testing/PHASE_07_PRELAUNCH_CHECKLIST.md`
+  - `docs/07-development/PRODUCTION_DEPLOYMENT_GUIDE.md`
 
 ### Session 07 – Phase 06: Technical SEO, Structured Data, Dynamic XML Sitemap & Search Readiness
 - **Date:** November 10, 2026

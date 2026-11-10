@@ -40,7 +40,16 @@ export async function POST(request: NextRequest) {
       }
       event = verification.event as typeof event;
     } else {
-      // In development / demo mode when secret is not configured
+      // In production, missing webhook secret must fail closed to prevent forgery
+      if (process.env.NODE_ENV === "production") {
+        console.error("[Webhook] RESEND_WEBHOOK_SECRET is not configured on production server.");
+        return NextResponse.json(
+          { success: false, error: "Webhook secret is not configured on server." },
+          { status: 500 }
+        );
+      }
+
+      // In local development / test mode when secret is intentionally omitted
       try {
         event = JSON.parse(rawBody);
       } catch {

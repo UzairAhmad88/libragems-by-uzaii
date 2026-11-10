@@ -142,7 +142,19 @@ export async function processOutbox(options?: {
 
   const nowIso = new Date().toISOString();
 
-  // 1. Fetch actionable pending / retryable items
+  // 1a. Recover abandoned processing jobs (stuck in 'processing' for > 15 minutes due to prior worker crash)
+  const abandonedThreshold = new Date(Date.now() - 15 * 60 * 1000).toISOString();
+  await adminClient
+    .from("notification_outbox")
+    .update({
+      status: "pending",
+      last_error: "Processing abandoned or timed out. Re-queued for recovery.",
+      updated_at: nowIso,
+    })
+    .eq("status", "processing")
+    .lte("updated_at", abandonedThreshold);
+
+  // 1b. Fetch actionable pending / retryable items
   const { data: queueItems, error: fetchError } = await adminClient
     .from("notification_outbox")
     .select("*")
@@ -175,18 +187,19 @@ export async function processOutbox(options?: {
   const errors: string[] = [];
 
   for (const item of queueItems) {
-    // 2. Mark as processing (idempotency guard)
-    const { error: lockError } = await adminClient
+    // 2. Mark as processing (atomic concurrency guard)
+    const { data: lockedItems, error: lockError } = await adminClient
       .from("notification_outbox")
       .update({
         status: "processing",
         updated_at: new Date().toISOString(),
       })
       .eq("id", item.id)
-      .eq("status", item.status); // Optimistic concurrency check
+      .eq("status", item.status) // Optimistic concurrency check
+      .select("id");
 
-    if (lockError) {
-      // Item was likely picked up by another concurrent runner; skip
+    if (lockError || !lockedItems || lockedItems.length === 0) {
+      // Item was already acquired by another concurrent runner; skip safely
       continue;
     }
 
