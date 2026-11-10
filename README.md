@@ -2,8 +2,8 @@
 
 **Entity:** Libra Gems & Trading Co., Ltd. (Bangkok, Thailand)  
 **Repository:** [github.com/UzairAhmad88/libragems-by-uzaii](https://github.com/UzairAhmad88/libragems-by-uzaii)  
-**Status:** Phase 10 Production Activation, Live Verification & Commercial Operations Handover Complete (Conditionally Staged)  
-**Default Branch:** `main` | **Active Release Branch:** `phase-10/production-activation-commercial-handover`
+**Status:** Phase 11 Production Operations, Live Verification & Commercial Readiness Complete (Conditionally Staged)  
+**Default Branch:** `main` | **Active Release Branch:** `phase-11/production-operations-commercial-readiness`
 
 ---
 
@@ -122,6 +122,11 @@ npm run build --prefix apps/web
 
 ## Production Deployment & Operations Documentation
 
+- [Phase 11 Production Operations Report](docs/07-development/PHASE_11_PRODUCTION_OPERATIONS_REPORT.md): Operational readiness, infrastructure audit table, and pre-launch decision gate.
+- [Phase 11 Live Verification Matrix](docs/07-development/PHASE_11_LIVE_VERIFICATION_MATRIX.md): Comprehensive smoke-test matrix for public website, enquiry workflows, and security.
+- [Phase 11 Business Readiness Checklist](docs/07-development/PHASE_11_BUSINESS_READINESS_CHECKLIST.md): Corporate DBD registration, Bangkok office custody, Thai PDPA legal compliance.
+- [Phase 11 Monitoring & Incident Guide](docs/07-development/PHASE_11_MONITORING_AND_INCIDENT_GUIDE.md): Operational baselines, outbox SQL runbooks, and rapid rollback procedures.
+- [Phase 11 Commercial Catalogue Readiness](docs/07-development/PHASE_11_COMMERCIAL_CATALOGUE_READINESS.md): Gemstone lifecycle, baseline parcel audit, and CIBJO disclosure compliance.
 - [Phase 10 Production Activation Report](docs/07-development/PHASE_10_PRODUCTION_ACTIVATION_REPORT.md): Infrastructure state, deployment verification, and Category B approval gate audit.
 - [Commercial Operations Handover Manual](docs/07-development/COMMERCIAL_OPERATIONS_HANDOVER.md): Operator guide for trading desk, gemstone inventory, and wholesale enquiries.
 - [Phase 10 Post-Launch Checklist](docs/07-development/PHASE_10_POST_LAUNCH_CHECKLIST.md): Post-deployment technical smoke tests, GSC verification, and commercial signoff protocol.
