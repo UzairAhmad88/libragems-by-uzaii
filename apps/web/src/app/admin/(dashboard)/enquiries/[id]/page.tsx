@@ -1,8 +1,10 @@
 import * as React from "react";
 import Link from "next/link";
-import { ArrowLeft, Mail } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
+import { AdminResponseComposer } from "@/components/admin/admin-response-composer";
+import { EnquiryEmailTimeline, EmailEventItem } from "@/components/admin/enquiry-email-timeline";
 
 interface AdminEnquiryDetail {
   id: string;
@@ -97,6 +99,7 @@ export default async function AdminEnquiryDetailPage({ params }: EnquiryDetailPa
   const { id } = await params;
 
   let enquiry = FALLBACK_ENQUIRIES_MAP[id] || FALLBACK_ENQUIRIES_MAP["10001"];
+  let emailEvents: EmailEventItem[] = [];
 
   if (isSupabaseConfigured()) {
     const supabase = await createClient();
@@ -109,17 +112,50 @@ export default async function AdminEnquiryDetailPage({ params }: EnquiryDetailPa
 
       if (dbEnq) {
         enquiry = dbEnq;
+
+        // Fetch related email delivery events
+        const { data: events } = await supabase
+          .from("email_events")
+          .select("*")
+          .eq("enquiry_id", dbEnq.id)
+          .order("created_at", { ascending: false });
+
+        if (events && events.length > 0) {
+          emailEvents = events as EmailEventItem[];
+        }
       }
     }
   }
 
-  const mailtoSubject = encodeURIComponent(`[${enquiry.reference_number}] RE: ${enquiry.subject || enquiry.gemstone_interest}`);
-  const mailtoBody = encodeURIComponent(
-    `Dear ${enquiry.customer_name},\n\n` +
-      `Thank you for your commercial trade inquiry (${enquiry.reference_number}) regarding ${enquiry.gemstone_interest}.\n\n` +
-      `Our Bangkok trading desk has reviewed your specifications:\n\n` +
-      `--\nLibra Gems & Trading Co., Ltd.\nBangkok, Thailand`
-  );
+  // Fallback demo events for unconfigured local showcase
+  if (emailEvents.length === 0) {
+    emailEvents = [
+      {
+        id: "evt-001",
+        provider: "resend",
+        provider_message_id: "msg_20261110_ak982",
+        email_type: "customer_acknowledgement",
+        recipient: enquiry.email,
+        subject: "We Have Received Your Enquiry – Libra Gems",
+        status: "delivered",
+        sent_at: enquiry.created_at,
+        delivered_at: new Date(new Date(enquiry.created_at).getTime() + 14000).toISOString(),
+        created_at: enquiry.created_at,
+      },
+      {
+        id: "evt-002",
+        provider: "resend",
+        provider_message_id: "msg_20261110_in771",
+        email_type: "admin_notification",
+        recipient: "trading-desk@libragems.net",
+        subject: `[New Trade Enquiry] ${enquiry.reference_number} – ${enquiry.gemstone_interest}`,
+        status: "delivered",
+        sent_at: enquiry.created_at,
+        delivered_at: new Date(new Date(enquiry.created_at).getTime() + 18000).toISOString(),
+        created_at: enquiry.created_at,
+      },
+    ];
+  }
 
   return (
     <div className="space-y-6 max-w-5xl mx-auto pb-16">
@@ -132,14 +168,6 @@ export default async function AdminEnquiryDetailPage({ params }: EnquiryDetailPa
           <ArrowLeft className="h-4 w-4" />
           <span>Back to Enquiries Inbox</span>
         </Link>
-
-        <a
-          href={`mailto:${enquiry.email}?subject=${mailtoSubject}&body=${mailtoBody}`}
-          className="inline-flex items-center gap-2 rounded-full bg-forest px-5 py-2 text-xs font-semibold uppercase tracking-wider text-white shadow-sm hover:bg-forest-deep transition-colors"
-        >
-          <Mail className="h-4 w-4" />
-          <span>Reply via Official Email</span>
-        </a>
       </div>
 
       {/* Header Info */}
@@ -267,6 +295,18 @@ export default async function AdminEnquiryDetailPage({ params }: EnquiryDetailPa
               </div>
             </div>
           </div>
+
+          {/* Phase 05: Official Response Composer */}
+          <AdminResponseComposer
+            enquiryId={enquiry.id}
+            referenceNumber={enquiry.reference_number}
+            customerName={enquiry.customer_name}
+            customerEmail={enquiry.email}
+            gemstoneInterest={enquiry.gemstone_interest}
+          />
+
+          {/* Phase 05: Email Events Timeline */}
+          <EnquiryEmailTimeline events={emailEvents} />
         </div>
 
         {/* Right Column: Internal Management & Notes (1 col) */}

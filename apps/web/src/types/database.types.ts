@@ -21,6 +21,10 @@ export type EnquiryPriority = 'low' | 'normal' | 'high' | 'urgent';
 export type AdminRole = 'super_admin' | 'administrator' | 'product_manager' | 'enquiry_manager';
 export type ActivityAction = 'create' | 'update' | 'delete' | 'publish' | 'unpublish' | 'archive' | 'status_change' | 'assign' | 'role_change' | 'login' | 'logout';
 export type ActivityEntityType = 'gemstone' | 'category' | 'enquiry' | 'admin' | 'auth' | 'system';
+export type EmailEventStatus = 'pending' | 'queued' | 'sending' | 'sent' | 'delivered' | 'bounced' | 'failed' | 'suppressed';
+export type EmailType = 'customer_acknowledgement' | 'admin_notification' | 'admin_response' | 'status_update';
+export type OutboxEventType = 'enquiry_created' | 'admin_reply' | 'status_changed';
+export type OutboxStatus = 'pending' | 'processing' | 'completed' | 'failed' | 'cancelled';
 
 export interface Database {
   public: {
@@ -397,6 +401,108 @@ export interface Database {
           description?: string;
           metadata?: Json;
           created_at?: string;
+        };
+        Relationships: [];
+      };
+      email_events: {
+        Row: {
+          id: string;
+          enquiry_id: string | null;
+          provider: string;
+          provider_message_id: string | null;
+          email_type: EmailType;
+          recipient: string;
+          subject: string;
+          status: EmailEventStatus;
+          attempt_count: number;
+          last_error: string | null;
+          sent_at: string | null;
+          delivered_at: string | null;
+          failed_at: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          enquiry_id?: string | null;
+          provider?: string;
+          provider_message_id?: string | null;
+          email_type: EmailType;
+          recipient: string;
+          subject: string;
+          status?: EmailEventStatus;
+          attempt_count?: number;
+          last_error?: string | null;
+          sent_at?: string | null;
+          delivered_at?: string | null;
+          failed_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          enquiry_id?: string | null;
+          provider?: string;
+          provider_message_id?: string | null;
+          email_type?: EmailType;
+          recipient?: string;
+          subject?: string;
+          status?: EmailEventStatus;
+          attempt_count?: number;
+          last_error?: string | null;
+          sent_at?: string | null;
+          delivered_at?: string | null;
+          failed_at?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Relationships: [];
+      };
+      notification_outbox: {
+        Row: {
+          id: string;
+          event_type: OutboxEventType;
+          entity_type: 'enquiry' | 'system';
+          entity_id: string;
+          payload: Json;
+          status: OutboxStatus;
+          attempt_count: number;
+          max_attempts: number;
+          next_attempt_at: string;
+          processed_at: string | null;
+          last_error: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: {
+          id?: string;
+          event_type: OutboxEventType;
+          entity_type: 'enquiry' | 'system';
+          entity_id: string;
+          payload?: Json;
+          status?: OutboxStatus;
+          attempt_count?: number;
+          max_attempts?: number;
+          next_attempt_at?: string;
+          processed_at?: string | null;
+          last_error?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: {
+          id?: string;
+          event_type?: OutboxEventType;
+          entity_type?: 'enquiry' | 'system';
+          entity_id?: string;
+          payload?: Json;
+          status?: OutboxStatus;
+          attempt_count?: number;
+          max_attempts?: number;
+          next_attempt_at?: string;
+          processed_at?: string | null;
+          last_error?: string | null;
+          created_at?: string;
+          updated_at?: string;
         };
         Relationships: [];
       };

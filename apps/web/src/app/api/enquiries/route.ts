@@ -4,6 +4,7 @@ import crypto from "crypto";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
+import { enqueueOutboxItem, processOutbox } from "@/lib/email/outbox-processor";
 
 const enquirySchema = z.object({
   fullName: z.string().trim().min(2, "Name must be at least 2 characters").max(100),
@@ -56,9 +57,8 @@ export async function POST(request: NextRequest) {
 
     const subject = `Trade Enquiry: ${data.gemstoneInterest} — ${data.companyName || data.fullName}`;
 
-    // 4. If Supabase is configured, persist to database
+    // 4. If Supabase is configured, persist to database and enqueue outbox jobs
     if (isSupabaseConfigured()) {
-      // Use service client if available for reliable reference number return, or standard client
       const adminClient = createAdminClient();
       const client = adminClient || (await createClient());
 
@@ -82,7 +82,9 @@ export async function POST(request: NextRequest) {
             status: "new",
             priority: "normal",
           })
-          .select("reference_number")
+          .select(
+            "id, reference_number, customer_name, email, company_name, phone, country, gemstone_interest, quantity_specs, message, priority, source_page, created_at"
+          )
           .single();
 
         if (insertError) {
@@ -96,6 +98,56 @@ export async function POST(request: NextRequest) {
           });
         }
 
+        // 5. Reliability Guarantee: Enqueue outbox items for customer receipt and admin alert
+        try {
+          await enqueueOutboxItem({
+            eventType: "enquiry_created",
+            entityType: "enquiry",
+            entityId: inserted.id,
+            payload: {
+              type: "customer_acknowledgement",
+              enquiryId: inserted.id,
+              referenceNumber: inserted.reference_number,
+              customerName: inserted.customer_name,
+              email: inserted.email,
+              companyName: inserted.company_name,
+              gemstoneInterest: inserted.gemstone_interest,
+              quantitySpecs: inserted.quantity_specs,
+              message: inserted.message,
+            },
+          });
+
+          await enqueueOutboxItem({
+            eventType: "enquiry_created",
+            entityType: "enquiry",
+            entityId: inserted.id,
+            payload: {
+              type: "admin_notification",
+              enquiryId: inserted.id,
+              referenceNumber: inserted.reference_number,
+              customerName: inserted.customer_name,
+              companyName: inserted.company_name,
+              email: inserted.email,
+              phone: inserted.phone,
+              country: inserted.country,
+              gemstoneInterest: inserted.gemstone_interest,
+              quantitySpecs: inserted.quantity_specs,
+              message: inserted.message,
+              priority: inserted.priority,
+              sourcePage: inserted.source_page,
+              createdAt: inserted.created_at,
+            },
+          });
+
+          // Dispatch outbox processing asynchronously without blocking client response
+          processOutbox({ limit: 10 }).catch((outboxErr) => {
+            console.error("[Enquiries API] Background outbox process error:", outboxErr);
+          });
+        } catch (queueErr) {
+          console.error("[Enquiries API] Failed to enqueue notifications:", queueErr);
+          // Even if outbox queueing hits an issue, never fail the customer enquiry!
+        }
+
         return NextResponse.json({
           success: true,
           referenceNumber: inserted.reference_number,
@@ -103,7 +155,7 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // 5. Offline / Local fallback reference number when Supabase is unconfigured
+    // 6. Offline / Local fallback reference number when Supabase is unconfigured
     const localRef = `ENQ-${new Date().getFullYear()}-${Math.floor(10000 + Math.random() * 90000)}`;
     return NextResponse.json({
       success: true,

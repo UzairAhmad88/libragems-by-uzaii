@@ -9,8 +9,8 @@ Update this file at the end of every development session.
 | **Project foundation (Phase 02)** | ✅ **Completed** | `PHASE_02_FOUNDATION_ARCHITECTURE.md`, `DEPENDENCY_REGISTER.md`, `LOCAL_DEVELOPMENT_GUIDE.md`, `PHASE_02_IMPLEMENTATION_REPORT.md`, `PHASE_02_VALIDATION_REPORT.md`, `package-lock.json`, `tailwind.config.ts`, `vitest.config.ts`, `ci.yml` | None (Foundation verified & all tests pass) |
 | **Public website (Phase 03)** | ✅ **Completed** | `PHASE_03_FRONTEND_IMPLEMENTATION_REPORT.md`, `PHASE_03_FRONTEND_VALIDATION_REPORT.md`, `PHASE_03_IMPLEMENTED_DESIGN_REVIEW.md`, `FRONTEND_COMPONENT_ARCHITECTURE.md`, 11 public routes, 7 test suites | Client return of confirmed contact numbers & authentic macro photography |
 | **Database and admin (Phase 04)** | ✅ **Completed** | `supabase/migrations/` (5 files), RLS policies, storage bucket, `@supabase/ssr` integration, 7 admin routes, 10 test suites (29 tests passed), `PHASE_04_COMPLETION_REPORT.md` | None (Local preview & zero-secret fallback active; cloud keys ready for Phase 05) |
-| **Enquiry integrations (Phase 05)** | ⏳ **Next in Queue** | Resend transactional email, WhatsApp link generator, enquiry state machine | Dependent on user authorization to begin Phase 05 |
-| **SEO and analytics (Phase 06)** | Not started | | Dependent on Phase 05 & live crawlable URLs |
+| **Enquiry integrations (Phase 05)** | ✅ **Completed** | `supabase/migrations/20261110000006_email_communications.sql`, Resend v6.38.0, Universal Email Provider, Outbox Engine, Webhooks, Admin Composer, 15 test suites (50 tests passed), `PHASE_05_IMPLEMENTATION_REPORT.md` | None (Simulated fallback active; production API keys documented) |
+| **SEO and analytics (Phase 06)** | ⏳ **Next in Queue** | Technical SEO, JSON-LD schema, sitemaps, metadata, Google Search Console readiness | Dependent on user authorization to begin Phase 06 |
 | **QA and hardening (Phase 07)** | Not started | | Dependent on Phase 06 |
 | **Deployment and handover (Phase 08)** | Not started | | Dependent on Phase 07 & DNS access |
 | **Ongoing improvement (Phase 09)** | Not started | | Post-launch |
@@ -18,6 +18,78 @@ Update this file at the end of every development session.
 ---
 
 ## Session Reports
+
+### Session 06 – Phase 05: Enquiry Communications, Transactional Email & Notification Outbox Automation
+- **Date:** November 10, 2026
+- **Phase:** Phase 05 – Enquiry Communications & Transactional Automation
+- **Branch:** `phase-05/enquiry-communications-automation`
+- **Work completed:**
+  - Audited Phase 04 baseline and created Git branch `phase-05/enquiry-communications-automation`.
+  - Pinned and installed `resend@6.38.0` deterministically.
+  - Authored Migration 6: `supabase/migrations/20261110000006_email_communications.sql`:
+    - `public.email_events` and `public.notification_outbox` tables with performance indexes and RLS.
+  - Updated TypeScript database schemas in `apps/web/src/types/database.types.ts`.
+  - Configured transactional email environment schema in `apps/web/src/config/env.ts` and `.env.example`.
+  - Built Universal Email Provider abstraction (`apps/web/src/lib/email/provider.ts`) and `ResendEmailProvider` with simulated fallback for local developer review without API keys.
+  - Implemented SMTP header injection sanitizer (`\r\n` removal), HTML entity escaping, and RFC email validator.
+  - Authored 4 dual-format quiet luxury transactional email templates (Customer Acknowledgement, Internal Desk Alert, Official Response, Status Update).
+  - Implemented Transactional Outbox Engine with exponential backoff:
+    $$\min(2^{\text{attempt}}, 1440) \text{ minutes}$$
+    guaranteeing zero customer enquiry loss if email services experience degradation.
+  - Connected public enquiry intake (`/api/enquiries`) with outbox queuing.
+  - Built inbound webhook route (`/api/webhooks/resend`) with cryptographic signature verification via Svix.
+  - Built cron outbox worker endpoint (`/api/cron/process-outbox`) protected by Bearer secret.
+  - Created interactive `<AdminResponseComposer />` with draft/live preview tabs and gemological trading templates.
+  - Created `<EnquiryEmailTimeline />` displaying audit trail of all email events.
+  - Built 4 Admin Communication Center pages (`/admin/communications/*`).
+  - Added 5 new test suites; achieved 100% test pass (15 files, 50 tests).
+  - Zero TypeScript errors (`tsc --noEmit`), zero ESLint warnings/errors (`next lint`), and Next.js production build passing with 33 routes.
+  - Authored all 9 architecture and testing documentation deliverables.
+- **Files created/modified:**
+  - `supabase/migrations/20261110000006_email_communications.sql`
+  - `apps/web/src/types/database.types.ts`
+  - `apps/web/src/config/env.ts`
+  - `apps/web/.env.example`
+  - `apps/web/src/lib/email/provider.ts`
+  - `apps/web/src/lib/email/email-config.ts`
+  - `apps/web/src/lib/email/email-validation.ts`
+  - `apps/web/src/lib/email/resend-provider.ts`
+  - `apps/web/src/lib/email/email-service.ts`
+  - `apps/web/src/lib/email/outbox-processor.ts`
+  - `apps/web/src/lib/email/templates/layout.ts`
+  - `apps/web/src/lib/email/templates/customer-acknowledgement.ts`
+  - `apps/web/src/lib/email/templates/admin-new-enquiry.ts`
+  - `apps/web/src/lib/email/templates/enquiry-response.ts`
+  - `apps/web/src/lib/email/templates/enquiry-status-update.ts`
+  - `apps/web/src/app/api/enquiries/route.ts`
+  - `apps/web/src/app/api/webhooks/resend/route.ts`
+  - `apps/web/src/app/api/cron/process-outbox/route.ts`
+  - `apps/web/src/app/api/admin/enquiries/[id]/reply/route.ts`
+  - `apps/web/src/app/api/admin/enquiries/[id]/status/route.ts`
+  - `apps/web/src/components/admin/admin-response-composer.tsx`
+  - `apps/web/src/components/admin/enquiry-email-timeline.tsx`
+  - `apps/web/src/components/admin/communications-nav.tsx`
+  - `apps/web/src/components/admin/outbox-actions.tsx`
+  - `apps/web/src/app/admin/(dashboard)/enquiries/[id]/page.tsx`
+  - `apps/web/src/app/admin/(dashboard)/communications/page.tsx`
+  - `apps/web/src/app/admin/(dashboard)/communications/email-events/page.tsx`
+  - `apps/web/src/app/admin/(dashboard)/communications/outbox/page.tsx`
+  - `apps/web/src/app/admin/(dashboard)/communications/settings/page.tsx`
+  - `apps/web/src/app/admin/(dashboard)/layout.tsx`
+  - `apps/web/src/lib/email/email-validation.test.ts`
+  - `apps/web/src/lib/email/email-templates.test.ts`
+  - `apps/web/src/lib/email/email-service.test.ts`
+  - `apps/web/src/lib/email/outbox-processor.test.ts`
+  - `apps/web/src/app/api/webhooks/resend/route.test.ts`
+  - `docs/05-technical-architecture/PHASE_05_EMAIL_ARCHITECTURE.md`
+  - `docs/05-technical-architecture/PHASE_05_NOTIFICATION_OUTBOX.md`
+  - `docs/05-technical-architecture/PHASE_05_ENQUIRY_WORKFLOW.md`
+  - `docs/05-technical-architecture/PHASE_05_WEBHOOK_ARCHITECTURE.md`
+  - `docs/07-development/EMAIL_PROVIDER_SETUP.md`
+  - `docs/07-development/COMMUNICATION_CENTER_USER_GUIDE.md`
+  - `docs/08-testing/PHASE_05_VALIDATION_REPORT.md`
+  - `docs/08-testing/PHASE_05_EMAIL_DELIVERY_TEST_REPORT.md`
+  - `docs/07-development/PHASE_05_IMPLEMENTATION_REPORT.md`
 
 ### Session 05 – Phase 04: Supabase Database Architecture, Authentication & Admin Dashboard
 - **Date:** November 10, 2026

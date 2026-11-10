@@ -12,6 +12,7 @@ import {
   ExternalLink,
   Shield,
   AlertTriangle,
+  MailCheck,
 } from "lucide-react";
 import { getCurrentAdmin, CurrentAdmin } from "@/lib/auth/session";
 import { logoutAdminAction } from "@/lib/auth/actions";
@@ -38,6 +39,7 @@ export default async function AdminDashboardLayout({ children }: AdminLayoutProp
     { label: "Gemstones", href: "/admin/gemstones", icon: Gem },
     { label: "Categories", href: "/admin/categories", icon: FolderTree },
     { label: "Enquiries", href: "/admin/enquiries", icon: Inbox },
+    { label: "Communications", href: "/admin/communications", icon: MailCheck },
     { label: "Team & Roles", href: "/admin/team", icon: Users },
     { label: "Activity Audit", href: "/admin/activity", icon: History },
     { label: "Settings", href: "/admin/settings", icon: Settings },

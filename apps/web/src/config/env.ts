@@ -25,9 +25,14 @@ const envSchema = z.object({
   NEXT_PUBLIC_SUPABASE_ANON_KEY: z.string().optional().default(""),
   SUPABASE_SERVICE_ROLE_KEY: z.string().optional().default(""),
 
-  // Transactional Email (Optional in Foundation Phase; enforced in Phase 05)
+  // Transactional Email (Phase 05 Architecture)
   RESEND_API_KEY: z.string().optional().default(""),
-  ENQUIRY_TO_EMAIL: z.string().email().optional().or(z.literal("")),
+  EMAIL_FROM: z.string().optional().default("Libra Gems Trading Desk <enquiries@libragems.net>"),
+  EMAIL_REPLY_TO: z.string().optional().default("info@libragems.net"),
+  ENQUIRY_NOTIFICATION_EMAILS: z.string().optional().default(""),
+  RESEND_WEBHOOK_SECRET: z.string().optional().default(""),
+  CRON_SECRET: z.string().optional().default(""),
+  ENQUIRY_TO_EMAIL: z.string().optional().default(""),
   ENQUIRY_FROM_EMAIL: z.string().optional().default(""),
 
   // WhatsApp Business Numbers (Unverified in Phase 02; sanitized in Phase 05)
@@ -51,6 +56,11 @@ export function getEnv(): Env {
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
+    EMAIL_FROM: process.env.EMAIL_FROM,
+    EMAIL_REPLY_TO: process.env.EMAIL_REPLY_TO,
+    ENQUIRY_NOTIFICATION_EMAILS: process.env.ENQUIRY_NOTIFICATION_EMAILS,
+    RESEND_WEBHOOK_SECRET: process.env.RESEND_WEBHOOK_SECRET,
+    CRON_SECRET: process.env.CRON_SECRET,
     ENQUIRY_TO_EMAIL: process.env.ENQUIRY_TO_EMAIL,
     ENQUIRY_FROM_EMAIL: process.env.ENQUIRY_FROM_EMAIL,
     WHATSAPP_PRIMARY_NUMBER: process.env.WHATSAPP_PRIMARY_NUMBER,
