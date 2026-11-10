@@ -3,28 +3,25 @@ import { AlertCircle } from "lucide-react";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { buildPageMetadata } from "@/lib/seo/metadata";
+import { JsonLd, createBreadcrumbSchema } from "@/lib/seo/json-ld";
 
-export const metadata: Metadata = {
-  title: "Terms of Trade (Draft) | LibraGems Bangkok",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Terms of Trade | LibraGems Bangkok",
   description:
     "Commercial Terms of Trade governing wholesale gemstone inquiries, quotations, treatment disclosures, and export procedures for Libra Gems & Trading Co., Ltd.",
-  alternates: {
-    canonical: "https://libragems.net/terms",
-  },
-  robots: {
-    index: false,
-    follow: true,
-  },
-};
+  path: "/terms",
+});
 
 export default function TermsOfTradePage() {
   const breadcrumbs = [
     { label: "Home", href: "/" },
-    { label: "Terms of Trade (Draft)" },
+    { label: "Terms of Trade" },
   ];
 
   return (
     <>
+      <JsonLd data={createBreadcrumbSchema(breadcrumbs)} />
       <SiteHeader />
 
       <main id="main-content" className="flex-1">

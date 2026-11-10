@@ -4,23 +4,15 @@ import { ShieldCheck, MapPin, UserCheck } from "lucide-react";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { buildPageMetadata } from "@/lib/seo/metadata";
+import { JsonLd, createBreadcrumbSchema } from "@/lib/seo/json-ld";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "About Us | Bangkok Gemstone Trading & Sourcing",
   description:
-    "Learn about Libra Gems & Trading Co., Ltd., based on Charoen Krung Road in Bangkok's Bang Rak gemstone trading district. Built on gemological integrity and transparent trading.",
-  alternates: {
-    canonical: "https://libragems.net/about",
-  },
-  openGraph: {
-    title: "About LibraGems | Bangkok Gemstone Trading House",
-    description:
-      "Commercial gemstone trading with geological discipline, CIBJO treatment disclosure, and physical inventory held in Bangkok, Thailand.",
-    url: "https://libragems.net/about",
-    siteName: "LibraGems",
-    type: "website",
-  },
-};
+    "Learn about Libra Gems & Trading Co., Ltd., based in Bangkok's gemstone trading district. Built on gemological integrity, CIBJO disclosure, and physical inventory.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   const breadcrumbItems = [
@@ -30,6 +22,7 @@ export default function AboutPage() {
 
   return (
     <>
+      <JsonLd data={createBreadcrumbSchema(breadcrumbItems)} />
       <SiteHeader />
 
       <main id="main-content" className="flex-1">

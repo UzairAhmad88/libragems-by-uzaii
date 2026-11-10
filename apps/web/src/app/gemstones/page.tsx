@@ -6,23 +6,15 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { CatalogueGrid } from "@/components/gemstones/catalogue-grid";
 import { getAllGemstones } from "@/data/gemstones";
+import { buildPageMetadata } from "@/lib/seo/metadata";
+import { JsonLd, createCollectionPageSchema, createBreadcrumbSchema } from "@/lib/seo/json-ld";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Gemstone Catalogue | Commercial Rough, Minerals & Cut Stones",
   description:
     "Explore LibraGems' verified physical inventory: commercial-quality rough Hessonite garnet, stabilized turquoise, and precision-cut Afghanistan rubellite tourmaline.",
-  alternates: {
-    canonical: "https://libragems.net/gemstones",
-  },
-  openGraph: {
-    title: "Gemstone Catalogue | LibraGems Bangkok",
-    description:
-      "Physical gemstone parcels and cut stones held in Bang Rak, Bangkok. CIBJO treatment disclosures and laboratory memo options.",
-    url: "https://libragems.net/gemstones",
-    siteName: "LibraGems",
-    type: "website",
-  },
-};
+  path: "/gemstones",
+});
 
 export default function GemstonesCataloguePage() {
   const gemstones = getAllGemstones();
@@ -32,27 +24,9 @@ export default function GemstonesCataloguePage() {
     { label: "Gemstone Catalogue" },
   ];
 
-  const collectionJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "CollectionPage",
-    name: "LibraGems Commercial Gemstone Catalogue",
-    description: "Curated wholesale gemstone offerings from Bangkok trading desk.",
-    url: "https://libragems.net/gemstones",
-    hasPart: gemstones.map((g) => ({
-      "@type": "Product",
-      name: g.name,
-      url: `https://libragems.net/gemstones/${g.slug}`,
-      category: g.form,
-      description: g.shortDescription,
-    })),
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
-      />
+      <JsonLd data={[createCollectionPageSchema(gemstones), createBreadcrumbSchema(breadcrumbs)]} />
       <SiteHeader />
 
       <main id="main-content" className="flex-1">

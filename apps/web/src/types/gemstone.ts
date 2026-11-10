@@ -81,3 +81,5 @@ export interface GemstoneProduct {
   images: GemstoneImage[];
   faqs: GemstoneFAQ[];
 }
+
+export type Gemstone = GemstoneProduct;

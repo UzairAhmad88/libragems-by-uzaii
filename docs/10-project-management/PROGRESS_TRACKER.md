@@ -10,14 +10,71 @@ Update this file at the end of every development session.
 | **Public website (Phase 03)** | ✅ **Completed** | `PHASE_03_FRONTEND_IMPLEMENTATION_REPORT.md`, `PHASE_03_FRONTEND_VALIDATION_REPORT.md`, `PHASE_03_IMPLEMENTED_DESIGN_REVIEW.md`, `FRONTEND_COMPONENT_ARCHITECTURE.md`, 11 public routes, 7 test suites | Client return of confirmed contact numbers & authentic macro photography |
 | **Database and admin (Phase 04)** | ✅ **Completed** | `supabase/migrations/` (5 files), RLS policies, storage bucket, `@supabase/ssr` integration, 7 admin routes, 10 test suites (29 tests passed), `PHASE_04_COMPLETION_REPORT.md` | None (Local preview & zero-secret fallback active; cloud keys ready for Phase 05) |
 | **Enquiry integrations (Phase 05)** | ✅ **Completed** | `supabase/migrations/20261110000006_email_communications.sql`, Resend v6.38.0, Universal Email Provider, Outbox Engine, Webhooks, Admin Composer, 15 test suites (50 tests passed), `PHASE_05_IMPLEMENTATION_REPORT.md` | None (Simulated fallback active; production API keys documented) |
-| **SEO and analytics (Phase 06)** | ⏳ **Next in Queue** | Technical SEO, JSON-LD schema, sitemaps, metadata, Google Search Console readiness | Dependent on user authorization to begin Phase 06 |
-| **QA and hardening (Phase 07)** | Not started | | Dependent on Phase 06 |
+| **SEO and analytics (Phase 06)** | ✅ **Completed** | Dynamic XML sitemap, robots.txt, Schema.org / JSON-LD, centralized canonical domain, 5 new test suites (77 tests passed), 9 documentation reports | None (Production ready for GSC submission) |
+| **QA and hardening (Phase 07)** | ⏳ **Next in Queue** | Comprehensive cross-device QA, security hardening, audit runs | Dependent on Phase 07 start |
 | **Deployment and handover (Phase 08)** | Not started | | Dependent on Phase 07 & DNS access |
 | **Ongoing improvement (Phase 09)** | Not started | | Post-launch |
 
 ---
 
 ## Session Reports
+
+### Session 07 – Phase 06: Technical SEO, Structured Data, Dynamic XML Sitemap & Search Readiness
+- **Date:** November 10, 2026
+- **Phase:** Phase 06 – Technical SEO, Structured Data, Dynamic XML Sitemap & Search Readiness
+- **Branch:** `phase-06/technical-seo-search-readiness`
+- **Work completed:**
+  - Audited existing baseline and checked out working branch `phase-06/technical-seo-search-readiness`.
+  - Implemented Centralized Canonical Domain Resolver (`apps/web/src/lib/seo/site-url.ts`) enforcing HTTPS and consistent trailing-slash normalization across all routes.
+  - Implemented Standardized Page Metadata Engine (`apps/web/src/lib/seo/metadata.ts`) with title templates, descriptions, Open Graph, Twitter cards, and Googlebot crawl directives.
+  - Designed quiet luxury 1200x630 Open Graph card asset (`apps/web/public/images/og-default.svg`) in Deep Forest and Champagne Gold.
+  - Built Schema.org / JSON-LD generator module (`apps/web/src/lib/seo/json-ld.ts`):
+    - Grounded `Organization` schema in Bangkok jurisdiction (omitting unverified telephone numbers or street addresses).
+    - Clean `WebSite` schema.
+    - Sequential 1-based `BreadcrumbList` across all 11 public pages.
+    - Grounded B2B `Product` schema featuring physical gemological properties in `additionalProperty` (Species, Hardness, Specific Gravity, CIBJO Code, Trading Model) while **strictly omitting fake $0 pricing, fake ratings, or consumer return policies**.
+    - `Article` schemas for educational gemstone insight articles.
+    - `CollectionPage` schema with an `ItemList` linking to all published lots.
+    - Secure `<JsonLd />` component utilizing `React.createElement`.
+  - Refactored Dynamic XML Sitemap (`apps/web/src/app/sitemap.ts`) querying published gemstone catalogue lots and applying stable, non-volatile modification timestamps to protect search engine crawl budget.
+  - Configured Robots Engine (`apps/web/src/app/robots.ts`) explicitly allowing `/` for all crawlers and Googlebot while shielding `/admin`, `/admin/*`, `/api`, and `/api/*`.
+  - Added 5 new automated test suites (`site-url.test.ts`, `metadata.test.ts`, `json-ld.test.ts`, `sitemap.test.ts`, `robots.test.ts`), bringing the total test suite to 20 test files and 77 passing tests (100% pass rate).
+  - Executed all quality gates: Vitest (77 tests passed), TypeScript `tsc --noEmit` (0 errors), ESLint `next lint` (0 warnings, 0 errors), Next.js `next build` (33 static pages compiled successfully).
+  - Authored all 9 required architecture, testing, and operational runbook documents under `docs/`.
+- **Files created/modified:**
+  - `apps/web/src/lib/seo/site-url.ts`
+  - `apps/web/src/lib/seo/metadata.ts`
+  - `apps/web/src/lib/seo/json-ld.ts`
+  - `apps/web/public/images/og-default.svg`
+  - `apps/web/src/types/gemstone.ts`
+  - `apps/web/src/app/layout.tsx`
+  - `apps/web/src/app/page.tsx`
+  - `apps/web/src/app/about/page.tsx`
+  - `apps/web/src/app/gemstones/page.tsx`
+  - `apps/web/src/app/gemstones/hessonite-garnet/page.tsx`
+  - `apps/web/src/app/gemstones/turquoise/page.tsx`
+  - `apps/web/src/app/gemstones/afghanistan-rubellite/page.tsx`
+  - `apps/web/src/app/quality-sourcing/page.tsx`
+  - `apps/web/src/app/insights/page.tsx`
+  - `apps/web/src/app/contact/page.tsx`
+  - `apps/web/src/app/privacy/page.tsx`
+  - `apps/web/src/app/terms/page.tsx`
+  - `apps/web/src/app/sitemap.ts`
+  - `apps/web/src/app/robots.ts`
+  - `apps/web/src/lib/seo/site-url.test.ts`
+  - `apps/web/src/lib/seo/metadata.test.ts`
+  - `apps/web/src/lib/seo/json-ld.test.ts`
+  - `apps/web/src/app/sitemap.test.ts`
+  - `apps/web/src/app/robots.test.ts`
+  - `docs/05-technical-architecture/PHASE_06_SEO_ARCHITECTURE.md`
+  - `docs/05-technical-architecture/PHASE_06_STRUCTURED_DATA_REFERENCE.md`
+  - `docs/05-technical-architecture/PHASE_06_SITEMAP_AND_ROBOTS.md`
+  - `docs/07-development/GOOGLE_SEARCH_CONSOLE_SETUP.md`
+  - `docs/07-development/SEO_CONTENT_GUIDELINES.md`
+  - `docs/07-development/SEO_AUDIT_RUNBOOK.md`
+  - `docs/08-testing/PHASE_06_SEO_VALIDATION_REPORT.md`
+  - `docs/08-testing/PHASE_06_PERFORMANCE_REPORT.md`
+  - `docs/07-development/PHASE_06_IMPLEMENTATION_REPORT.md`
 
 ### Session 06 – Phase 05: Enquiry Communications, Transactional Email & Notification Outbox Automation
 - **Date:** November 10, 2026

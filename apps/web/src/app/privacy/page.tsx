@@ -3,28 +3,25 @@ import { AlertCircle } from "lucide-react";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { buildPageMetadata } from "@/lib/seo/metadata";
+import { JsonLd, createBreadcrumbSchema } from "@/lib/seo/json-ld";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy (Draft) | LibraGems Bangkok",
+export const metadata: Metadata = buildPageMetadata({
+  title: "Privacy Policy | LibraGems Bangkok",
   description:
-    "Privacy Policy and B2B commercial data protection practices for Libra Gems & Trading Co., Ltd. (Draft pending final legal counsel review).",
-  alternates: {
-    canonical: "https://libragems.net/privacy",
-  },
-  robots: {
-    index: false,
-    follow: true,
-  },
-};
+    "Privacy Policy and B2B commercial data protection practices for Libra Gems & Trading Co., Ltd. (Bangkok, Thailand).",
+  path: "/privacy",
+});
 
 export default function PrivacyPolicyPage() {
   const breadcrumbs = [
     { label: "Home", href: "/" },
-    { label: "Privacy Policy (Draft)" },
+    { label: "Privacy Policy" },
   ];
 
   return (
     <>
+      <JsonLd data={createBreadcrumbSchema(breadcrumbs)} />
       <SiteHeader />
 
       <main id="main-content" className="flex-1">

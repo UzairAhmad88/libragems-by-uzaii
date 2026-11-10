@@ -7,71 +7,20 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { ProductCard } from "@/components/gemstones/product-card";
 import { getAllGemstones } from "@/data/gemstones";
 
-export const metadata: Metadata = {
+import { buildPageMetadata } from "@/lib/seo/metadata";
+
+export const metadata: Metadata = buildPageMetadata({
   title: "LibraGems | International Gemstone Trading & Sourcing | Bangkok",
   description:
     "Bangkok-based international B2B gemstone trading company specializing in commercial rough stones, mineral specimens, and precision-cut colored gems.",
-  alternates: {
-    canonical: "https://libragems.net",
-  },
-  openGraph: {
-    title: "LibraGems | International Gemstone Trading & Sourcing",
-    description:
-      "Commercial rough stones, mineral specimens, and fine cut colored gems sourced and traded directly from Bangkok's historic gemstone nexus.",
-    url: "https://libragems.net",
-    siteName: "LibraGems",
-    type: "website",
-    locale: "en_US",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "LibraGems | International Gemstone Trading",
-    description:
-      "B2B gemstone trading platform based in Bang Rak, Bangkok. Rough parcel lots, mineral specimens, and cut colored gems.",
-  },
-};
+  path: "/",
+});
 
 export default function HomePage() {
   const gemstones = getAllGemstones();
 
-  const organizationJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Libra Gems & Trading Co., Ltd.",
-    alternateName: "LibraGems",
-    url: "https://libragems.net",
-    logo: "https://libragems.net/images/gemstones/hero-editorial-inventory.svg",
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: "1394 Charoen Krung Road",
-      addressLocality: "Bang Rak",
-      addressRegion: "Bangkok",
-      postalCode: "10500",
-      addressCountry: "TH",
-    },
-    contactPoint: {
-      "@type": "ContactPoint",
-      email: "info@libragems.net",
-      contactType: "trading desk",
-      areaServed: "Worldwide",
-      availableLanguage: ["English", "Thai"],
-    },
-    knowsAbout: [
-      "Gemstone Trading",
-      "Rough Gemstones",
-      "Hessonite Garnet",
-      "Turquoise",
-      "Rubellite Tourmaline",
-      "CIBJO Treatment Disclosure",
-    ],
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-      />
       <SiteHeader />
 
       <main id="main-content" className="flex-1">

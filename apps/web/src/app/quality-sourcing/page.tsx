@@ -4,23 +4,15 @@ import { ShieldCheck, Scale, Microscope, CheckCircle2, Award, Clock } from "luci
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { buildPageMetadata } from "@/lib/seo/metadata";
+import { JsonLd, createBreadcrumbSchema } from "@/lib/seo/json-ld";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Quality & Sourcing Standards | Gemological Discipline",
   description:
     "Discover LibraGems' gemological testing protocols, CIBJO ethical treatment disclosure standards, and Bangkok laboratory memo procedures.",
-  alternates: {
-    canonical: "https://libragems.net/quality-sourcing",
-  },
-  openGraph: {
-    title: "Quality & Sourcing Standards | LibraGems Bangkok",
-    description:
-      "Gemological discipline, standardized 5500K daylight inspection, CIBJO treatment codes, and independent laboratory testing in Bangkok.",
-    url: "https://libragems.net/quality-sourcing",
-    siteName: "LibraGems",
-    type: "website",
-  },
-};
+  path: "/quality-sourcing",
+});
 
 export default function QualitySourcingPage() {
   const breadcrumbs = [
@@ -30,6 +22,7 @@ export default function QualitySourcingPage() {
 
   return (
     <>
+      <JsonLd data={createBreadcrumbSchema(breadcrumbs)} />
       <SiteHeader />
 
       <main id="main-content" className="flex-1">

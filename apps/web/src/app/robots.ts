@@ -1,13 +1,32 @@
 import type { MetadataRoute } from "next";
+import { getSiteUrl } from "@/lib/seo/site-url";
 
 export default function robots(): MetadataRoute.Robots {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://libragems.net";
+  const baseUrl = getSiteUrl();
+
   return {
-    rules: {
-      userAgent: "*",
-      allow: process.env.NODE_ENV === "production" ? "/" : undefined,
-      disallow: process.env.NODE_ENV === "production" ? ["/admin/", "/api/"] : "/"
-    },
-    sitemap: `${baseUrl}/sitemap.xml`
+    rules: [
+      {
+        userAgent: "*",
+        allow: "/",
+        disallow: [
+          "/admin",
+          "/admin/*",
+          "/api",
+          "/api/*",
+        ],
+      },
+      {
+        userAgent: "Googlebot",
+        allow: "/",
+        disallow: [
+          "/admin",
+          "/admin/*",
+          "/api",
+          "/api/*",
+        ],
+      },
+    ],
+    sitemap: `${baseUrl}/sitemap.xml`,
   };
 }

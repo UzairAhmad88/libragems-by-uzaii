@@ -14,23 +14,15 @@ import { EnquiryForm } from "@/components/forms/enquiry-form";
 import { ProductCard } from "@/components/gemstones/product-card";
 import { Badge } from "@/components/ui/badge";
 import { getGemstoneBySlug, getAllGemstones } from "@/data/gemstones";
+import { buildPageMetadata } from "@/lib/seo/metadata";
+import { JsonLd, createGemstoneProductSchema, createBreadcrumbSchema } from "@/lib/seo/json-ld";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Rough Hessonite Garnet | Commercial Parcel LG-HG-001",
   description:
     "Commercial-quality rough hessonite garnet parcel (5,000g). Natural untreated grossular garnet from Sri Lanka featuring warm cinnamon-orange hues and diagnostic treacle inclusions.",
-  alternates: {
-    canonical: "https://libragems.net/gemstones/hessonite-garnet",
-  },
-  openGraph: {
-    title: "Rough Hessonite Garnet Commercial Parcel | LibraGems Bangkok",
-    description:
-      "Alluvial rough hessonite garnet pebbles (8mm to 22mm) for wholesale cabochon and bead manufacturing. Natural untreated (CIBJO N).",
-    url: "https://libragems.net/gemstones/hessonite-garnet",
-    siteName: "LibraGems",
-    type: "website",
-  },
-};
+  path: "/gemstones/hessonite-garnet",
+});
 
 export default function HessoniteGarnetPage() {
   const product = getGemstoneBySlug("hessonite-garnet");
@@ -44,40 +36,9 @@ export default function HessoniteGarnetPage() {
     { label: "Rough Hessonite Garnet" },
   ];
 
-  const productJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.name,
-    image: `https://libragems.net${product.images[0]?.src}`,
-    description: product.fullOverview,
-    sku: product.lotReference,
-    category: product.form,
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "USD",
-      price: "0",
-      priceValidUntil: "2027-12-31",
-      availability: "https://schema.org/InStock",
-      priceSpecification: {
-        "@type": "UnitPriceSpecification",
-        priceType: "https://schema.org/PriceOnApplication",
-      },
-    },
-    additionalProperty: [
-      { "@type": "PropertyValue", name: "Species", value: product.species },
-      { "@type": "PropertyValue", name: "Hardness", value: product.hardness },
-      { "@type": "PropertyValue", name: "Specific Gravity", value: product.specificGravity },
-      { "@type": "PropertyValue", name: "Treatment", value: product.treatment.name },
-      { "@type": "PropertyValue", name: "CIBJO Code", value: product.treatment.cibjoCode },
-    ],
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
-      />
+      <JsonLd data={[createGemstoneProductSchema(product), createBreadcrumbSchema(breadcrumbs)]} />
       <SiteHeader />
 
       <main id="main-content" className="flex-1 pb-16">

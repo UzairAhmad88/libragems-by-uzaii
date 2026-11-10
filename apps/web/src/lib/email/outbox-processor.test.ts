@@ -32,6 +32,9 @@ describe("Notification Outbox Processor", () => {
       payload: {
         type: "customer_acknowledgement",
         referenceNumber: "ENQ-2026-99999",
+        customerName: "Test Buyer",
+        email: "buyer@example.com",
+        gemstoneInterest: "Hessonite Garnet",
       },
     });
     // In local unconfigured test environment, gracefully returns null

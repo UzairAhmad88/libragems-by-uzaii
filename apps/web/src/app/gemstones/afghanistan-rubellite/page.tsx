@@ -14,23 +14,15 @@ import { EnquiryForm } from "@/components/forms/enquiry-form";
 import { ProductCard } from "@/components/gemstones/product-card";
 import { Badge } from "@/components/ui/badge";
 import { getGemstoneBySlug, getAllGemstones } from "@/data/gemstones";
+import { buildPageMetadata } from "@/lib/seo/metadata";
+import { JsonLd, createGemstoneProductSchema, createBreadcrumbSchema } from "@/lib/seo/json-ld";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Afghanistan Cut-Stone Rubellite | Elbaite Tourmaline LG-RUB-AFGHAN",
   description:
     "Precision-cut Afghanistan rubellite tourmaline featuring vivid purplish-red color saturation and custom oval mixed faceting. Independent laboratory memo available.",
-  alternates: {
-    canonical: "https://libragems.net/gemstones/afghanistan-rubellite",
-  },
-  openGraph: {
-    title: "Afghanistan Cut Rubellite Tourmaline | LibraGems Bangkok",
-    description:
-      "Fine faceted elbaite tourmaline from Afghan pegmatite provenance. Precision mixed oval faceting with intense red light return.",
-    url: "https://libragems.net/gemstones/afghanistan-rubellite",
-    siteName: "LibraGems",
-    type: "website",
-  },
-};
+  path: "/gemstones/afghanistan-rubellite",
+});
 
 export default function AfghanistanRubellitePage() {
   const product = getGemstoneBySlug("afghanistan-rubellite");
@@ -44,40 +36,9 @@ export default function AfghanistanRubellitePage() {
     { label: "Afghanistan Cut Rubellite" },
   ];
 
-  const productJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Product",
-    name: product.name,
-    image: `https://libragems.net${product.images[0]?.src}`,
-    description: product.fullOverview,
-    sku: product.lotReference,
-    category: product.form,
-    offers: {
-      "@type": "AggregateOffer",
-      priceCurrency: "USD",
-      price: "0",
-      priceValidUntil: "2027-12-31",
-      availability: "https://schema.org/InStock",
-      priceSpecification: {
-        "@type": "UnitPriceSpecification",
-        priceType: "https://schema.org/PriceOnApplication",
-      },
-    },
-    additionalProperty: [
-      { "@type": "PropertyValue", name: "Species", value: product.species },
-      { "@type": "PropertyValue", name: "Variety", value: product.variety },
-      { "@type": "PropertyValue", name: "Hardness", value: product.hardness },
-      { "@type": "PropertyValue", name: "Refractive Index", value: product.refractiveIndex },
-      { "@type": "PropertyValue", name: "Specific Gravity", value: product.specificGravity },
-    ],
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
-      />
+      <JsonLd data={[createGemstoneProductSchema(product), createBreadcrumbSchema(breadcrumbs)]} />
       <SiteHeader />
 
       <main id="main-content" className="flex-1 pb-16">

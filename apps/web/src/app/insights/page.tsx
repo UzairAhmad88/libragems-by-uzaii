@@ -5,23 +5,15 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { InsightsView } from "@/components/insights/insights-view";
 import { getAllInsights } from "@/data/insights";
+import { buildPageMetadata } from "@/lib/seo/metadata";
+import { JsonLd, createBreadcrumbSchema, createArticleSchema } from "@/lib/seo/json-ld";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = buildPageMetadata({
   title: "Gemstone Insights | Educational Knowledge & Market Observations",
   description:
     "Authoritative educational guides on CIBJO treatment disclosure, lapidary cutting yields, geographic origin analysis, and Bangkok laboratory testing protocols.",
-  alternates: {
-    canonical: "https://libragems.net/insights",
-  },
-  openGraph: {
-    title: "Gemstone Insights & Trade Education | LibraGems Bangkok",
-    description:
-      "Gemological knowledge, treatment classification standards, and lapidary yield observations from Bangkok's colored gemstone trading desk.",
-    url: "https://libragems.net/insights",
-    siteName: "LibraGems",
-    type: "website",
-  },
-};
+  path: "/insights",
+});
 
 export default function InsightsPage() {
   const articles = getAllInsights();
@@ -31,8 +23,14 @@ export default function InsightsPage() {
     { label: "Gemstone Insights" },
   ];
 
+  const schemas: Array<Record<string, unknown>> = [
+    createBreadcrumbSchema(breadcrumbs),
+    ...articles.map((article) => createArticleSchema(article)),
+  ];
+
   return (
     <>
+      <JsonLd data={schemas} />
       <SiteHeader />
 
       <main id="main-content" className="flex-1">
