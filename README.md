@@ -2,8 +2,8 @@
 
 **Entity:** Libra Gems & Trading Co., Ltd. (Bangkok, Thailand)  
 **Repository:** [github.com/UzairAhmad88/libragems-by-uzaii](https://github.com/UzairAhmad88/libragems-by-uzaii)  
-**Status:** Phase 07 Comprehensive QA, Security Hardening & Pre-Launch Audit Completed & Verified  
-**Default Branch:** `main` | **Working Branch:** `phase-07/qa-security-prelaunch-audit`
+**Status:** Phase 08 Production Deployment Preparation, Cloud Infrastructure & Client Handover Complete  
+**Default Branch:** `main` | **Deployment Branch:** `phase-08/production-deployment-handover`
 
 ---
 
@@ -117,3 +117,12 @@ npm run lint --prefix apps/web
 # Run production build (33 static and dynamic routes compiled)
 npm run build --prefix apps/web
 ```
+
+---
+
+## Production Deployment & Operations Documentation
+
+- [Phase 08 Deployment Report](docs/07-development/PHASE_08_DEPLOYMENT_REPORT.md): Infrastructure architecture, DNS plans, and verification gates.
+- [Production Operations Manual](docs/07-development/PRODUCTION_OPERATIONS_MANUAL.md): Internal operating procedures for catalogue, enquiries, and communications.
+- [Client Handover Checklist](docs/07-development/CLIENT_HANDOVER_CHECKLIST.md): Ownership tasks, credentials injection, and business verification items.
+- [Rollback & Disaster Recovery Runbook](docs/07-development/ROLLBACK_AND_RECOVERY.md): Vercel instant rollback, Supabase PITR, and incident response matrix.
