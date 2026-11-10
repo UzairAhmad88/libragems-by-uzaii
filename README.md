@@ -2,8 +2,8 @@
 
 **Entity:** Libra Gems & Trading Co., Ltd. (Bangkok, Thailand)  
 **Repository:** [github.com/UzairAhmad88/libragems-by-uzaii](https://github.com/UzairAhmad88/libragems-by-uzaii)  
-**Status:** Phase 09 Controlled Production Go-Live, Launch Verification & Operations Complete (Conditionally Staged)  
-**Default Branch:** `main` | **Active Release Branch:** `phase-09/controlled-production-go-live`
+**Status:** Phase 10 Production Activation, Live Verification & Commercial Operations Handover Complete (Conditionally Staged)  
+**Default Branch:** `main` | **Active Release Branch:** `phase-10/production-activation-commercial-handover`
 
 ---
 
@@ -122,6 +122,9 @@ npm run build --prefix apps/web
 
 ## Production Deployment & Operations Documentation
 
+- [Phase 10 Production Activation Report](docs/07-development/PHASE_10_PRODUCTION_ACTIVATION_REPORT.md): Infrastructure state, deployment verification, and Category B approval gate audit.
+- [Commercial Operations Handover Manual](docs/07-development/COMMERCIAL_OPERATIONS_HANDOVER.md): Operator guide for trading desk, gemstone inventory, and wholesale enquiries.
+- [Phase 10 Post-Launch Checklist](docs/07-development/PHASE_10_POST_LAUNCH_CHECKLIST.md): Post-deployment technical smoke tests, GSC verification, and commercial signoff protocol.
 - [Phase 09 Production Go-Live Report](docs/07-development/PHASE_09_PRODUCTION_GO_LIVE_REPORT.md): Release verification, Category B approval register, and launch gate results.
 - [Production Monitoring Baseline](docs/07-development/PRODUCTION_MONITORING_BASELINE.md): Telemetry architecture, Core Web Vitals targets, and outbox cron runbooks.
 - [Phase 09 Launch Checklist](docs/07-development/PHASE_09_LAUNCH_CHECKLIST.md): Step-by-step signoff, cloud provisioning checklist, and smoke test protocol.

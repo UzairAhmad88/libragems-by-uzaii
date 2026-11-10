@@ -14,11 +14,35 @@ Update this file at the end of every development session.
 | **QA and hardening (Phase 07)** | ✅ **Completed** | Comprehensive QA audit, security hardening (Cron, Rate Limiting, RBAC, Storage SVG XSS, Headers), 25 test suites (94 tests passed), 5 reports | Conditionally Ready — Manual approval required for client contact credentials & DNS |
 | **Deployment and handover (Phase 08)** | ✅ **Completed** | `PHASE_08_DEPLOYMENT_REPORT.md`, `PRODUCTION_OPERATIONS_MANUAL.md`, `CLIENT_HANDOVER_CHECKLIST.md`, `ROLLBACK_AND_RECOVERY.md`, `apps/web/vercel.json`, ADR-36 to ADR-40 | Client manual injection of Supabase/Resend keys & DNS record addition |
 | **Controlled production go-live (Phase 09)** | ✅ **Completed** | `PHASE_09_PRODUCTION_GO_LIVE_REPORT.md`, `PRODUCTION_MONITORING_BASELINE.md`, `PHASE_09_LAUNCH_CHECKLIST.md`, ADR-41 to ADR-45 | Staged for client execution of Category B approvals (DNS, Supabase & Vercel secrets) |
-| **Post-Launch Operations & Expansion** | ⏳ **Next in Queue** | Ongoing telemetry monitoring, GSC crawl indexing verification, and catalogue expansion | Post-launch |
+| **Production activation & commercial handover (Phase 10)** | ✅ **Completed** | `PHASE_10_PRODUCTION_ACTIVATION_REPORT.md`, `COMMERCIAL_OPERATIONS_HANDOVER.md`, `PHASE_10_POST_LAUNCH_CHECKLIST.md`, ADR-46 to ADR-50 | Technical delivery complete; staged for commercial activation upon client cloud access |
+| **Commercial Operations & Catalogue Expansion** | ⏳ **Live Readiness** | Routine catalogue onboarding, wholesale enquiry fulfillment, and GSC search crawl monitoring | Trading Desk Handover |
 
 ---
 
 ## Session Reports
+
+### Session 11 – Phase 10: Production Go-Live Activation, Live Verification & Commercial Operations Handover
+- **Date:** November 11, 2026
+- **Phase:** Phase 10 – Production Go-Live Activation, Live Verification & Commercial Operations Handover
+- **Branch:** `phase-10/production-activation-commercial-handover`
+- **Work completed:**
+  - Audited repository baseline on `phase-09/controlled-production-go-live` (`b68645c`) and created release branch `phase-10/production-activation-commercial-handover`.
+  - Verified 100% linear git lineage from Phase 00 through Phase 10 with zero merge conflicts or missing commits.
+  - Executed automated quality gates: Vitest (25 test files, 94 tests passed, 0 failures), TypeScript strict typecheck (0 errors), ESLint (0 errors, 0 warnings), and Next.js production build (33/33 static & dynamic routes compiled cleanly).
+  - Evaluated the 14 application environment variables against Zod schema and verified zero secrets committed to Git repository.
+  - Re-audited the 7 Supabase database migrations (`01` through `07`) and confirmed strict segregation of local development seed data (`supabase/seed/development_seed.sql`).
+  - Authored comprehensive Phase 10 Production Activation Report (`docs/07-development/PHASE_10_PRODUCTION_ACTIVATION_REPORT.md`) detailing cloud provider verification, security checks, and Category B approval gate register.
+  - Authored comprehensive Commercial Operations Handover Manual (`docs/07-development/COMMERCIAL_OPERATIONS_HANDOVER.md`) for the Bangkok trading desk, covering lot creation, CIBJO disclosure standards, image uploads, enquiry lifecycle, response composer, outbox monitoring, and staff management.
+  - Authored Phase 10 Post-Launch Verification & Handover Checklist (`docs/07-development/PHASE_10_POST_LAUNCH_CHECKLIST.md`) with concrete post-deployment smoke tests, GSC verification steps, and commercial signoff protocols.
+  - Enforced anti-falsification release policy: classified launch state as **CONDITIONALLY READY — MANUAL APPROVAL REQUIRED** pending client provisioning of external cloud credentials and DNS activation.
+  - Formulated ADR-46 through ADR-50 in the Decisions Log.
+- **Files created/modified:**
+  - `docs/07-development/PHASE_10_PRODUCTION_ACTIVATION_REPORT.md`
+  - `docs/07-development/COMMERCIAL_OPERATIONS_HANDOVER.md`
+  - `docs/07-development/PHASE_10_POST_LAUNCH_CHECKLIST.md`
+  - `docs/10-project-management/PROGRESS_TRACKER.md`
+  - `docs/10-project-management/DECISIONS_LOG.md`
+  - `README.md`
 
 ### Session 10 – Phase 09: Controlled Production Go-Live, Launch Verification & Initial Operations
 - **Date:** November 11, 2026
