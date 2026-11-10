@@ -2,8 +2,8 @@
 
 **Entity:** Libra Gems & Trading Co., Ltd. (Bangkok, Thailand)  
 **Repository:** [github.com/UzairAhmad88/libragems-by-uzaii](https://github.com/UzairAhmad88/libragems-by-uzaii)  
-**Status:** Phase 08 Production Deployment Preparation, Cloud Infrastructure & Client Handover Complete  
-**Default Branch:** `main` | **Deployment Branch:** `phase-08/production-deployment-handover`
+**Status:** Phase 09 Controlled Production Go-Live, Launch Verification & Operations Complete (Conditionally Staged)  
+**Default Branch:** `main` | **Active Release Branch:** `phase-09/controlled-production-go-live`
 
 ---
 
@@ -122,6 +122,9 @@ npm run build --prefix apps/web
 
 ## Production Deployment & Operations Documentation
 
+- [Phase 09 Production Go-Live Report](docs/07-development/PHASE_09_PRODUCTION_GO_LIVE_REPORT.md): Release verification, Category B approval register, and launch gate results.
+- [Production Monitoring Baseline](docs/07-development/PRODUCTION_MONITORING_BASELINE.md): Telemetry architecture, Core Web Vitals targets, and outbox cron runbooks.
+- [Phase 09 Launch Checklist](docs/07-development/PHASE_09_LAUNCH_CHECKLIST.md): Step-by-step signoff, cloud provisioning checklist, and smoke test protocol.
 - [Phase 08 Deployment Report](docs/07-development/PHASE_08_DEPLOYMENT_REPORT.md): Infrastructure architecture, DNS plans, and verification gates.
 - [Production Operations Manual](docs/07-development/PRODUCTION_OPERATIONS_MANUAL.md): Internal operating procedures for catalogue, enquiries, and communications.
 - [Client Handover Checklist](docs/07-development/CLIENT_HANDOVER_CHECKLIST.md): Ownership tasks, credentials injection, and business verification items.
