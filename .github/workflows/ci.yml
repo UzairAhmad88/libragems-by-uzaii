@@ -15,31 +15,26 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Setup Node.js LTS
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: npm
-          cache-dependency-path: apps/web/package-lock.json
+          cache-dependency-path: package-lock.json
 
       - name: Install Dependencies
-        working-directory: apps/web
         run: npm ci
 
       - name: Run ESLint
-        working-directory: apps/web
         run: npm run lint
 
       - name: Run TypeScript Typecheck
-        working-directory: apps/web
         run: npm run typecheck
 
       - name: Run Unit Tests
-        working-directory: apps/web
         run: npm run test
 
       - name: Production Build
-        working-directory: apps/web
         run: npm run build
         env:
           NEXT_PUBLIC_SITE_URL: https://libragems.net
