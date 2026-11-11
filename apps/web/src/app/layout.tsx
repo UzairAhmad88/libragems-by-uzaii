@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import { getSiteUrl, getCanonicalUrl } from "@/lib/seo/site-url";
 import { JsonLd, createOrganizationSchema, createWebSiteSchema } from "@/lib/seo/json-ld";
 
-const cormorant = Cormorant_Garamond({
+const headingFont = Plus_Jakarta_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-cormorant",
+  weight: ["500", "600", "700", "800"],
+  variable: "--font-heading",
   display: "swap",
 });
 
@@ -19,7 +19,7 @@ const inter = Inter({
 });
 
 const siteUrl = getSiteUrl();
-const ogImageUrl = getCanonicalUrl("/images/gemstones/hero-editorial-inventory.svg");
+const ogImageUrl = getCanonicalUrl("/images/gemstones/hero-editorial-inventory.jpg");
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -78,7 +78,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${cormorant.variable} ${inter.variable}`}>
+    <html lang="en" className={`${headingFont.variable} ${inter.variable}`}>
       <head>
         <JsonLd data={[createOrganizationSchema(), createWebSiteSchema()]} />
       </head>

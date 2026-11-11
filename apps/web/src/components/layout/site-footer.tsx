@@ -3,16 +3,19 @@ import { Mail, MapPin, ShieldCheck, Scale, ArrowUpRight } from "lucide-react";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-auto border-t border-forest-light bg-forest-deep text-white">
+    <footer className="mt-auto border-t border-forest-mid bg-forest-deep text-white">
       <div className="mx-auto max-w-7xl px-6 py-16 lg:py-20">
         <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Col 1: Corporate Profile */}
           <div className="space-y-4">
             <Link href="/" className="inline-block focus-visible:outline-champagne">
-              <span className="font-serif text-2xl font-semibold tracking-wide text-white">
-                LibraGems
-              </span>
-              <span className="block text-[10px] uppercase tracking-[0.2em] text-champagne">
+              <div className="flex items-center gap-1.5">
+                <span className="font-heading text-2xl font-bold tracking-tight text-white">
+                  LibraGems
+                </span>
+                <span className="h-1.5 w-1.5 rounded-full bg-champagne inline-block"></span>
+              </div>
+              <span className="block text-[10px] font-semibold uppercase tracking-[0.2em] text-champagne">
                 Trading &amp; Supply Co., Ltd.
               </span>
             </Link>

@@ -46,10 +46,10 @@ export function InsightsView({ initialArticles }: InsightsViewProps) {
               aria-selected={isSelected}
               onClick={() => setSelectedCategory(cat.id)}
               className={cn(
-                "rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-wider transition-all duration-200 focus-visible:outline-champagne min-h-[44px]",
+                "rounded-full px-5 py-2 text-xs font-bold uppercase tracking-wider transition-all duration-200 focus-visible:outline-champagne min-h-[44px]",
                 isSelected
-                  ? "bg-forest text-white shadow-sm"
-                  : "bg-white border border-border text-stone hover:border-forest/40 hover:text-forest"
+                  ? "bg-forest-deep text-champagne border border-forest-deep shadow-sm"
+                  : "bg-ivory border border-border text-stone hover:border-forest/50 hover:text-forest-deep"
               )}
             >
               {cat.label}
@@ -63,7 +63,7 @@ export function InsightsView({ initialArticles }: InsightsViewProps) {
         {filteredArticles.map((article) => (
           <article
             key={article.id}
-            className="group flex flex-col justify-between rounded-2xl border border-border bg-white p-7 shadow-subtle transition-all duration-300 hover:-translate-y-1 hover:border-champagne hover:shadow-card-hover"
+            className="group flex flex-col justify-between rounded-2xl border border-border bg-ivory p-7 shadow-subtle transition-all duration-300 hover:-translate-y-1 hover:border-champagne hover:shadow-card-hover"
           >
             <div>
               <div className="flex items-center justify-between text-xs text-stone">
@@ -74,7 +74,7 @@ export function InsightsView({ initialArticles }: InsightsViewProps) {
                 </span>
               </div>
 
-              <h3 className="mt-4 font-serif text-2xl font-medium leading-snug text-forest-deep group-hover:text-forest transition-colors">
+              <h3 className="mt-4 font-heading text-xl font-bold leading-snug text-forest-deep group-hover:text-forest transition-colors">
                 {article.title}
               </h3>
 

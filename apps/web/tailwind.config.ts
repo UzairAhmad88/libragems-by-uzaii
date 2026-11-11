@@ -12,17 +12,31 @@ const config: Config = {
         forest: {
           DEFAULT: "var(--forest)",
           deep: "var(--forest-deep)",
+          mid: "var(--forest-mid)",
+          muted: "var(--forest-muted)",
           light: "var(--forest-light)",
         },
-        beige: {
-          DEFAULT: "var(--beige)",
+        offwhite: {
+          DEFAULT: "var(--offwhite)",
         },
         ivory: {
           DEFAULT: "var(--ivory)",
         },
+        cream: {
+          DEFAULT: "var(--cream)",
+        },
+        neutral: {
+          light: "var(--neutral-light)",
+        },
+        beige: {
+          DEFAULT: "var(--beige)",
+        },
         champagne: {
           DEFAULT: "var(--champagne)",
           light: "var(--champagne-light)",
+        },
+        charcoal: {
+          DEFAULT: "var(--charcoal)",
         },
         ink: {
           DEFAULT: "var(--ink)",
@@ -41,7 +55,20 @@ const config: Config = {
         },
       },
       fontFamily: {
-        serif: ["var(--font-cormorant)", "Cormorant Garamond", "Georgia", "serif"],
+        heading: [
+          "var(--font-heading)",
+          "Plus Jakarta Sans",
+          "Manrope",
+          "-apple-system",
+          "sans-serif",
+        ],
+        serif: [
+          "var(--font-heading)",
+          "Plus Jakarta Sans",
+          "Cormorant Garamond",
+          "Georgia",
+          "serif",
+        ],
         sans: [
           "var(--font-inter)",
           "Inter",

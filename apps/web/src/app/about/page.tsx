@@ -26,19 +26,21 @@ export default function AboutPage() {
       <SiteHeader />
 
       <main id="main-content" className="flex-1">
-        {/* Page Hero */}
-        <section className="border-b border-border bg-beige py-16 lg:py-24">
+        {/* Page Hero (Deep Forest Green) */}
+        <section className="border-b border-forest-mid bg-forest-deep py-16 lg:py-24 text-white">
           <div className="mx-auto max-w-7xl px-6">
-            <Breadcrumbs items={breadcrumbItems} />
+            <div className="text-ivory/70 [&_a]:text-ivory/80 [&_a:hover]:text-champagne [&_span]:text-champagne">
+              <Breadcrumbs items={breadcrumbItems} />
+            </div>
 
-            <div className="mt-4 max-w-3xl space-y-4">
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-forest">
+            <div className="mt-6 max-w-3xl space-y-4">
+              <span className="inline-flex items-center gap-2 rounded-full border border-champagne/40 bg-forest/50 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-champagne">
                 Corporate Profile &amp; Trading Philosophy
               </span>
-              <h1 className="font-serif text-4xl font-medium leading-tight text-forest-deep sm:text-5xl md:text-6xl">
+              <h1 className="font-heading text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
                 Gemstone trading with integrity and geological precision.
               </h1>
-              <p className="text-base leading-relaxed text-stone md:text-lg">
+              <p className="text-base leading-relaxed text-ivory/85 md:text-lg">
                 Operating from Bangkok&apos;s historic gemological quarter, Libra Gems &amp; Trading
                 Co., Ltd. conducts international B2B commerce in rough gemstone parcels, aesthetic
                 mineral specimens, calibrated stone beads, and precision-cut colored gems.
@@ -48,13 +50,13 @@ export default function AboutPage() {
         </section>
 
         {/* The Bangkok Trading Hub */}
-        <section className="border-b border-border bg-white py-20 lg:py-24">
+        <section className="border-b border-border bg-ivory py-20 lg:py-24">
           <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:items-center">
             <div className="space-y-6">
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-forest">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-forest">
                 Geographic Presence
               </span>
-              <h2 className="font-serif text-3xl font-medium text-forest-deep sm:text-4xl">
+              <h2 className="font-heading text-3xl font-bold tracking-tight text-forest-deep sm:text-4xl">
                 The Charoen Krung Trading Nexus
               </h2>
               <p className="text-sm leading-relaxed text-stone md:text-base">
@@ -70,14 +72,14 @@ export default function AboutPage() {
                 intermediary markup.
               </p>
 
-              <div className="flex items-center gap-3 pt-2 text-xs font-medium text-forest">
+              <div className="flex items-center gap-3 pt-2 text-xs font-semibold text-forest">
                 <MapPin className="h-4 w-4 shrink-0 text-champagne" />
                 <span>1394 Charoen Krung Road, Bang Rak, Bangkok 10500, Thailand</span>
               </div>
             </div>
 
-            <div className="rounded-2xl border border-border bg-ivory p-8 shadow-subtle space-y-4">
-              <h3 className="font-serif text-2xl font-medium text-forest-deep">
+            <div className="rounded-2xl border border-border bg-white p-8 shadow-subtle space-y-4">
+              <h3 className="font-heading text-2xl font-bold text-forest-deep">
                 The Principle of Non-Fabrication
               </h3>
               <p className="text-xs leading-relaxed text-stone">
@@ -113,13 +115,13 @@ export default function AboutPage() {
         </section>
 
         {/* Core Trading Activities */}
-        <section className="border-b border-border bg-beige/40 py-20 lg:py-24">
+        <section className="border-b border-border bg-offwhite py-20 lg:py-24">
           <div className="mx-auto max-w-7xl px-6">
             <div className="max-w-2xl">
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-forest">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-forest">
                 Commercial Scope
               </span>
-              <h2 className="mt-2 font-serif text-3xl font-medium text-forest-deep sm:text-4xl md:text-5xl">
+              <h2 className="mt-2 font-heading text-3xl font-bold tracking-tight text-forest-deep sm:text-4xl md:text-5xl">
                 Four Pillars of Supply
               </h2>
               <p className="mt-3 text-xs text-stone md:text-sm">
@@ -128,11 +130,11 @@ export default function AboutPage() {
             </div>
 
             <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="rounded-2xl border border-border bg-white p-6 shadow-subtle">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-champagne">
+              <div className="rounded-2xl border border-border bg-ivory p-6 shadow-subtle hover:border-champagne transition-all duration-300">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-champagne">
                   Division 01
                 </span>
-                <h3 className="mt-2 font-serif text-xl font-medium text-forest-deep">
+                <h3 className="mt-2 font-heading text-xl font-bold text-forest-deep">
                   Rough Gemstones
                 </h3>
                 <p className="mt-2 text-xs leading-relaxed text-stone">
@@ -141,11 +143,11 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-border bg-white p-6 shadow-subtle">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-champagne">
+              <div className="rounded-2xl border border-border bg-ivory p-6 shadow-subtle hover:border-champagne transition-all duration-300">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-champagne">
                   Division 02
                 </span>
-                <h3 className="mt-2 font-serif text-xl font-medium text-forest-deep">
+                <h3 className="mt-2 font-heading text-xl font-bold text-forest-deep">
                   Faceted Cut Stones
                 </h3>
                 <p className="mt-2 text-xs leading-relaxed text-stone">
@@ -154,11 +156,11 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-border bg-white p-6 shadow-subtle">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-champagne">
+              <div className="rounded-2xl border border-border bg-ivory p-6 shadow-subtle hover:border-champagne transition-all duration-300">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-champagne">
                   Division 03
                 </span>
-                <h3 className="mt-2 font-serif text-xl font-medium text-forest-deep">
+                <h3 className="mt-2 font-heading text-xl font-bold text-forest-deep">
                   Mineral Specimens
                 </h3>
                 <p className="mt-2 text-xs leading-relaxed text-stone">
@@ -167,11 +169,11 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-border bg-white p-6 shadow-subtle">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-champagne">
+              <div className="rounded-2xl border border-border bg-ivory p-6 shadow-subtle hover:border-champagne transition-all duration-300">
+                <span className="text-[10px] font-bold uppercase tracking-wider text-champagne">
                   Division 04
                 </span>
-                <h3 className="mt-2 font-serif text-xl font-medium text-forest-deep">
+                <h3 className="mt-2 font-heading text-xl font-bold text-forest-deep">
                   Stone Beads &amp; Calibrated
                 </h3>
                 <p className="mt-2 text-xs leading-relaxed text-stone">
@@ -184,13 +186,13 @@ export default function AboutPage() {
         </section>
 
         {/* Executive Management Contacts */}
-        <section className="border-b border-border bg-white py-20 lg:py-24">
+        <section className="border-b border-border bg-ivory py-20 lg:py-24">
           <div className="mx-auto max-w-7xl px-6">
             <div className="max-w-2xl">
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-forest">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-forest">
                 Leadership &amp; Trading Desk
               </span>
-              <h2 className="mt-2 font-serif text-3xl font-medium text-forest-deep sm:text-4xl">
+              <h2 className="mt-2 font-heading text-3xl font-bold tracking-tight text-forest-deep sm:text-4xl">
                 Trading Desk Management
               </h2>
               <p className="mt-3 text-xs text-stone md:text-sm">
@@ -200,13 +202,13 @@ export default function AboutPage() {
             </div>
 
             <div className="mt-10 grid gap-8 sm:grid-cols-2 max-w-3xl">
-              <div className="rounded-2xl border border-border bg-ivory p-6 shadow-subtle space-y-3">
+              <div className="rounded-2xl border border-border bg-white p-6 shadow-subtle space-y-3">
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-forest text-white">
                     <UserCheck className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-serif text-xl font-medium text-forest-deep">Naeem Khan</h3>
+                    <h3 className="font-heading text-lg font-bold text-forest-deep">Naeem Khan</h3>
                     <p className="text-xs text-stone">Executive Director &amp; Senior Trader</p>
                   </div>
                 </div>
@@ -226,13 +228,13 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-border bg-ivory p-6 shadow-subtle space-y-3">
+              <div className="rounded-2xl border border-border bg-white p-6 shadow-subtle space-y-3">
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-full bg-forest text-white">
                     <UserCheck className="h-5 w-5" />
                   </div>
                   <div>
-                    <h3 className="font-serif text-xl font-medium text-forest-deep">Sana Khan</h3>
+                    <h3 className="font-heading text-lg font-bold text-forest-deep">Sana Khan</h3>
                     <p className="text-xs text-stone">Trading Operations &amp; Client Services</p>
                   </div>
                 </div>
@@ -256,19 +258,19 @@ export default function AboutPage() {
         </section>
 
         {/* Bottom CTA */}
-        <section className="bg-forest-deep py-16 text-white">
+        <section className="bg-forest-deep py-16 text-white border-t border-forest-mid">
           <div className="mx-auto max-w-4xl px-6 text-center space-y-5">
-            <h2 className="font-serif text-3xl font-medium sm:text-4xl">
+            <h2 className="font-heading text-3xl font-bold sm:text-4xl">
               Schedule a Showroom Viewing in Bangkok
             </h2>
-            <p className="mx-auto max-w-xl text-xs leading-relaxed text-white/80 md:text-sm">
+            <p className="mx-auto max-w-xl text-xs leading-relaxed text-ivory/80 md:text-sm">
               International dealers visiting Thailand are invited to arrange an in-person viewing of
               active rough parcels and faceted stones at our Charoen Krung trading showroom.
             </p>
             <div className="pt-2">
               <Link
                 href="/contact"
-                className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-champagne px-8 text-xs font-semibold uppercase tracking-wider text-forest-deep hover:bg-white transition-colors"
+                className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-champagne px-8 text-xs font-bold uppercase tracking-wider text-forest-deep shadow-md hover:bg-champagne-light transition-colors"
               >
                 Request Private Appointment
               </Link>

@@ -48,10 +48,10 @@ export default function PrivacyPolicyPage() {
           </div>
 
           <header className="border-b border-border pb-8">
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-forest">
+            <span className="text-xs font-bold uppercase tracking-[0.2em] text-forest">
               Legal &amp; Regulatory Compliance
             </span>
-            <h1 className="mt-2 font-serif text-3xl font-medium text-forest-deep sm:text-4xl md:text-5xl">
+            <h1 className="mt-2 font-heading text-3xl font-bold tracking-tight text-forest-deep sm:text-4xl md:text-5xl">
               Privacy Policy (Commercial B2B)
             </h1>
             <p className="mt-2 text-xs text-stone">

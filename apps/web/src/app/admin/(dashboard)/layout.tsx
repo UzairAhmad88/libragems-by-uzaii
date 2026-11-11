@@ -63,7 +63,7 @@ export default async function AdminDashboardLayout({ children }: AdminLayoutProp
               <Shield className="h-5 w-5" />
             </div>
             <div>
-              <span className="block font-serif text-lg font-medium tracking-wide text-white">
+              <span className="block font-heading text-lg font-bold tracking-tight text-white">
                 LibraGems
               </span>
               <span className="block text-[10px] uppercase tracking-widest text-champagne font-semibold">

@@ -41,10 +41,10 @@ export function CatalogueGrid({ initialGemstones }: CatalogueGridProps) {
               aria-selected={isSelected}
               onClick={() => setSelectedCategory(cat.id)}
               className={cn(
-                "rounded-full px-5 py-2 text-xs font-semibold uppercase tracking-wider transition-all duration-200 focus-visible:outline-champagne min-h-[44px]",
+                "rounded-full px-5 py-2 text-xs font-bold uppercase tracking-wider transition-all duration-200 focus-visible:outline-champagne min-h-[44px]",
                 isSelected
-                  ? "bg-forest text-white shadow-sm"
-                  : "bg-white border border-border text-stone hover:border-forest/40 hover:text-forest"
+                  ? "bg-forest-deep text-champagne border border-forest-deep shadow-sm"
+                  : "bg-ivory border border-border text-stone hover:border-forest/50 hover:text-forest-deep"
               )}
             >
               {cat.label}

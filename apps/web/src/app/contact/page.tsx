@@ -27,19 +27,21 @@ export default function ContactPage() {
       <SiteHeader />
 
       <main id="main-content" className="flex-1">
-        {/* Header Hero */}
-        <section className="border-b border-border bg-beige py-16 lg:py-20">
+        {/* Header Hero (Deep Forest Green) */}
+        <section className="border-b border-forest-mid bg-forest-deep py-16 lg:py-20 text-white">
           <div className="mx-auto max-w-7xl px-6">
-            <Breadcrumbs items={breadcrumbs} />
+            <div className="text-ivory/70 [&_a]:text-ivory/80 [&_a:hover]:text-champagne [&_span]:text-champagne">
+              <Breadcrumbs items={breadcrumbs} />
+            </div>
 
-            <div className="mt-4 max-w-3xl space-y-4">
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-forest">
+            <div className="mt-6 max-w-3xl space-y-4">
+              <span className="inline-flex items-center gap-2 rounded-full border border-champagne/40 bg-forest/50 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-champagne">
                 Direct Commercial Communications
               </span>
-              <h1 className="font-serif text-4xl font-medium leading-tight text-forest-deep sm:text-5xl md:text-6xl">
+              <h1 className="font-heading text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
                 Contact our trading desk in Bangkok.
               </h1>
-              <p className="text-base leading-relaxed text-stone md:text-lg">
+              <p className="text-base leading-relaxed text-ivory/85 md:text-lg">
                 Submit specific parcel inquiries, request calibrated lot splits, or arrange an
                 in-person private viewing at our showroom on Charoen Krung Road in Bang Rak.
               </p>
@@ -48,18 +50,18 @@ export default function ContactPage() {
         </section>
 
         {/* Two-Column Split Layout */}
-        <section className="border-b border-border bg-ivory py-16 lg:py-24">
+        <section className="border-b border-border bg-offwhite py-16 lg:py-24">
           <div className="mx-auto max-w-7xl px-6">
             <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
               {/* Left Column: Direct Corporate Channels (5 cols) */}
               <div className="lg:col-span-5 space-y-8">
                 {/* Physical Location */}
-                <div className="rounded-2xl border border-border bg-white p-7 shadow-subtle space-y-3">
-                  <div className="flex items-center gap-2.5 text-forest font-semibold text-xs uppercase tracking-wider">
+                <div className="rounded-2xl border border-border bg-ivory p-7 shadow-subtle space-y-3 hover:border-champagne transition-all duration-300">
+                  <div className="flex items-center gap-2.5 text-forest font-bold text-xs uppercase tracking-wider">
                     <MapPin className="h-4 w-4 text-champagne" />
                     <span>Registered Trading Office</span>
                   </div>
-                  <h3 className="font-serif text-2xl font-medium text-forest-deep">
+                  <h3 className="font-heading text-2xl font-bold text-forest-deep">
                     Bangkok Showroom
                   </h3>
                   <p className="text-xs leading-relaxed text-stone">
@@ -75,8 +77,8 @@ export default function ContactPage() {
                 </div>
 
                 {/* Direct Communications */}
-                <div className="rounded-2xl border border-border bg-white p-7 shadow-subtle space-y-4">
-                  <h3 className="font-serif text-xl font-medium text-forest-deep">
+                <div className="rounded-2xl border border-border bg-ivory p-7 shadow-subtle space-y-4 hover:border-champagne transition-all duration-300">
+                  <h3 className="font-heading text-xl font-bold text-forest-deep">
                     Verified Direct Channels
                   </h3>
 
@@ -87,7 +89,7 @@ export default function ContactPage() {
                         <p className="font-semibold text-forest-deep">Corporate Email</p>
                         <a
                           href="mailto:info@libragems.net"
-                          className="text-forest hover:underline"
+                          className="text-forest font-medium hover:underline"
                         >
                           info@libragems.net
                         </a>
@@ -120,8 +122,8 @@ export default function ContactPage() {
                 </div>
 
                 {/* Showroom Viewing Guidelines */}
-                <div className="rounded-2xl border border-border bg-beige/60 p-7 space-y-3">
-                  <div className="flex items-center gap-2 text-forest-deep font-serif text-lg font-medium">
+                <div className="rounded-2xl border border-border bg-ivory p-7 space-y-3 shadow-subtle">
+                  <div className="flex items-center gap-2 text-forest-deep font-heading text-lg font-bold">
                     <Video className="h-5 w-5 text-forest" />
                     <span>Private Viewing Appointments</span>
                   </div>
@@ -137,7 +139,7 @@ export default function ContactPage() {
               <div className="lg:col-span-7">
                 <Suspense
                   fallback={
-                    <div className="h-96 rounded-2xl border border-border bg-white p-8 animate-pulse" />
+                    <div className="h-96 rounded-2xl border border-border bg-ivory p-8 animate-pulse" />
                   }
                 >
                   <EnquiryForm />

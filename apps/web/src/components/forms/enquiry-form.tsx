@@ -148,12 +148,12 @@ export function EnquiryForm({ initialGemstone = "", className }: EnquiryFormProp
   return (
     <div
       className={cn(
-        "rounded-2xl border border-border bg-white p-6 md:p-8 shadow-subtle",
+        "rounded-2xl border border-border bg-ivory p-6 md:p-8 shadow-subtle",
         className
       )}
     >
       <div className="border-b border-border pb-5">
-        <h3 className="font-serif text-2xl font-medium text-forest-deep">
+        <h3 className="font-heading text-2xl font-bold text-forest-deep">
           Trade Enquiry &amp; Lot Consultation
         </h3>
         <p className="mt-1 text-xs text-stone leading-relaxed">
@@ -505,7 +505,7 @@ export function EnquiryForm({ initialGemstone = "", className }: EnquiryFormProp
             <button
               type="submit"
               disabled={status === "validating"}
-              className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-forest px-6 text-xs font-semibold uppercase tracking-wider text-white shadow-sm hover:bg-forest-deep focus-visible:outline-champagne disabled:opacity-50 transition-colors"
+              className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full bg-champagne px-6 text-xs font-bold uppercase tracking-wider text-forest-deep shadow-md hover:bg-champagne-light focus-visible:outline-champagne disabled:opacity-50 transition-colors"
             >
               {status === "validating" ? (
                 <>

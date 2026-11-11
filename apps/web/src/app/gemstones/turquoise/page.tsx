@@ -43,8 +43,8 @@ export default function TurquoisePage() {
 
       <main id="main-content" className="flex-1 pb-16">
         {/* Breadcrumb Strip */}
-        <div className="border-b border-border bg-beige/40">
-          <div className="mx-auto max-w-7xl px-6">
+        <div className="border-b border-border bg-offwhite">
+          <div className="mx-auto max-w-7xl px-6 py-3">
             <Breadcrumbs items={breadcrumbs} />
           </div>
         </div>
@@ -70,10 +70,10 @@ export default function TurquoisePage() {
 
               {/* Title & Subtitle */}
               <div>
-                <h1 className="font-serif text-3xl font-medium leading-tight text-forest-deep sm:text-4xl md:text-5xl">
+                <h1 className="font-heading text-3xl font-extrabold leading-tight tracking-tight text-forest-deep sm:text-4xl md:text-5xl">
                   {product.name}
                 </h1>
-                <p className="mt-2 text-xs font-semibold uppercase tracking-wider text-forest">
+                <p className="mt-2 text-xs font-bold uppercase tracking-wider text-forest">
                   {product.tradeTitle}
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-stone">
@@ -82,7 +82,7 @@ export default function TurquoisePage() {
               </div>
 
               {/* Commercial Key Highlights */}
-              <div className="rounded-xl border border-border bg-white p-5 shadow-subtle space-y-3">
+              <div className="rounded-xl border border-border bg-ivory p-5 shadow-subtle space-y-3">
                 <div className="flex items-center justify-between border-b border-border/60 pb-2 text-xs">
                   <span className="text-stone">Parcel Availability</span>
                   <span className="font-medium text-forest-deep tabular-nums">
@@ -113,15 +113,15 @@ export default function TurquoisePage() {
                 />
                 <Link
                   href={`/contact?gemstone=${encodeURIComponent(product.lotReference)}`}
-                  className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full border border-forest bg-forest/5 px-6 text-xs font-semibold uppercase tracking-wider text-forest hover:bg-forest hover:text-white transition-colors"
+                  className="inline-flex min-h-[48px] w-full items-center justify-center gap-2 rounded-full border border-forest bg-forest/5 px-6 text-xs font-bold uppercase tracking-wider text-forest hover:bg-forest hover:text-white transition-colors"
                 >
                   <span>Submit Written Lot Inquiry</span>
                 </Link>
               </div>
 
               {/* Mandatory Treatment Disclosure Banner */}
-              <div className="rounded-xl border border-amber-200 bg-amber-50/60 p-4 text-xs text-amber-950 space-y-1.5">
-                <div className="flex items-center gap-1.5 font-semibold text-amber-900">
+              <div className="rounded-xl border border-amber-300 bg-amber-50/80 p-4 text-xs text-amber-950 space-y-1.5 shadow-sm">
+                <div className="flex items-center gap-1.5 font-bold text-amber-900">
                   <AlertTriangle className="h-4 w-4 shrink-0 text-amber-700" />
                   <span>Mandatory CIBJO Code T Treatment Disclosure</span>
                 </div>
@@ -137,7 +137,7 @@ export default function TurquoisePage() {
         </section>
 
         {/* Gemological Specs & Editorial Analysis */}
-        <section className="border-t border-border bg-beige/30 py-16 lg:py-20">
+        <section className="border-t border-border bg-offwhite py-16 lg:py-20">
           <div className="mx-auto max-w-7xl px-6 space-y-16">
             {/* Gemological Specs Table */}
             <div className="max-w-4xl mx-auto">
@@ -146,10 +146,10 @@ export default function TurquoisePage() {
 
             {/* Treatment Disclosure Deep-Dive Callout */}
             <div className="max-w-4xl mx-auto rounded-2xl border border-champagne/50 bg-ivory p-8 md:p-10 shadow-subtle space-y-4">
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-forest">
+              <span className="text-xs font-bold uppercase tracking-[0.2em] text-forest">
                 The Science of Stabilization
               </span>
-              <h3 className="font-serif text-2xl font-medium text-forest-deep sm:text-3xl">
+              <h3 className="font-heading text-2xl font-bold text-forest-deep sm:text-3xl">
                 Why Commercial Turquoise Is Stabilized (CIBJO Code T)
               </h3>
               <p className="text-sm leading-relaxed text-stone">
@@ -169,8 +169,8 @@ export default function TurquoisePage() {
 
             {/* Editorial Geological & Lapidary Context */}
             <div className="max-w-4xl mx-auto grid gap-8 md:grid-cols-2">
-              <div className="rounded-2xl border border-border bg-white p-8 shadow-subtle space-y-3">
-                <h3 className="font-serif text-2xl font-medium text-forest-deep">
+              <div className="rounded-2xl border border-border bg-ivory p-8 shadow-subtle space-y-3">
+                <h3 className="font-heading text-xl font-bold text-forest-deep">
                   Geological Formation
                 </h3>
                 <p className="text-xs leading-relaxed text-stone">
@@ -178,8 +178,8 @@ export default function TurquoisePage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-border bg-white p-8 shadow-subtle space-y-3">
-                <h3 className="font-serif text-2xl font-medium text-forest-deep">
+              <div className="rounded-2xl border border-border bg-ivory p-8 shadow-subtle space-y-3">
+                <h3 className="font-heading text-xl font-bold text-forest-deep">
                   Lapidary Working Yield
                 </h3>
                 <p className="text-xs leading-relaxed text-stone">
@@ -189,8 +189,8 @@ export default function TurquoisePage() {
             </div>
 
             {/* Commercial Applications Checklist */}
-            <div className="max-w-4xl mx-auto rounded-2xl border border-border bg-white p-8 shadow-subtle">
-              <h3 className="font-serif text-2xl font-medium text-forest-deep">
+            <div className="max-w-4xl mx-auto rounded-2xl border border-border bg-ivory p-8 shadow-subtle">
+              <h3 className="font-heading text-xl font-bold text-forest-deep">
                 Recommended Commercial Applications
               </h3>
               <ul className="mt-4 grid gap-3 sm:grid-cols-2 text-xs text-stone">
@@ -206,7 +206,7 @@ export default function TurquoisePage() {
             {/* Buyer FAQs */}
             <div className="max-w-4xl mx-auto space-y-6">
               <div>
-                <h3 className="font-serif text-2xl font-medium text-forest-deep sm:text-3xl">
+                <h3 className="font-heading text-2xl font-bold text-forest-deep sm:text-3xl">
                   Frequently Asked Questions
                 </h3>
                 <p className="text-xs text-stone">
@@ -227,16 +227,16 @@ export default function TurquoisePage() {
             <div className="max-w-7xl mx-auto pt-8 border-t border-border">
               <div className="flex items-center justify-between mb-8">
                 <div>
-                  <span className="text-xs font-semibold uppercase tracking-wider text-forest">
+                  <span className="text-xs font-bold uppercase tracking-wider text-forest">
                     Explore Other Holdings
                   </span>
-                  <h3 className="font-serif text-2xl font-medium text-forest-deep">
+                  <h3 className="font-heading text-2xl font-bold text-forest-deep">
                     Related Gemstone Materials
                   </h3>
                 </div>
                 <Link
                   href="/gemstones"
-                  className="text-xs font-semibold uppercase tracking-wider text-forest hover:underline"
+                  className="text-xs font-bold uppercase tracking-wider text-forest hover:text-champagne transition-colors"
                 >
                   View All Materials →
                 </Link>

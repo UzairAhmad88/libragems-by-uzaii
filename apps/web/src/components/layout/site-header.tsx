@@ -49,7 +49,7 @@ export function SiteHeader() {
   }, [mobileMenuOpen]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-ivory/95 backdrop-blur-md transition-shadow">
+    <header className="sticky top-0 z-40 border-b border-forest-mid/50 bg-forest-deep/95 backdrop-blur-md transition-shadow text-white">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:py-5">
         {/* Brand Logotype */}
         <Link
@@ -57,10 +57,13 @@ export function SiteHeader() {
           className="group flex flex-col focus-visible:outline-champagne"
           aria-label="LibraGems Homepage"
         >
-          <span className="font-serif text-2xl font-semibold tracking-wide text-forest transition-colors group-hover:text-forest-deep md:text-3xl">
-            LibraGems
-          </span>
-          <span className="text-[10px] uppercase tracking-[0.25em] text-stone">
+          <div className="flex items-center gap-1.5">
+            <span className="font-heading text-2xl font-bold tracking-tight text-white transition-colors group-hover:text-champagne md:text-3xl">
+              LibraGems
+            </span>
+            <span className="h-1.5 w-1.5 rounded-full bg-champagne inline-block"></span>
+          </div>
+          <span className="text-[10px] font-medium uppercase tracking-[0.25em] text-ivory/60">
             Bangkok • Est. Thailand
           </span>
         </Link>
@@ -78,10 +81,10 @@ export function SiteHeader() {
                 href={href}
                 aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "relative py-1 transition-colors hover:text-forest focus-visible:outline-champagne",
+                  "relative py-1 font-medium transition-colors hover:text-champagne focus-visible:outline-champagne",
                   isActive
-                    ? "font-semibold text-forest after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-forest"
-                    : "text-ink/80"
+                    ? "font-semibold text-champagne after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-champagne"
+                    : "text-ivory/80"
                 )}
               >
                 {label}
@@ -94,7 +97,7 @@ export function SiteHeader() {
         <div className="hidden items-center gap-4 lg:flex">
           <Link
             href="/contact"
-            className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-forest px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-white transition-all duration-200 hover:bg-forest-deep focus-visible:outline-champagne"
+            className="inline-flex min-h-[44px] items-center justify-center rounded-full bg-champagne px-6 py-2.5 text-xs font-bold uppercase tracking-wider text-forest-deep transition-all duration-200 hover:bg-champagne-light hover:shadow-md focus-visible:outline-champagne"
           >
             Enquire on Lots
           </Link>
@@ -107,7 +110,7 @@ export function SiteHeader() {
           aria-controls="mobile-nav-drawer"
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="flex h-12 w-12 items-center justify-center rounded-lg border border-border text-forest transition-colors hover:bg-beige focus-visible:outline-champagne lg:hidden"
+          className="flex h-11 w-11 items-center justify-center rounded-lg border border-forest-mid bg-forest/40 text-ivory transition-colors hover:bg-forest hover:text-champagne focus-visible:outline-champagne lg:hidden"
         >
           {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
@@ -117,14 +120,14 @@ export function SiteHeader() {
       {mobileMenuOpen && (
         <div
           id="mobile-nav-drawer"
-          className="fixed inset-0 z-50 flex justify-end lg:hidden"
+          className="fixed inset-0 z-50 flex justify-end lg:hidden text-ink"
           role="dialog"
           aria-modal="true"
           aria-label="Mobile Navigation"
         >
           {/* Backdrop Overlay */}
           <div
-            className="fixed inset-0 bg-forest-deep/60 backdrop-blur-sm transition-opacity"
+            className="fixed inset-0 bg-forest-deep/80 backdrop-blur-sm transition-opacity"
             onClick={() => setMobileMenuOpen(false)}
             aria-hidden="true"
           />
@@ -138,15 +141,18 @@ export function SiteHeader() {
               {/* Drawer Header */}
               <div className="flex items-center justify-between border-b border-border pb-4">
                 <div>
-                  <span className="font-serif text-xl font-semibold text-forest">LibraGems</span>
-                  <p className="text-[10px] uppercase tracking-wider text-stone">Trading Desk</p>
+                  <div className="flex items-center gap-1.5">
+                    <span className="font-heading text-xl font-bold text-forest-deep">LibraGems</span>
+                    <span className="h-1.5 w-1.5 rounded-full bg-champagne inline-block"></span>
+                  </div>
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-stone">Trading Desk • Bangkok</p>
                 </div>
                 <button
                   ref={closeButtonRef}
                   type="button"
                   onClick={() => setMobileMenuOpen(false)}
                   aria-label="Close navigation"
-                  className="flex h-11 w-11 items-center justify-center rounded-lg border border-border text-stone transition-colors hover:text-forest focus-visible:outline-champagne"
+                  className="flex h-11 w-11 items-center justify-center rounded-lg border border-border text-stone transition-colors hover:text-forest-deep hover:border-forest focus-visible:outline-champagne"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -163,9 +169,9 @@ export function SiteHeader() {
                       aria-current={isActive ? "page" : undefined}
                       onClick={() => setMobileMenuOpen(false)}
                       className={cn(
-                        "flex min-h-[48px] items-center justify-between rounded-lg px-3 py-2 font-serif text-lg transition-colors focus-visible:outline-champagne",
+                        "flex min-h-[48px] items-center justify-between rounded-lg px-3 py-2 font-heading text-base transition-colors focus-visible:outline-champagne",
                         isActive
-                          ? "bg-forest/10 font-semibold text-forest"
+                          ? "bg-forest/10 font-bold text-forest-deep"
                           : "text-ink hover:bg-beige"
                       )}
                     >
@@ -179,27 +185,27 @@ export function SiteHeader() {
               {/* Gemstone Quick Links */}
               <div className="mt-8 border-t border-border pt-6">
                 <p className="text-xs font-semibold uppercase tracking-wider text-champagne">
-                  Current Materials
+                  Current Holdings
                 </p>
                 <div className="mt-3 space-y-2 text-sm text-stone">
                   <Link
                     href="/gemstones/hessonite-garnet"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block py-1 hover:text-forest"
+                    className="block py-1 hover:text-forest transition-colors"
                   >
-                    Rough Hessonite Garnet
+                    Ceylon Rough Hessonite
                   </Link>
                   <Link
                     href="/gemstones/turquoise"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block py-1 hover:text-forest"
+                    className="block py-1 hover:text-forest transition-colors"
                   >
-                    Commercial Turquoise
+                    Natural Matrix Turquoise
                   </Link>
                   <Link
                     href="/gemstones/afghanistan-rubellite"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block py-1 hover:text-forest"
+                    className="block py-1 hover:text-forest transition-colors"
                   >
                     Afghanistan Cut Rubellite
                   </Link>
@@ -212,7 +218,7 @@ export function SiteHeader() {
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex min-h-[48px] w-full items-center justify-center rounded-full bg-forest px-4 py-3 text-center text-sm font-semibold uppercase tracking-wider text-white hover:bg-forest-deep focus-visible:outline-champagne"
+                className="flex min-h-[48px] w-full items-center justify-center rounded-full bg-forest-deep px-4 py-3 text-center text-xs font-bold uppercase tracking-wider text-white hover:bg-forest focus-visible:outline-champagne shadow-md"
               >
                 Contact Trading Desk
               </Link>

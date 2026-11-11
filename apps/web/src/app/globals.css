@@ -3,19 +3,32 @@
 @tailwind utilities;
 
 :root {
-  /* Brand Core Variables */
-  --forest: #174C38;
-  --forest-deep: #103729;
-  --forest-light: #25664E;
-  --beige: #F3EFE5;
-  --ivory: #FAF8F2;
+  /* Brand Core Variables: 60/30/10 Luxury Rule */
+  /* 60% — Dark Forest Green */
+  --forest: #173D30;
+  --forest-deep: #102C23;
+  --forest-mid: #214B3B;
+  --forest-muted: #456B59;
+  --forest-light: #214B3B;
+
+  /* 30% — Premium Off-White */
+  --offwhite: #F5F3EB;
+  --ivory: #FAF9F4;
+  --cream: #EEECE2;
+  --neutral-light: #E5E3D9;
+  --beige: #F5F3EB;
   --white: #FFFFFF;
-  --champagne: #B99B68;
-  --champagne-light: #E8DFC9;
-  --ink: #242A26;
-  --stone: #6E756F;
-  --border: #DDD8CC;
-  --border-subtle: #EBE7DC;
+
+  /* 10% — Accent Colours */
+  --champagne: #C5A66A;
+  --champagne-light: #DFCCA4;
+  --charcoal: #252A27;
+  --ink: #252A27;
+  --stone: #59615C;
+
+  /* Architectural Borders */
+  --border: #E5E3D9;
+  --border-subtle: #EEECE2;
 
   --success: #2D6A4F;
   --warning: #A36A00;

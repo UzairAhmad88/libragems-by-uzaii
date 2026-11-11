@@ -23,9 +23,9 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
       : "default";
 
   return (
-    <div className="group relative flex flex-col rounded-2xl border border-border bg-white p-6 transition-all duration-300 hover:-translate-y-1 hover:border-champagne hover:shadow-card-hover">
+    <div className="group relative flex flex-col rounded-2xl border border-border bg-ivory p-6 transition-all duration-300 hover:-translate-y-1 hover:border-champagne hover:shadow-card-hover">
       {/* Visual Frame */}
-      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-beige">
+      <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-offwhite border border-border/60">
         <Image
           src={primaryImage.src}
           alt={primaryImage.alt}
@@ -41,7 +41,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           </Badge>
         </div>
         {/* Lot Reference Tag */}
-        <div className="absolute bottom-3 right-3 z-10 rounded bg-forest-deep/80 px-2 py-0.5 text-[10px] font-mono tracking-wider text-white backdrop-blur-sm">
+        <div className="absolute bottom-3 right-3 z-10 rounded bg-forest-deep/85 px-2 py-0.5 text-[10px] font-mono tracking-wider text-ivory backdrop-blur-sm border border-champagne/30">
           {product.lotReference}
         </div>
       </div>
@@ -52,10 +52,10 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
           <span className="font-semibold uppercase tracking-wider text-forest">
             {product.form}
           </span>
-          <span>{product.species}</span>
+          <span className="text-stone/80">{product.species}</span>
         </div>
 
-        <h3 className="mt-2 font-serif text-2xl font-medium leading-snug text-forest-deep group-hover:text-forest transition-colors">
+        <h3 className="mt-2 font-heading text-xl font-bold leading-snug text-forest-deep group-hover:text-forest transition-colors">
           <Link href={`/gemstones/${product.slug}`} className="focus-visible:outline-champagne">
             <span className="absolute inset-0 z-0" aria-hidden="true" />
             {product.name}
@@ -81,12 +81,12 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
         </div>
 
         {/* Action Link Footer */}
-        <div className="mt-5 flex items-center justify-between border-t border-border/50 pt-4 text-xs font-semibold uppercase tracking-wider text-forest">
+        <div className="mt-5 flex items-center justify-between border-t border-border/50 pt-4 text-xs font-bold uppercase tracking-wider text-forest group-hover:text-forest-deep">
           <span className="inline-flex items-center gap-1.5">
             <Sparkles className="h-3.5 w-3.5 text-champagne" />
             Inspect Lot Dossier
           </span>
-          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 text-champagne" />
         </div>
       </div>
     </div>

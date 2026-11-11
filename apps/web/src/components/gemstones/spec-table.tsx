@@ -21,9 +21,9 @@ export function SpecTable({ product }: SpecTableProps) {
       : "default";
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-border bg-white shadow-subtle">
-      <div className="border-b border-border bg-beige/60 px-6 py-4">
-        <h3 className="font-serif text-xl font-medium text-forest-deep">
+    <div className="overflow-hidden rounded-2xl border border-border bg-ivory shadow-subtle">
+      <div className="border-b border-border bg-offwhite px-6 py-4">
+        <h3 className="font-heading text-lg font-bold text-forest-deep">
           Gemological &amp; Physical Specifications
         </h3>
         <p className="mt-0.5 text-xs text-stone">

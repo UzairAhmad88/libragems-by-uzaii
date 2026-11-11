@@ -46,7 +46,7 @@ export function ProductGallery({ images, productName }: ProductGalleryProps) {
   return (
     <div className="flex flex-col gap-4">
       {/* Primary Display Frame */}
-      <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-border bg-beige shadow-subtle">
+      <div className="group relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-border bg-offwhite shadow-card">
         <Image
           src={activeImage.src}
           alt={activeImage.alt}
@@ -57,7 +57,7 @@ export function ProductGallery({ images, productName }: ProductGalleryProps) {
         />
 
         {/* View Badge */}
-        <div className="absolute left-4 top-4 z-10 rounded-full bg-forest-deep/80 px-3 py-1 text-[11px] font-medium uppercase tracking-wider text-white backdrop-blur-sm">
+        <div className="absolute left-4 top-4 z-10 rounded-full bg-forest-deep/85 px-3.5 py-1 text-[11px] font-semibold uppercase tracking-wider text-ivory backdrop-blur-sm border border-champagne/30">
           {activeImage.view} view
         </div>
 
@@ -66,7 +66,7 @@ export function ProductGallery({ images, productName }: ProductGalleryProps) {
           type="button"
           onClick={() => setLightboxOpen(true)}
           aria-label={`Open magnified view of ${activeImage.alt}`}
-          className="absolute bottom-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/90 text-forest shadow-md transition-all hover:bg-forest hover:text-white focus-visible:outline-champagne"
+          className="absolute bottom-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-forest-deep/90 text-champagne border border-champagne/40 shadow-md transition-all hover:bg-champagne hover:text-forest-deep focus-visible:outline-champagne"
         >
           <Maximize2 className="h-4 w-4" />
         </button>

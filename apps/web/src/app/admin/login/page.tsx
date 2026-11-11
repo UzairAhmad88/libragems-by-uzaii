@@ -161,7 +161,7 @@ export default function AdminLoginPage() {
           </div>
         </div>
 
-        <h2 className="mt-4 text-center font-serif text-3xl font-medium tracking-tight text-forest-deep">
+        <h2 className="mt-4 text-center font-heading text-3xl font-bold tracking-tight text-forest-deep">
           LibraGems Internal Portal
         </h2>
         <p className="mt-1 text-center text-xs tracking-wider uppercase text-stone font-medium">
