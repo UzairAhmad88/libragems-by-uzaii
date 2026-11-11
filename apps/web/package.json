@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "node ../../scripts/package-standalone.js",
     "start": "next start",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",

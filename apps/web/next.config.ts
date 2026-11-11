@@ -50,7 +50,7 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
-  // Disable x-powered-by banner
+  // Standalone output for containerized/Node.js hostings (e.g. Hostinger, VPS)
   output: "standalone",
   poweredByHeader: false,
 

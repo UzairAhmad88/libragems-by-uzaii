@@ -41,4 +41,5 @@ Thumbs.db
 # Ensure configuration files are never ignored
 !package.json
 !vercel.json
+!server.js
 
