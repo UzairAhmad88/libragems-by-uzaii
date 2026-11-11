@@ -51,6 +51,7 @@ const securityHeaders = [
 
 const nextConfig: NextConfig = {
   // Disable x-powered-by banner
+  output: "standalone",
   poweredByHeader: false,
 
   // Modern image optimization formats
