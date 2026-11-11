@@ -38,3 +38,7 @@ Thumbs.db
 *.swp
 *.swo
 
+# Ensure configuration files are never ignored
+!package.json
+!vercel.json
+

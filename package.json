@@ -2,6 +2,11 @@
   "name": "libragems-monorepo",
   "version": "1.0.0",
   "private": true,
+  "engines": {
+    "node": ">=20.0.0 <=24.x",
+    "npm": ">=10.0.0"
+  },
+  "packageManager": "npm@10.8.2",
   "workspaces": [
     "apps/*"
   ],
@@ -12,6 +17,16 @@
     "lint": "npm --prefix apps/web run lint",
     "typecheck": "npm --prefix apps/web run typecheck",
     "test": "npm --prefix apps/web test"
+  },
+  "dependencies": {
+    "next": "15.1.7",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "22.13.4",
+    "@types/react": "19.0.10",
+    "@types/react-dom": "19.0.4",
+    "typescript": "5.7.3"
   }
 }
-
