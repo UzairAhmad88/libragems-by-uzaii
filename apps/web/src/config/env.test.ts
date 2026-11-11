@@ -10,4 +10,26 @@ describe("Environment configuration", () => {
     expect(config.RESEND_API_KEY).toBe("");
     expect(config.NEXT_PUBLIC_SUPABASE_ANON_KEY).toBe("");
   });
+
+  it("handles empty strings and whitespace safely without failing", () => {
+    const originalSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+    process.env.NEXT_PUBLIC_SITE_URL = "";
+    try {
+      const config = getEnv();
+      expect(config.NEXT_PUBLIC_SITE_URL).toBe("https://libragems.net");
+    } finally {
+      process.env.NEXT_PUBLIC_SITE_URL = originalSiteUrl;
+    }
+  });
+
+  it("automatically prepends https:// to bare domain strings", () => {
+    const originalSiteUrl = process.env.NEXT_PUBLIC_SITE_URL;
+    process.env.NEXT_PUBLIC_SITE_URL = "libragems-preview.vercel.app";
+    try {
+      const config = getEnv();
+      expect(config.NEXT_PUBLIC_SITE_URL).toBe("https://libragems-preview.vercel.app");
+    } finally {
+      process.env.NEXT_PUBLIC_SITE_URL = originalSiteUrl;
+    }
+  });
 });
