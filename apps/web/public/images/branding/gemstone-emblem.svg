@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100%" height="100%">
+  <defs>
+    <!-- Luxury Color Gradients -->
+    <linearGradient id="gemGoldLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF6DF" />
+      <stop offset="25%" stop-color="#F2DD9F" />
+      <stop offset="65%" stop-color="#C5A66A" />
+      <stop offset="100%" stop-color="#9E7E43" />
+    </linearGradient>
+    <linearGradient id="gemGoldDeep" x1="100%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#6B4F1E" />
+      <stop offset="40%" stop-color="#9E7E43" />
+      <stop offset="80%" stop-color="#D4B674" />
+      <stop offset="100%" stop-color="#FAECCB" />
+    </linearGradient>
+    <linearGradient id="gemGreenDepth" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0E281F" />
+      <stop offset="40%" stop-color="#173D30" />
+      <stop offset="80%" stop-color="#1F4E3E" />
+      <stop offset="100%" stop-color="#0B2018" />
+    </linearGradient>
+    <linearGradient id="gemTable" x1="20%" y1="0%" x2="80%" y2="100%">
+      <stop offset="0%" stop-color="#1B4637" />
+      <stop offset="40%" stop-color="#173D30" />
+      <stop offset="75%" stop-color="#14372B" />
+      <stop offset="100%" stop-color="#0E281F" />
+    </linearGradient>
+    <linearGradient id="specularLine" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
+      <stop offset="60%" stop-color="#FFF8E7" stop-opacity="0.75" />
+      <stop offset="100%" stop-color="#C5A66A" stop-opacity="0" />
+    </linearGradient>
+    <filter id="gemShadow" x="-15%" y="-15%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#000000" flood-opacity="0.22" />
+    </filter>
+  </defs>
+
+  <g filter="url(#gemShadow)">
+    <!-- Base Octagonal Outer Silhouette (45-degree beveled corners) -->
+    <polygon points="28,6 72,6 94,28 94,72 72,94 28,94 6,72 6,28" fill="#0E281F" stroke="#7A5D28" stroke-width="0.75" />
+
+    <!-- Step 1: Outer Crown Facets -->
+    <!-- Top Step -->
+    <polygon points="28,6 72,6 68,18 32,18" fill="url(#gemGoldLight)" />
+    <!-- Bottom Step -->
+    <polygon points="28,94 72,94 68,82 32,82" fill="url(#gemGoldDeep)" opacity="0.92" />
+    <!-- Left Step -->
+    <polygon points="6,28 6,72 18,68 18,32" fill="url(#gemGoldLight)" opacity="0.88" />
+    <!-- Right Step -->
+    <polygon points="94,28 94,72 82,68 82,32" fill="url(#gemGoldDeep)" opacity="0.95" />
+    <!-- Top-Left Corner Cut -->
+    <polygon points="6,28 28,6 32,18 18,32" fill="#FFFBF0" />
+    <!-- Top-Right Corner Cut -->
+    <polygon points="72,6 94,28 82,32 68,18" fill="#E8CE8E" />
+    <!-- Bottom-Right Corner Cut -->
+    <polygon points="94,72 72,94 68,82 82,68" fill="#806227" />
+    <!-- Bottom-Left Corner Cut -->
+    <polygon points="28,94 6,72 18,68 32,82" fill="#BFA162" />
+
+    <!-- Step 2: Intermediate Concentric Step Facets (Forest Green Depth) -->
+    <!-- Top Step 2 -->
+    <polygon points="32,18 68,18 64,28 36,28" fill="#1C4536" />
+    <!-- Bottom Step 2 -->
+    <polygon points="32,82 68,82 64,72 36,72" fill="#102B20" />
+    <!-- Left Step 2 -->
+    <polygon points="18,32 18,68 28,64 28,36" fill="#1E4D3D" />
+    <!-- Right Step 2 -->
+    <polygon points="82,32 82,68 72,64 72,36" fill="#133428" />
+    <!-- Corners Step 2 -->
+    <polygon points="18,32 32,18 36,28 28,36" fill="#DEC382" />
+    <polygon points="68,18 82,32 72,36 64,28" fill="#755823" />
+    <polygon points="82,68 68,82 64,72 72,64" fill="#0C241B" />
+    <polygon points="18,68 32,82 36,72 28,64" fill="#507868" />
+
+    <!-- Step 3: Crystal Table Facet -->
+    <polygon points="36,28 64,28 72,36 72,64 64,72 36,72 28,64 28,36" fill="url(#gemTable)" />
+
+    <!-- Step 4: Inner Concentric Table Step & Pavilion Reflections -->
+    <polygon points="41,34 59,34 65,40 65,60 59,66 41,66 35,60 35,40" fill="#13362A" stroke="#C5A66A" stroke-width="0.5" stroke-opacity="0.45" />
+    <!-- Center Culet / Brilliant Core -->
+    <polygon points="45,42 55,42 58,46 58,54 55,58 45,58 42,54 42,46" fill="#1A4435" />
+    <!-- Internal Golden Refraction Ray (Hall of Mirrors) -->
+    <polygon points="42,46 58,46 55,42 45,42" fill="#E8D094" opacity="0.75" />
+    <polygon points="35,40 41,34 45,42 42,46" fill="#FFF9EB" opacity="0.6" />
+
+    <!-- Specular Light Gleams (Razor-Sharp Daylight Glints) -->
+    <line x1="28" y1="6" x2="72" y2="6" stroke="url(#specularLine)" stroke-width="1.3" stroke-linecap="round" />
+    <line x1="6" y1="28" x2="28" y2="6" stroke="#FFFFFF" stroke-width="1.3" stroke-linecap="round" opacity="0.95" />
+    <line x1="6" y1="28" x2="6" y2="72" stroke="#FFFFFF" stroke-width="0.9" stroke-opacity="0.7" />
+    <line x1="36" y1="28" x2="64" y2="28" stroke="#FFFFFF" stroke-width="0.9" stroke-opacity="0.88" />
+    <line x1="28" y1="36" x2="36" y2="28" stroke="#FFFFFF" stroke-width="0.9" stroke-opacity="0.95" />
+    <line x1="28" y1="36" x2="28" y2="64" stroke="#FFF7E3" stroke-width="0.6" stroke-opacity="0.6" />
+
+    <!-- Master Facet Contour Lines (Champagne Gold Facet Wire) -->
+    <polygon points="28,6 72,6 94,28 94,72 72,94 28,94 6,72 6,28" fill="none" stroke="#C5A66A" stroke-width="0.75" opacity="0.85" />
+    <polygon points="32,18 68,18 82,32 82,68 68,82 32,82 18,68 18,32" fill="none" stroke="#C5A66A" stroke-width="0.5" opacity="0.7" />
+    <polygon points="36,28 64,28 72,36 72,64 64,72 36,72 28,64 28,36" fill="none" stroke="#C5A66A" stroke-width="0.6" opacity="0.75" />
+  </g>
+</svg>

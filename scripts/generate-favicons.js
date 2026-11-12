@@ -3,8 +3,8 @@ const path = require('path');
 const sharp = require('sharp');
 
 // Path to raw generated real gemstone photograph
-const sourceCandidate = 'C:/Users/Dell/.gemini/antigravity/brain/2aa29747-a771-4713-9b7e-906e4d12baab/real_gem_icon_1794483543328.jpg';
-const fallbackCandidate = path.resolve(__dirname, '../apps/web/public/images/branding/real-gem-master.jpg');
+const sourceCandidate = path.resolve(__dirname, '../apps/web/public/images/branding/gemstone-emblem.png');
+const fallbackCandidate = 'C:/Users/Dell/.gemini/antigravity/brain/2aa29747-a771-4713-9b7e-906e4d12baab/master_emerald_gem_1794484599554.jpg';
 
 function createIcoFromPngs(pngBuffers) {
   const count = pngBuffers.length;

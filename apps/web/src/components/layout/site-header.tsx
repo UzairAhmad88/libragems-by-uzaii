@@ -164,14 +164,17 @@ export function SiteHeader() {
             <div>
               {/* Drawer Header */}
               <div className="flex items-center justify-between border-b border-[#E5E3D9] pb-4">
-                <div>
-                  <div className="flex items-center gap-1.5">
-                    <span className="font-heading text-xl font-bold text-[#173D30]">LibraGems</span>
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#C5A66A] inline-block" />
+                <div className="flex items-center gap-2">
+                  <GemstoneEmblem className="h-6 w-6 shrink-0" />
+                  <div>
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-heading text-xl font-bold text-[#173D30]">LibraGems</span>
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#C5A66A] inline-block" />
+                    </div>
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-[#59615C]">
+                      Bangkok • Est. Thailand
+                    </p>
                   </div>
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-[#59615C]">
-                    Trading Desk • Bangkok
-                  </p>
                 </div>
                 <button
                   ref={closeButtonRef}
