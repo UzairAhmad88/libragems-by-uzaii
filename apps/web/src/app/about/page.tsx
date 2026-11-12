@@ -27,8 +27,8 @@ export default function AboutPage() {
 
       <main id="main-content" className="flex-1">
         {/* Page Hero (Deep Forest Green) */}
-        <section className="border-b border-forest-mid bg-forest-deep py-16 lg:py-24 text-white">
-          <div className="mx-auto max-w-7xl px-6">
+        <section className="border-b border-forest-mid bg-forest-deep py-12 sm:py-16 lg:py-24 text-white">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-ivory/70 [&_a]:text-ivory/80 [&_a:hover]:text-champagne [&_span]:text-champagne">
               <Breadcrumbs items={breadcrumbItems} />
             </div>
@@ -37,10 +37,10 @@ export default function AboutPage() {
               <span className="inline-flex items-center gap-2 rounded-full border border-champagne/40 bg-forest/50 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-champagne">
                 Corporate Profile &amp; Trading Philosophy
               </span>
-              <h1 className="font-heading text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
+              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-white">
                 Gemstone trading with integrity and geological precision.
               </h1>
-              <p className="text-base leading-relaxed text-ivory/85 md:text-lg">
+              <p className="text-sm sm:text-base leading-relaxed text-ivory/85 md:text-lg">
                 Operating from Bangkok&apos;s historic gemological quarter, Libra Gems &amp; Trading
                 Co., Ltd. conducts international B2B commerce in rough gemstone parcels, aesthetic
                 mineral specimens, calibrated stone beads, and precision-cut colored gems.
@@ -50,13 +50,13 @@ export default function AboutPage() {
         </section>
 
         {/* The Bangkok Trading Hub */}
-        <section className="border-b border-border bg-ivory py-20 lg:py-24">
-          <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:items-center">
+        <section className="border-b border-border bg-ivory py-14 sm:py-20 lg:py-24">
+          <div className="mx-auto grid max-w-7xl gap-8 lg:gap-12 px-4 sm:px-6 lg:px-8 lg:grid-cols-2 lg:items-center">
             <div className="space-y-6">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-forest">
                 Geographic Presence
               </span>
-              <h2 className="font-heading text-3xl font-bold tracking-tight text-forest-deep sm:text-4xl">
+              <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-forest-deep">
                 The Charoen Krung Trading Nexus
               </h2>
               <p className="text-sm leading-relaxed text-stone md:text-base">
@@ -78,8 +78,8 @@ export default function AboutPage() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-border bg-white p-8 shadow-subtle space-y-4">
-              <h3 className="font-heading text-2xl font-bold text-forest-deep">
+            <div className="rounded-2xl border border-border bg-white p-6 sm:p-8 shadow-subtle space-y-4">
+              <h3 className="font-heading text-xl sm:text-2xl font-bold text-forest-deep">
                 The Principle of Non-Fabrication
               </h3>
               <p className="text-xs leading-relaxed text-stone">
@@ -115,13 +115,13 @@ export default function AboutPage() {
         </section>
 
         {/* Core Trading Activities */}
-        <section className="border-b border-border bg-offwhite py-20 lg:py-24">
-          <div className="mx-auto max-w-7xl px-6">
+        <section className="border-b border-border bg-offwhite py-14 sm:py-20 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-forest">
                 Commercial Scope
               </span>
-              <h2 className="mt-2 font-heading text-3xl font-bold tracking-tight text-forest-deep sm:text-4xl md:text-5xl">
+              <h2 className="mt-2 font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-forest-deep">
                 Four Pillars of Supply
               </h2>
               <p className="mt-3 text-xs text-stone md:text-sm">
@@ -129,8 +129,8 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-              <div className="rounded-2xl border border-border bg-ivory p-6 shadow-subtle hover:border-champagne transition-all duration-300">
+            <div className="mt-10 sm:mt-12 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+              <div className="rounded-2xl border border-border bg-ivory p-5 sm:p-6 shadow-subtle hover:border-champagne transition-all duration-300">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-champagne">
                   Division 01
                 </span>
@@ -143,7 +143,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-border bg-ivory p-6 shadow-subtle hover:border-champagne transition-all duration-300">
+              <div className="rounded-2xl border border-border bg-ivory p-5 sm:p-6 shadow-subtle hover:border-champagne transition-all duration-300">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-champagne">
                   Division 02
                 </span>
@@ -156,7 +156,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-border bg-ivory p-6 shadow-subtle hover:border-champagne transition-all duration-300">
+              <div className="rounded-2xl border border-border bg-ivory p-5 sm:p-6 shadow-subtle hover:border-champagne transition-all duration-300">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-champagne">
                   Division 03
                 </span>
@@ -169,7 +169,7 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-border bg-ivory p-6 shadow-subtle hover:border-champagne transition-all duration-300">
+              <div className="rounded-2xl border border-border bg-ivory p-5 sm:p-6 shadow-subtle hover:border-champagne transition-all duration-300">
                 <span className="text-[10px] font-bold uppercase tracking-wider text-champagne">
                   Division 04
                 </span>
@@ -186,13 +186,13 @@ export default function AboutPage() {
         </section>
 
         {/* Executive Management Contacts */}
-        <section className="border-b border-border bg-ivory py-20 lg:py-24">
-          <div className="mx-auto max-w-7xl px-6">
+        <section className="border-b border-border bg-ivory py-14 sm:py-20 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl">
               <span className="text-xs font-bold uppercase tracking-[0.2em] text-forest">
                 Leadership &amp; Trading Desk
               </span>
-              <h2 className="mt-2 font-heading text-3xl font-bold tracking-tight text-forest-deep sm:text-4xl">
+              <h2 className="mt-2 font-heading text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-forest-deep">
                 Trading Desk Management
               </h2>
               <p className="mt-3 text-xs text-stone md:text-sm">
@@ -201,10 +201,10 @@ export default function AboutPage() {
               </p>
             </div>
 
-            <div className="mt-10 grid gap-8 sm:grid-cols-2 max-w-3xl">
-              <div className="rounded-2xl border border-border bg-white p-6 shadow-subtle space-y-3">
+            <div className="mt-8 sm:mt-10 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 max-w-3xl">
+              <div className="rounded-2xl border border-border bg-white p-5 sm:p-6 shadow-subtle space-y-3">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-forest text-white">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-forest text-white shrink-0">
                     <UserCheck className="h-5 w-5" />
                   </div>
                   <div>
@@ -228,9 +228,9 @@ export default function AboutPage() {
                 </div>
               </div>
 
-              <div className="rounded-2xl border border-border bg-white p-6 shadow-subtle space-y-3">
+              <div className="rounded-2xl border border-border bg-white p-5 sm:p-6 shadow-subtle space-y-3">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-forest text-white">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-forest text-white shrink-0">
                     <UserCheck className="h-5 w-5" />
                   </div>
                   <div>
@@ -258,9 +258,9 @@ export default function AboutPage() {
         </section>
 
         {/* Bottom CTA */}
-        <section className="bg-forest-deep py-16 text-white border-t border-forest-mid">
-          <div className="mx-auto max-w-4xl px-6 text-center space-y-5">
-            <h2 className="font-heading text-3xl font-bold sm:text-4xl">
+        <section className="bg-forest-deep py-12 sm:py-16 text-white border-t border-forest-mid">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center space-y-5">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl font-bold">
               Schedule a Showroom Viewing in Bangkok
             </h2>
             <p className="mx-auto max-w-xl text-xs leading-relaxed text-ivory/80 md:text-sm">
@@ -270,7 +270,7 @@ export default function AboutPage() {
             <div className="pt-2">
               <Link
                 href="/contact"
-                className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-champagne px-8 text-xs font-bold uppercase tracking-wider text-forest-deep shadow-md hover:bg-champagne-light transition-colors"
+                className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-champagne px-7 sm:px-8 text-xs font-bold uppercase tracking-wider text-forest-deep shadow-md hover:bg-champagne-light transition-colors"
               >
                 Request Private Appointment
               </Link>

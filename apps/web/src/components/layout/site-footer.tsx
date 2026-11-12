@@ -4,13 +4,13 @@ import { Mail, MapPin, ShieldCheck, Scale, ArrowUpRight } from "lucide-react";
 export function SiteFooter() {
   return (
     <footer className="mt-auto border-t border-forest-mid bg-forest-deep text-white">
-      <div className="mx-auto max-w-7xl px-6 py-16 lg:py-20">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+        <div className="grid gap-8 sm:gap-10 md:grid-cols-2 lg:grid-cols-4">
           {/* Col 1: Corporate Profile */}
           <div className="space-y-4">
             <Link href="/" className="inline-block focus-visible:outline-champagne">
               <div className="flex items-center gap-1.5">
-                <span className="font-heading text-2xl font-bold tracking-tight text-white">
+                <span className="font-heading text-xl sm:text-2xl font-bold tracking-tight text-white">
                   LibraGems
                 </span>
                 <span className="h-1.5 w-1.5 rounded-full bg-champagne inline-block"></span>
@@ -146,8 +146,8 @@ export function SiteFooter() {
         </div>
 
         {/* Bottom Bar: Copyright & Compliance */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-6 border-t border-white/10 pt-8 text-xs text-white/60 md:flex-row">
-          <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+        <div className="mt-12 sm:mt-16 flex flex-col items-start sm:items-center justify-between gap-4 sm:gap-6 border-t border-white/10 pt-8 text-xs text-white/60 md:flex-row">
+          <div className="flex flex-wrap items-center gap-x-4 sm:gap-x-6 gap-y-2">
             <span>© {new Date().getFullYear()} Libra Gems &amp; Trading Co., Ltd. All rights reserved.</span>
             <span className="hidden md:inline">•</span>
             <span className="flex items-center gap-1">
@@ -156,7 +156,7 @@ export function SiteFooter() {
             </span>
           </div>
 
-          <div className="flex flex-wrap items-center gap-6">
+          <div className="flex flex-wrap items-center gap-4 sm:gap-6">
             <Link href="/privacy" className="hover:text-white transition-colors">
               Privacy Policy (Draft)
             </Link>

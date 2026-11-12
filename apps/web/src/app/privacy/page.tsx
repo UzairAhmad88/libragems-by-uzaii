@@ -26,12 +26,12 @@ export default function PrivacyPolicyPage() {
 
       <main id="main-content" className="flex-1">
         <div className="border-b border-border bg-beige/40">
-          <div className="mx-auto max-w-4xl px-6">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6">
             <Breadcrumbs items={breadcrumbs} />
           </div>
         </div>
 
-        <article className="mx-auto max-w-4xl px-6 py-16 lg:py-20">
+        <article className="mx-auto max-w-4xl px-4 sm:px-6 py-12 sm:py-16 lg:py-20">
           {/* Draft Notice Banner */}
           <div className="mb-8 rounded-xl border border-amber-200 bg-amber-50 p-4 text-xs text-amber-950 flex items-start gap-3">
             <AlertCircle className="h-5 w-5 shrink-0 text-amber-700 mt-0.5" />

@@ -44,14 +44,14 @@ export default function AfghanistanRubellitePage() {
       <main id="main-content" className="flex-1 pb-16">
         {/* Breadcrumb Strip */}
         <div className="border-b border-border bg-offwhite">
-          <div className="mx-auto max-w-7xl px-6 py-3">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3">
             <Breadcrumbs items={breadcrumbs} />
           </div>
         </div>
 
         {/* Product Hero Dossier */}
-        <section className="mx-auto max-w-7xl px-6 py-10 lg:py-16">
-          <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
+        <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-8 sm:py-10 lg:py-16">
+          <div className="grid gap-8 lg:gap-12 lg:grid-cols-12 lg:items-start">
             {/* Left: Product Image Gallery (7 cols) */}
             <div className="lg:col-span-7">
               <ProductGallery images={product.images} productName={product.name} />
@@ -135,16 +135,16 @@ export default function AfghanistanRubellitePage() {
         </section>
 
         {/* Gemological Specs & Editorial Analysis */}
-        <section className="border-t border-border bg-offwhite py-16 lg:py-20">
-          <div className="mx-auto max-w-7xl px-6 space-y-16">
+        <section className="border-t border-border bg-offwhite py-12 sm:py-16 lg:py-20">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 space-y-12 sm:space-y-16">
             {/* Gemological Specs Table */}
             <div className="max-w-4xl mx-auto">
               <SpecTable product={product} />
             </div>
 
             {/* Editorial Geological & Lapidary Context */}
-            <div className="max-w-4xl mx-auto grid gap-8 md:grid-cols-2">
-              <div className="rounded-2xl border border-border bg-ivory p-8 shadow-subtle space-y-3">
+            <div className="max-w-4xl mx-auto grid gap-6 sm:gap-8 grid-cols-1 md:grid-cols-2">
+              <div className="rounded-2xl border border-border bg-ivory p-6 sm:p-8 shadow-subtle space-y-3">
                 <h3 className="font-heading text-xl font-bold text-forest-deep">
                   Pegmatite Geological Source
                 </h3>
@@ -153,7 +153,7 @@ export default function AfghanistanRubellitePage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-border bg-ivory p-8 shadow-subtle space-y-3">
+              <div className="rounded-2xl border border-border bg-ivory p-6 sm:p-8 shadow-subtle space-y-3">
                 <h3 className="font-heading text-xl font-bold text-forest-deep">
                   Lapidary Faceting &amp; Pleochroism
                 </h3>
@@ -164,7 +164,7 @@ export default function AfghanistanRubellitePage() {
             </div>
 
             {/* Commercial Applications Checklist */}
-            <div className="max-w-4xl mx-auto rounded-2xl border border-border bg-ivory p-8 shadow-subtle">
+            <div className="max-w-4xl mx-auto rounded-2xl border border-border bg-ivory p-6 sm:p-8 shadow-subtle">
               <h3 className="font-heading text-xl font-bold text-forest-deep">
                 Recommended Commercial Applications
               </h3>
@@ -200,7 +200,7 @@ export default function AfghanistanRubellitePage() {
 
             {/* Related Gemstones Strip */}
             <div className="max-w-7xl mx-auto pt-8 border-t border-border">
-              <div className="flex items-center justify-between mb-8">
+              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-8">
                 <div>
                   <span className="text-xs font-bold uppercase tracking-wider text-forest">
                     Explore Other Holdings
@@ -217,7 +217,7 @@ export default function AfghanistanRubellitePage() {
                 </Link>
               </div>
 
-              <div className="grid gap-8 sm:grid-cols-2">
+              <div className="grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2">
                 {otherProducts.map((gem) => (
                   <ProductCard key={gem.slug} product={gem} />
                 ))}

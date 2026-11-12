@@ -68,20 +68,20 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-[#E5E3D9] bg-[#F5F3EB] shadow-sm transition-shadow">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:py-4.5">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-3.5 sm:py-4 md:py-4.5">
         {/* Brand Logotype */}
         <Link
           href="/"
-          className="group flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173D30] rounded-sm"
+          className="group flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173D30] rounded-sm shrink-0"
           aria-label="LibraGems Homepage"
         >
-          <div className="flex items-center gap-1.5">
-            <span className="font-heading text-2xl font-bold tracking-tight text-[#173D30] transition-colors group-hover:text-[#214B3B] md:text-3xl">
+          <div className="flex items-center gap-1 sm:gap-1.5">
+            <span className="font-heading text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-[#173D30] transition-colors group-hover:text-[#214B3B]">
               LibraGems
             </span>
-            <span className="h-2 w-2 rounded-full bg-[#C5A66A] inline-block" />
+            <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#C5A66A] inline-block" />
           </div>
-          <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#59615C]">
+          <span className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.18em] sm:tracking-[0.22em] text-[#59615C]">
             Bangkok • Est. Thailand
           </span>
         </Link>
@@ -89,7 +89,7 @@ export function SiteHeader() {
         {/* Desktop Navigation Links */}
         <nav
           aria-label="Main navigation"
-          className="hidden items-center gap-8 text-sm font-semibold lg:flex"
+          className="hidden items-center gap-5 xl:gap-8 text-sm font-semibold lg:flex"
         >
           {NAV_LINKS.map(({ label, href }) => {
             const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
@@ -111,18 +111,40 @@ export function SiteHeader() {
           })}
         </nav>
 
-        {/* Desktop Header Action: Enquire CTA */}
-        <div className="hidden items-center gap-3.5 lg:flex">
+        {/* Desktop Header Action: WhatsApp Desk Pill + Enquire CTA */}
+        <div className="hidden items-center gap-3 lg:flex shrink-0">
+          <a
+            href={whatsAppUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-[42px] items-center gap-2 rounded-full border border-[#25D366]/40 bg-[#25D366]/10 px-3.5 py-2 text-xs font-semibold text-[#173D30] transition-all hover:bg-[#25D366]/20 hover:border-[#25D366] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]"
+            aria-label="Direct WhatsApp Trading Desk: +66 84 667 4833"
+          >
+            <WhatsAppIcon className="h-4 w-4 text-[#25D366] shrink-0" />
+            <span className="hidden xl:inline font-mono font-bold">+66 84 667 4833</span>
+            <span className="xl:hidden font-bold">WhatsApp</span>
+          </a>
+
           <Link
             href="/contact"
-            className="inline-flex min-h-[42px] items-center justify-center rounded-full bg-[#C5A66A] px-5 py-2 text-xs font-bold uppercase tracking-wider text-[#173D30] shadow-sm transition-all duration-200 hover:bg-[#B89555] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#173D30]"
+            className="inline-flex min-h-[42px] items-center justify-center rounded-full bg-[#C5A66A] px-4 xl:px-5 py-2 text-xs font-bold uppercase tracking-wider text-[#173D30] shadow-sm transition-all duration-200 hover:bg-[#B89555] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#173D30]"
           >
             Enquire on Lots
           </Link>
         </div>
 
-        {/* Mobile Header Actions (Hamburger button) */}
-        <div className="flex items-center gap-2.5 lg:hidden">
+        {/* Mobile Header Actions (WhatsApp icon + Hamburger button) */}
+        <div className="flex items-center gap-2 sm:gap-2.5 lg:hidden">
+          <a
+            href={whatsAppUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#25D366]/40 bg-[#25D366]/10 text-[#25D366] transition-colors hover:bg-[#25D366]/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]"
+            aria-label="Contact WhatsApp Trading Desk (+66 84 667 4833)"
+          >
+            <WhatsAppIcon className="h-5 w-5" />
+          </a>
+
           <button
             type="button"
             aria-expanded={mobileMenuOpen}
@@ -155,7 +177,7 @@ export function SiteHeader() {
           {/* Drawer Panel */}
           <div
             ref={drawerRef}
-            className="relative flex h-full w-[85%] max-w-[380px] flex-col justify-between border-l border-[#E5E3D9] bg-[#FAF9F4] p-6 shadow-2xl overflow-y-auto"
+            className="relative flex h-full w-[85%] max-w-[340px] sm:max-w-[380px] flex-col justify-between border-l border-[#E5E3D9] bg-[#FAF9F4] p-5 sm:p-6 shadow-2xl overflow-y-auto"
           >
             <div>
               {/* Drawer Header */}

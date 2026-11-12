@@ -90,6 +90,10 @@ const config: Config = {
         lg: "16px",
         xl: "24px",
       },
+      screens: {
+        xs: "420px",
+        "3xl": "1920px",
+      },
     },
   },
   plugins: [],

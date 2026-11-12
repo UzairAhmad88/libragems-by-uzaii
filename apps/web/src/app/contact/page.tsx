@@ -28,8 +28,8 @@ export default function ContactPage() {
 
       <main id="main-content" className="flex-1">
         {/* Header Hero (Deep Forest Green) */}
-        <section className="border-b border-forest-mid bg-forest-deep py-16 lg:py-20 text-white">
-          <div className="mx-auto max-w-7xl px-6">
+        <section className="border-b border-forest-mid bg-forest-deep py-12 sm:py-16 lg:py-20 text-white">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="text-ivory/70 [&_a]:text-ivory/80 [&_a:hover]:text-champagne [&_span]:text-champagne">
               <Breadcrumbs items={breadcrumbs} />
             </div>
@@ -38,10 +38,10 @@ export default function ContactPage() {
               <span className="inline-flex items-center gap-2 rounded-full border border-champagne/40 bg-forest/50 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-champagne">
                 Direct Commercial Communications
               </span>
-              <h1 className="font-heading text-4xl font-extrabold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
+              <h1 className="font-heading text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
                 Contact our trading desk in Bangkok.
               </h1>
-              <p className="text-base leading-relaxed text-ivory/85 md:text-lg">
+              <p className="text-sm leading-relaxed text-ivory/85 md:text-base lg:text-lg">
                 Submit specific parcel inquiries, request calibrated lot splits, or arrange an
                 in-person private viewing at our showroom on Charoen Krung Road in Bang Rak.
               </p>
@@ -50,18 +50,18 @@ export default function ContactPage() {
         </section>
 
         {/* Two-Column Split Layout */}
-        <section className="border-b border-border bg-offwhite py-16 lg:py-24">
-          <div className="mx-auto max-w-7xl px-6">
-            <div className="grid gap-12 lg:grid-cols-12 lg:items-start">
+        <section className="border-b border-border bg-offwhite py-12 sm:py-16 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="grid gap-8 lg:gap-12 lg:grid-cols-12 lg:items-start">
               {/* Left Column: Direct Corporate Channels (5 cols) */}
-              <div className="lg:col-span-5 space-y-8">
+              <div className="lg:col-span-5 space-y-6 sm:space-y-8">
                 {/* Physical Location */}
-                <div className="rounded-2xl border border-border bg-ivory p-7 shadow-subtle space-y-3 hover:border-champagne transition-all duration-300">
+                <div className="rounded-2xl border border-border bg-ivory p-5 sm:p-7 shadow-subtle space-y-3 hover:border-champagne transition-all duration-300">
                   <div className="flex items-center gap-2.5 text-forest font-bold text-xs uppercase tracking-wider">
                     <MapPin className="h-4 w-4 text-champagne" />
                     <span>Registered Trading Office</span>
                   </div>
-                  <h3 className="font-heading text-2xl font-bold text-forest-deep">
+                  <h3 className="font-heading text-xl sm:text-2xl font-bold text-forest-deep">
                     Bangkok Showroom
                   </h3>
                   <p className="text-xs leading-relaxed text-stone">
@@ -77,8 +77,8 @@ export default function ContactPage() {
                 </div>
 
                 {/* Direct Communications */}
-                <div className="rounded-2xl border border-border bg-ivory p-7 shadow-subtle space-y-4 hover:border-champagne transition-all duration-300">
-                  <h3 className="font-heading text-xl font-bold text-forest-deep">
+                <div className="rounded-2xl border border-border bg-ivory p-5 sm:p-7 shadow-subtle space-y-4 hover:border-champagne transition-all duration-300">
+                  <h3 className="font-heading text-lg sm:text-xl font-bold text-forest-deep">
                     Verified Direct Channels
                   </h3>
 

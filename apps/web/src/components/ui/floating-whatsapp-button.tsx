@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import { usePathname } from "next/navigation";
-import { buildWhatsAppLink } from "@/lib/utils";
+import { cn, buildWhatsAppLink } from "@/lib/utils";
 import { CONTACT_CONFIG } from "@/config/contact";
 
 function WhatsAppIcon({ className = "h-7 w-7" }: { className?: string }) {
@@ -30,10 +30,18 @@ export function FloatingWhatsAppButton() {
   const message = CONTACT_CONFIG.whatsapp.defaultPrefilledMessage;
   const whatsappUrl = buildWhatsAppLink(phone, message);
 
+  // Offset vertically on mobile when on gemstone product pages where StickyMobileActionBar is mounted
+  const isGemstoneDetail = pathname ? pathname.startsWith("/gemstones/") && pathname !== "/gemstones" : false;
+
   return (
     <aside
       aria-label="WhatsApp Contact"
-      className="fixed bottom-6 right-6 z-50 flex items-center print:hidden pb-[env(safe-area-inset-bottom,0px)] pr-[env(safe-area-inset-right,0px)]"
+      className={cn(
+        "fixed right-4 sm:right-6 z-50 flex items-center print:hidden pr-[env(safe-area-inset-right,0px)] transition-all duration-300",
+        isGemstoneDetail
+          ? "bottom-[calc(5.25rem+env(safe-area-inset-bottom,0px))] lg:bottom-[calc(1.5rem+env(safe-area-inset-bottom,0px))]"
+          : "bottom-[calc(1.25rem+env(safe-area-inset-bottom,0px))] sm:bottom-[calc(1.5rem+env(safe-area-inset-bottom,0px))]"
+      )}
     >
       <div className="group relative flex items-center">
         {/* Desktop Hover / Focus Tooltip */}

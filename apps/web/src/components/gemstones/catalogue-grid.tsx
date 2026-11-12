@@ -30,7 +30,7 @@ export function CatalogueGrid({ initialGemstones }: CatalogueGridProps) {
       <div
         role="tablist"
         aria-label="Gemstone category filter"
-        className="flex flex-wrap items-center gap-2 border-b border-border pb-6"
+        className="flex flex-wrap items-center gap-2 border-b border-border pb-5 sm:pb-6"
       >
         {categories.map((cat) => {
           const isSelected = selectedCategory === cat.id;
@@ -41,7 +41,7 @@ export function CatalogueGrid({ initialGemstones }: CatalogueGridProps) {
               aria-selected={isSelected}
               onClick={() => setSelectedCategory(cat.id)}
               className={cn(
-                "rounded-full px-5 py-2 text-xs font-bold uppercase tracking-wider transition-all duration-200 focus-visible:outline-champagne min-h-[44px]",
+                "rounded-full px-4 sm:px-5 py-2 text-xs font-bold uppercase tracking-wider transition-all duration-200 focus-visible:outline-champagne min-h-[44px]",
                 isSelected
                   ? "bg-forest-deep text-champagne border border-forest-deep shadow-sm"
                   : "bg-ivory border border-border text-stone hover:border-forest/50 hover:text-forest-deep"
@@ -54,7 +54,7 @@ export function CatalogueGrid({ initialGemstones }: CatalogueGridProps) {
       </div>
 
       {/* Grid count summary */}
-      <div className="mt-6 flex items-center justify-between text-xs text-stone">
+      <div className="mt-5 sm:mt-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 text-xs text-stone">
         <span>
           Showing {filteredGemstones.length} of {initialGemstones.length} catalogued materials
         </span>
@@ -64,7 +64,7 @@ export function CatalogueGrid({ initialGemstones }: CatalogueGridProps) {
       </div>
 
       {/* Product Grid */}
-      <div className="mt-8 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-8 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
         {filteredGemstones.map((gem, idx) => (
           <ProductCard key={gem.slug} product={gem} priority={idx === 0} />
         ))}

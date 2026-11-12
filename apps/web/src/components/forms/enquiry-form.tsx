@@ -148,7 +148,7 @@ export function EnquiryForm({ initialGemstone = "", className }: EnquiryFormProp
   return (
     <div
       className={cn(
-        "rounded-2xl border border-border bg-ivory p-6 md:p-8 shadow-subtle",
+        "rounded-2xl border border-border bg-ivory p-5 sm:p-7 md:p-8 shadow-subtle",
         className
       )}
     >

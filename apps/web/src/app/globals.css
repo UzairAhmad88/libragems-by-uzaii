@@ -43,6 +43,9 @@ html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  max-width: 100vw;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -51,6 +54,9 @@ body {
   color: var(--ink);
   font-family: var(--font-inter), sans-serif;
   line-height: 1.6;
+  overflow-x: hidden;
+  max-width: 100vw;
+  min-height: 100vh;
 }
 
 a {
@@ -61,6 +67,35 @@ a {
 /* Tabular numbers for all gemological data */
 .tabular-nums {
   font-variant-numeric: tabular-nums;
+}
+
+/* Fluid Responsive Typography Utilities (clamp-based) */
+.hero-title {
+  font-size: clamp(2rem, 5.5vw, 4.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+.page-title {
+  font-size: clamp(2rem, 4.5vw, 3.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+}
+
+.subheading-title {
+  font-size: clamp(1.2rem, 2.2vw, 1.75rem);
+  line-height: 1.25;
+}
+
+.body-fluid {
+  font-size: clamp(0.9375rem, 1vw + 0.125rem, 1.125rem);
+  line-height: 1.65;
 }
 
 /* Accessible focus styling */

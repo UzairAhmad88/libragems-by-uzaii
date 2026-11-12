@@ -25,45 +25,45 @@ export default function HomePage() {
 
       <main id="main-content" className="flex-1">
         {/* Section 1: Luxury Editorial Hero (Deep Forest Green) */}
-        <section className="relative border-b border-forest-mid/60 bg-forest-deep py-20 lg:py-28 overflow-hidden text-white">
+        <section className="relative border-b border-forest-mid/60 bg-forest-deep py-14 sm:py-20 lg:py-28 overflow-hidden text-white">
           {/* Subtle Ambient Depth */}
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-forest/30 via-transparent to-transparent pointer-events-none" />
 
-          <div className="relative mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
+          <div className="relative mx-auto grid max-w-7xl gap-10 lg:gap-12 px-4 sm:px-6 lg:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:items-center">
             <div className="space-y-6">
-              <div className="inline-flex items-center gap-2 rounded-full border border-champagne/40 bg-forest/50 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-champagne backdrop-blur-sm">
-                <Compass className="h-3.5 w-3.5" />
+              <div className="inline-flex items-center gap-2 rounded-full border border-champagne/40 bg-forest/50 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.16em] sm:tracking-[0.2em] text-champagne backdrop-blur-sm">
+                <Compass className="h-3.5 w-3.5 shrink-0" />
                 <span>International B2B Gemstone Trading • Bangkok</span>
               </div>
 
-              <h1 className="font-heading text-4xl font-extrabold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl">
+              <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-extrabold leading-[1.08] tracking-tight text-white">
                 Nature&apos;s Rarest Gems. Trusted Through Expertise.
               </h1>
 
-              <p className="max-w-2xl text-base leading-relaxed text-ivory/85 md:text-lg">
+              <p className="max-w-2xl text-sm sm:text-base leading-relaxed text-ivory/85 md:text-lg">
                 Sourcing, evaluating, and supplying commercial-quality rough stones, mineral
                 specimens, and precision-cut colored gems directly from Bangkok&apos;s historic
                 gemological trading district. Built on gemological rigor, transparent treatment
                 disclosure, and long-term wholesale relationships.
               </p>
 
-              <div className="flex flex-wrap items-center gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
                 <Link
                   href="/gemstones"
-                  className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-champagne px-8 text-xs font-bold uppercase tracking-wider text-forest-deep shadow-md hover:bg-champagne-light hover:shadow-lg focus-visible:outline-champagne transition-all duration-200"
+                  className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-champagne px-7 sm:px-8 text-xs font-bold uppercase tracking-wider text-forest-deep shadow-md hover:bg-champagne-light hover:shadow-lg focus-visible:outline-champagne transition-all duration-200"
                 >
                   Explore Gemstones
                 </Link>
                 <Link
                   href="/contact"
-                  className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-champagne/50 bg-forest/30 px-8 text-xs font-bold uppercase tracking-wider text-ivory hover:bg-champagne hover:text-forest-deep focus-visible:outline-champagne transition-all duration-200"
+                  className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-champagne/50 bg-forest/30 px-7 sm:px-8 text-xs font-bold uppercase tracking-wider text-ivory hover:bg-champagne hover:text-forest-deep focus-visible:outline-champagne transition-all duration-200"
                 >
                   Contact Us
                 </Link>
               </div>
 
               {/* Trust Micro-Indicators */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-6 border-t border-forest-mid/60 text-xs text-ivory/70">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4 pt-6 border-t border-forest-mid/60 text-xs text-ivory/70">
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="h-4 w-4 text-champagne shrink-0" />
                   <span>CIBJO Treatment Standards</span>
@@ -72,7 +72,7 @@ export default function HomePage() {
                   <Scale className="h-4 w-4 text-champagne shrink-0" />
                   <span>Bangkok Lab Memos</span>
                 </div>
-                <div className="flex items-center gap-2 col-span-2 sm:col-span-1">
+                <div className="flex items-center gap-2">
                   <MapPin className="h-4 w-4 text-champagne shrink-0" />
                   <span>Bang Rak Trading Desk</span>
                 </div>
@@ -81,7 +81,7 @@ export default function HomePage() {
 
             {/* Architectural Studio Photo / Inventory Visual */}
             <div className="relative">
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-2xl border border-champagne/30 bg-forest-mid shadow-2xl">
+              <div className="relative aspect-[4/3] sm:aspect-[16/10] lg:aspect-[4/3] w-full overflow-hidden rounded-2xl border border-champagne/30 bg-forest-mid shadow-2xl">
                 <Image
                   src="/images/gemstones/hero-editorial-inventory.jpg"
                   alt="High-resolution editorial photograph of LibraGems gemstone inventory archive in Bangkok"
@@ -91,7 +91,7 @@ export default function HomePage() {
                   sizes="(max-width: 1024px) 100vw, 45vw"
                 />
               </div>
-              <div className="mt-3 flex items-center justify-between text-[11px] text-ivory/60 px-1">
+              <div className="mt-3 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 text-[11px] text-ivory/60 px-1">
                 <span>Bangkok Trading Floor &amp; Laboratory Desk</span>
                 <span className="text-champagne font-medium">Standardized 5500K Inspection</span>
               </div>
@@ -100,13 +100,13 @@ export default function HomePage() {
         </section>
 
         {/* Section 2: Credibility & Trading Pillars (Warm Ivory) */}
-        <section className="border-b border-border bg-ivory py-20 lg:py-24">
-          <div className="mx-auto max-w-7xl px-6">
+        <section className="border-b border-border bg-ivory py-16 sm:py-20 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="max-w-2xl">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-forest">
                 The Bangkok Trading Nexus
               </p>
-              <h2 className="mt-2 font-heading text-3xl font-bold tracking-tight text-forest-deep sm:text-4xl md:text-5xl">
+              <h2 className="mt-2 font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-forest-deep">
                 Rooted in Bangkok. Connected Worldwide.
               </h2>
               <p className="mt-4 text-sm leading-relaxed text-stone md:text-base">
@@ -117,8 +117,8 @@ export default function HomePage() {
               </p>
             </div>
 
-            <div className="mt-14 grid gap-8 md:grid-cols-3">
-              <div className="rounded-2xl border border-border bg-white p-8 shadow-subtle transition-all duration-300 hover:-translate-y-1 hover:border-champagne hover:shadow-card-hover">
+            <div className="mt-10 sm:mt-14 grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <div className="rounded-2xl border border-border bg-white p-6 sm:p-8 shadow-subtle transition-all duration-300 hover:-translate-y-1 hover:border-champagne hover:shadow-card-hover">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-forest/10 text-forest">
                   <Gem className="h-6 w-6" />
                 </div>
@@ -132,7 +132,7 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-border bg-white p-8 shadow-subtle transition-all duration-300 hover:-translate-y-1 hover:border-champagne hover:shadow-card-hover">
+              <div className="rounded-2xl border border-border bg-white p-6 sm:p-8 shadow-subtle transition-all duration-300 hover:-translate-y-1 hover:border-champagne hover:shadow-card-hover">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-forest/10 text-forest">
                   <Sparkles className="h-6 w-6 text-champagne" />
                 </div>
@@ -145,7 +145,7 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className="rounded-2xl border border-border bg-white p-8 shadow-subtle transition-all duration-300 hover:-translate-y-1 hover:border-champagne hover:shadow-card-hover">
+              <div className="rounded-2xl border border-border bg-white p-6 sm:p-8 shadow-subtle transition-all duration-300 hover:-translate-y-1 hover:border-champagne hover:shadow-card-hover md:col-span-2 lg:col-span-1">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-forest/10 text-forest">
                   <Scale className="h-6 w-6" />
                 </div>
@@ -163,14 +163,14 @@ export default function HomePage() {
         </section>
 
         {/* Section 3: Featured Launch Gemstones (Premium Off-White) */}
-        <section className="border-b border-border bg-offwhite py-20 lg:py-24">
-          <div className="mx-auto max-w-7xl px-6">
-            <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4">
+        <section className="border-b border-border bg-offwhite py-16 sm:py-20 lg:py-24">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
               <div>
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-forest">
                   Verified Physical Holdings
                 </p>
-                <h2 className="mt-2 font-heading text-3xl font-bold tracking-tight text-forest-deep sm:text-4xl md:text-5xl">
+                <h2 className="mt-2 font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-forest-deep">
                   Featured Gemstone Materials
                 </h2>
                 <p className="mt-2 text-xs text-stone md:text-sm">
@@ -186,7 +186,7 @@ export default function HomePage() {
               </Link>
             </div>
 
-            <div className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+            <div className="mt-10 sm:mt-12 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
               {gemstones.map((gem, index) => (
                 <ProductCard key={gem.slug} product={gem} priority={index === 0} />
               ))}
@@ -195,13 +195,13 @@ export default function HomePage() {
         </section>
 
         {/* Section 4: Quality & Sourcing Spotlight */}
-        <section className="border-b border-border bg-white py-20 lg:py-24">
-          <div className="mx-auto grid max-w-7xl gap-12 px-6 lg:grid-cols-2 lg:items-center">
+        <section className="border-b border-border bg-white py-16 sm:py-20 lg:py-24">
+          <div className="mx-auto grid max-w-7xl gap-10 sm:gap-12 px-4 sm:px-6 lg:px-8 lg:grid-cols-2 lg:items-center">
             <div className="space-y-6">
               <p className="text-xs font-bold uppercase tracking-[0.2em] text-forest">
                 Gemological Discipline
               </p>
-              <h2 className="font-heading text-3xl font-bold leading-tight tracking-tight text-forest-deep sm:text-4xl md:text-5xl">
+              <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight text-forest-deep">
                 Rigorous inspection under standardized 5500K daylight.
               </h2>
               <p className="text-sm leading-relaxed text-stone md:text-base">
@@ -226,8 +226,8 @@ export default function HomePage() {
               </div>
             </div>
 
-            <div className="rounded-2xl border border-border bg-ivory p-8 md:p-10 shadow-subtle space-y-6">
-              <h3 className="font-heading text-2xl font-bold text-forest-deep">
+            <div className="rounded-2xl border border-border bg-ivory p-6 sm:p-8 md:p-10 shadow-subtle space-y-6">
+              <h3 className="font-heading text-xl sm:text-2xl font-bold text-forest-deep">
                 Commercial Standards Checklist
               </h3>
               <ul className="space-y-4 text-xs text-stone">
@@ -265,29 +265,29 @@ export default function HomePage() {
         </section>
 
         {/* Section 5: International Trade Call-to-Action */}
-        <section className="bg-forest-deep py-20 text-white lg:py-24 border-t border-forest-mid">
-          <div className="mx-auto max-w-4xl px-6 text-center space-y-6">
+        <section className="bg-forest-deep py-16 sm:py-20 lg:py-24 text-white border-t border-forest-mid">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center space-y-6">
             <span className="text-xs font-bold uppercase tracking-[0.2em] text-champagne">
               Initiate Commercial Contact
             </span>
-            <h2 className="font-heading text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl">
+            <h2 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight tracking-tight">
               Discuss Your Gemstone Requirements
             </h2>
-            <p className="mx-auto max-w-2xl text-sm leading-relaxed text-ivory/80 md:text-base">
+            <p className="mx-auto max-w-2xl text-xs sm:text-sm leading-relaxed text-ivory/80 md:text-base">
               Whether you require parcel splits of commercial rough hessonite, stabilized turquoise
               slabs, or fine faceted rubellite tourmaline, our Bangkok trading desk provides prompt,
               documented quotations.
             </p>
-            <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 pt-4">
               <Link
                 href="/contact"
-                className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-champagne px-8 text-xs font-bold uppercase tracking-wider text-forest-deep shadow-md hover:bg-champagne-light transition-all duration-200"
+                className="inline-flex min-h-[48px] items-center justify-center rounded-full bg-champagne px-7 sm:px-8 text-xs font-bold uppercase tracking-wider text-forest-deep shadow-md hover:bg-champagne-light transition-all duration-200"
               >
                 Contact Our Trading Desk
               </Link>
               <Link
                 href="/gemstones"
-                className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-champagne/40 px-8 text-xs font-bold uppercase tracking-wider text-white hover:bg-white/10 transition-colors"
+                className="inline-flex min-h-[48px] items-center justify-center rounded-full border border-champagne/40 px-7 sm:px-8 text-xs font-bold uppercase tracking-wider text-white hover:bg-white/10 transition-colors"
               >
                 Review Active Lots
               </Link>

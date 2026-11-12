@@ -22,7 +22,7 @@ export function SpecTable({ product }: SpecTableProps) {
 
   return (
     <div className="overflow-hidden rounded-2xl border border-border bg-ivory shadow-subtle">
-      <div className="border-b border-border bg-offwhite px-6 py-4">
+      <div className="border-b border-border bg-offwhite px-4 sm:px-4 sm:px-6 py-3 sm:py-3.5 sm:py-4">
         <h3 className="font-heading text-lg font-bold text-forest-deep">
           Gemological &amp; Physical Specifications
         </h3>
@@ -33,7 +33,7 @@ export function SpecTable({ product }: SpecTableProps) {
 
       <div className="divide-y divide-border">
         {/* Variety & Species */}
-        <div className="grid grid-cols-1 gap-1 px-6 py-3.5 sm:grid-cols-3 sm:gap-4">
+        <div className="grid grid-cols-1 gap-1 px-4 sm:px-6 py-3 sm:py-3.5 sm:grid-cols-3 sm:gap-4">
           <dt className="text-xs font-semibold uppercase tracking-wider text-stone">
             Species / Variety
           </dt>
@@ -43,7 +43,7 @@ export function SpecTable({ product }: SpecTableProps) {
         </div>
 
         {/* Chemical Formula */}
-        <div className="grid grid-cols-1 gap-1 px-6 py-3.5 sm:grid-cols-3 sm:gap-4 bg-ivory/40">
+        <div className="grid grid-cols-1 gap-1 px-4 sm:px-6 py-3 sm:py-3.5 sm:grid-cols-3 sm:gap-4 bg-ivory/40">
           <dt className="text-xs font-semibold uppercase tracking-wider text-stone">
             Chemical Formula
           </dt>
@@ -53,7 +53,7 @@ export function SpecTable({ product }: SpecTableProps) {
         </div>
 
         {/* Crystal System */}
-        <div className="grid grid-cols-1 gap-1 px-6 py-3.5 sm:grid-cols-3 sm:gap-4">
+        <div className="grid grid-cols-1 gap-1 px-4 sm:px-6 py-3 sm:py-3.5 sm:grid-cols-3 sm:gap-4">
           <dt className="text-xs font-semibold uppercase tracking-wider text-stone">
             Crystal System
           </dt>
@@ -61,7 +61,7 @@ export function SpecTable({ product }: SpecTableProps) {
         </div>
 
         {/* Hardness (Mohs) */}
-        <div className="grid grid-cols-1 gap-1 px-6 py-3.5 sm:grid-cols-3 sm:gap-4 bg-ivory/40">
+        <div className="grid grid-cols-1 gap-1 px-4 sm:px-6 py-3 sm:py-3.5 sm:grid-cols-3 sm:gap-4 bg-ivory/40">
           <dt className="text-xs font-semibold uppercase tracking-wider text-stone">
             Mohs Hardness
           </dt>
@@ -71,7 +71,7 @@ export function SpecTable({ product }: SpecTableProps) {
         </div>
 
         {/* Specific Gravity (Density) */}
-        <div className="grid grid-cols-1 gap-1 px-6 py-3.5 sm:grid-cols-3 sm:gap-4">
+        <div className="grid grid-cols-1 gap-1 px-4 sm:px-6 py-3 sm:py-3.5 sm:grid-cols-3 sm:gap-4">
           <dt className="text-xs font-semibold uppercase tracking-wider text-stone">
             Specific Gravity (SG)
           </dt>
@@ -81,7 +81,7 @@ export function SpecTable({ product }: SpecTableProps) {
         </div>
 
         {/* Refractive Index (RI) */}
-        <div className="grid grid-cols-1 gap-1 px-6 py-3.5 sm:grid-cols-3 sm:gap-4 bg-ivory/40">
+        <div className="grid grid-cols-1 gap-1 px-4 sm:px-6 py-3 sm:py-3.5 sm:grid-cols-3 sm:gap-4 bg-ivory/40">
           <dt className="text-xs font-semibold uppercase tracking-wider text-stone">
             Refractive Index (RI)
           </dt>
@@ -91,7 +91,7 @@ export function SpecTable({ product }: SpecTableProps) {
         </div>
 
         {/* Lot Weight / Form */}
-        <div className="grid grid-cols-1 gap-1 px-6 py-3.5 sm:grid-cols-3 sm:gap-4">
+        <div className="grid grid-cols-1 gap-1 px-4 sm:px-6 py-3 sm:py-3.5 sm:grid-cols-3 sm:gap-4">
           <dt className="text-xs font-semibold uppercase tracking-wider text-stone">
             Offering Weight &amp; MOQ
           </dt>
@@ -101,7 +101,7 @@ export function SpecTable({ product }: SpecTableProps) {
         </div>
 
         {/* Sieve / Sizing */}
-        <div className="grid grid-cols-1 gap-1 px-6 py-3.5 sm:grid-cols-3 sm:gap-4 bg-ivory/40">
+        <div className="grid grid-cols-1 gap-1 px-4 sm:px-6 py-3 sm:py-3.5 sm:grid-cols-3 sm:gap-4 bg-ivory/40">
           <dt className="text-xs font-semibold uppercase tracking-wider text-stone">
             Dimensions / Sizing
           </dt>
@@ -109,7 +109,7 @@ export function SpecTable({ product }: SpecTableProps) {
         </div>
 
         {/* Color Tone & Clarity */}
-        <div className="grid grid-cols-1 gap-1 px-6 py-3.5 sm:grid-cols-3 sm:gap-4">
+        <div className="grid grid-cols-1 gap-1 px-4 sm:px-6 py-3 sm:py-3.5 sm:grid-cols-3 sm:gap-4">
           <dt className="text-xs font-semibold uppercase tracking-wider text-stone">
             Color &amp; Clarity
           </dt>
@@ -120,7 +120,7 @@ export function SpecTable({ product }: SpecTableProps) {
         </div>
 
         {/* Provenance / Origin */}
-        <div className="grid grid-cols-1 gap-1 px-6 py-3.5 sm:grid-cols-3 sm:gap-4 bg-ivory/40">
+        <div className="grid grid-cols-1 gap-1 px-4 sm:px-6 py-3 sm:py-3.5 sm:grid-cols-3 sm:gap-4 bg-ivory/40">
           <dt className="text-xs font-semibold uppercase tracking-wider text-stone">
             Geographic Origin
           </dt>
@@ -145,7 +145,7 @@ export function SpecTable({ product }: SpecTableProps) {
         </div>
 
         {/* Treatment Disclosure */}
-        <div className="grid grid-cols-1 gap-1 px-6 py-3.5 sm:grid-cols-3 sm:gap-4">
+        <div className="grid grid-cols-1 gap-1 px-4 sm:px-6 py-3 sm:py-3.5 sm:grid-cols-3 sm:gap-4">
           <dt className="text-xs font-semibold uppercase tracking-wider text-stone">
             CIBJO Treatment Status
           </dt>
@@ -162,7 +162,7 @@ export function SpecTable({ product }: SpecTableProps) {
         </div>
 
         {/* Certification Status */}
-        <div className="grid grid-cols-1 gap-1 px-6 py-3.5 sm:grid-cols-3 sm:gap-4 bg-ivory/40">
+        <div className="grid grid-cols-1 gap-1 px-4 sm:px-6 py-3 sm:py-3.5 sm:grid-cols-3 sm:gap-4 bg-ivory/40">
           <dt className="text-xs font-semibold uppercase tracking-wider text-stone">
             Laboratory Memo
           </dt>

@@ -23,7 +23,7 @@ export function ProductCard({ product, priority = false }: ProductCardProps) {
       : "default";
 
   return (
-    <div className="group relative flex flex-col rounded-2xl border border-border bg-ivory p-6 transition-all duration-300 hover:-translate-y-1 hover:border-champagne hover:shadow-card-hover">
+    <div className="group relative flex flex-col rounded-2xl border border-border bg-ivory p-5 sm:p-6 transition-all duration-300 hover:-translate-y-1 hover:border-champagne hover:shadow-card-hover">
       {/* Visual Frame */}
       <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-offwhite border border-border/60">
         <Image
