@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight, ShieldCheck } from "lucide-react";
 import { cn, buildWhatsAppLink } from "@/lib/utils";
 import { CONTACT_CONFIG } from "@/config/contact";
+import { GemstoneEmblem } from "@/components/ui/gemstone-emblem";
 
 const NAV_LINKS = [
   { label: "About", href: "/about" },
@@ -72,18 +73,21 @@ export function SiteHeader() {
         {/* Brand Logotype */}
         <Link
           href="/"
-          className="group flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173D30] rounded-sm shrink-0"
+          className="group flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173D30] rounded-sm shrink-0"
           aria-label="LibraGems Homepage"
         >
-          <div className="flex items-center gap-1 sm:gap-1.5">
-            <span className="font-heading text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-[#173D30] transition-colors group-hover:text-[#214B3B]">
-              LibraGems
+          <GemstoneEmblem className="h-7 w-7 sm:h-8 sm:w-8 shrink-0 transition-transform duration-300 group-hover:scale-105" />
+          <div className="flex flex-col">
+            <div className="flex items-center gap-1 sm:gap-1.5">
+              <span className="font-heading text-xl sm:text-2xl md:text-3xl font-bold tracking-tight text-[#173D30] transition-colors group-hover:text-[#214B3B]">
+                LibraGems
+              </span>
+              <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#C5A66A] inline-block" />
+            </div>
+            <span className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.18em] sm:tracking-[0.22em] text-[#59615C]">
+              Bangkok • Est. Thailand
             </span>
-            <span className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-[#C5A66A] inline-block" />
           </div>
-          <span className="text-[9px] sm:text-[10px] font-semibold uppercase tracking-[0.18em] sm:tracking-[0.22em] text-[#59615C]">
-            Bangkok • Est. Thailand
-          </span>
         </Link>
 
         {/* Desktop Navigation Links */}
