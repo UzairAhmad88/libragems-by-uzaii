@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#173D30" />
+      <stop offset="100%" stop-color="#0B2019" />
+    </linearGradient>
+
+    <linearGradient id="goldLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF3D4" />
+      <stop offset="100%" stop-color="#E5C57E" />
+    </linearGradient>
+
+    <linearGradient id="goldMid" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E5C57E" />
+      <stop offset="100%" stop-color="#C5A66A" />
+    </linearGradient>
+
+    <linearGradient id="goldDark" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#B8944F" />
+      <stop offset="100%" stop-color="#8F6E2E" />
+    </linearGradient>
+
+    <linearGradient id="goldDeep" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7D5F23" />
+      <stop offset="100%" stop-color="#5C4516" />
+    </linearGradient>
+
+    <filter id="subtleShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="#000000" flood-opacity="0.45" />
+    </filter>
+  </defs>
+
+  <!-- Squircle Base for modern app/tab icon -->
+  <rect width="512" height="512" rx="112" fill="url(#bgGrad)" />
+  <rect x="14" y="14" width="484" height="484" rx="98" fill="none" stroke="#C5A66A" stroke-width="6" stroke-opacity="0.28" />
+
+  <!-- Faceted Brilliant Gemstone Motif -->
+  <g filter="url(#subtleShadow)">
+    <!-- Crown Table (Top flat octagonal table) -->
+    <polygon points="176,128 336,128 384,188 384,212 336,252 176,252 128,212 128,188" fill="url(#goldLight)" />
+
+    <!-- Crown Upper Star & Kite Facets -->
+    <!-- Top center kite/trapezoid -->
+    <polygon points="176,128 336,128 368,88 144,88" fill="#FFF8E7" />
+    <!-- Top-right corner triangle -->
+    <polygon points="336,128 384,188 424,124 368,88" fill="url(#goldMid)" />
+    <!-- Top-left corner triangle -->
+    <polygon points="176,128 128,188 88,124 144,88" fill="#FFF3D4" />
+
+    <!-- Girdle Facets (Mid band) -->
+    <polygon points="128,188 128,212 76,212 88,124" fill="url(#goldMid)" />
+    <polygon points="384,188 384,212 436,212 424,124" fill="url(#goldDark)" />
+
+    <!-- Lower Crown Triangles to Table -->
+    <polygon points="128,212 176,252 136,268 76,212" fill="url(#goldDark)" />
+    <polygon points="384,212 336,252 376,268 436,212" fill="url(#goldDeep)" />
+    <polygon points="176,252 336,252 376,268 136,268" fill="url(#goldMid)" />
+
+    <!-- Pavilion / Lower Point (Facet cone tapering down to culet point at 256, 424) -->
+    <!-- Center main pavilion facet -->
+    <polygon points="196,268 316,268 256,424" fill="url(#goldLight)" />
+    <!-- Left-center pavilion facet -->
+    <polygon points="136,268 196,268 256,424" fill="url(#goldMid)" />
+    <!-- Right-center pavilion facet -->
+    <polygon points="316,268 376,268 256,424" fill="url(#goldDark)" />
+    <!-- Far-left pavilion facet -->
+    <polygon points="76,212 136,268 256,424" fill="#9E7E3C" />
+    <!-- Far-right pavilion facet -->
+    <polygon points="436,212 376,268 256,424" fill="url(#goldDeep)" />
+
+    <!-- Pure Light Reflection Sparkle / Highlight -->
+    <circle cx="216" cy="168" r="16" fill="#FFFFFF" fill-opacity="0.85" />
+    <circle cx="296" cy="188" r="10" fill="#FFFFFF" fill-opacity="0.55" />
+    <polygon points="216,140 220,168 248,168 224,176 232,204 216,182 200,204 208,176 184,168 212,168" fill="#FFFFFF" fill-opacity="0.75" />
+  </g>
+</svg>

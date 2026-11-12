@@ -111,20 +111,8 @@ export function SiteHeader() {
           })}
         </nav>
 
-        {/* Desktop Header Action: WhatsApp Desk Pill + Enquire CTA */}
-        <div className="hidden items-center gap-3 lg:flex shrink-0">
-          <a
-            href={whatsAppUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-[42px] items-center gap-2 rounded-full border border-[#25D366]/40 bg-[#25D366]/10 px-3.5 py-2 text-xs font-semibold text-[#173D30] transition-all hover:bg-[#25D366]/20 hover:border-[#25D366] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]"
-            aria-label="Direct WhatsApp Trading Desk: +66 84 667 4833"
-          >
-            <WhatsAppIcon className="h-4 w-4 text-[#25D366] shrink-0" />
-            <span className="hidden xl:inline font-mono font-bold">+66 84 667 4833</span>
-            <span className="xl:hidden font-bold">WhatsApp</span>
-          </a>
-
+        {/* Desktop Header Action: Enquire CTA */}
+        <div className="hidden items-center gap-3.5 lg:flex shrink-0">
           <Link
             href="/contact"
             className="inline-flex min-h-[42px] items-center justify-center rounded-full bg-[#C5A66A] px-4 xl:px-5 py-2 text-xs font-bold uppercase tracking-wider text-[#173D30] shadow-sm transition-all duration-200 hover:bg-[#B89555] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#173D30]"
@@ -133,18 +121,8 @@ export function SiteHeader() {
           </Link>
         </div>
 
-        {/* Mobile Header Actions (WhatsApp icon + Hamburger button) */}
-        <div className="flex items-center gap-2 sm:gap-2.5 lg:hidden">
-          <a
-            href={whatsAppUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#25D366]/40 bg-[#25D366]/10 text-[#25D366] transition-colors hover:bg-[#25D366]/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]"
-            aria-label="Contact WhatsApp Trading Desk (+66 84 667 4833)"
-          >
-            <WhatsAppIcon className="h-5 w-5" />
-          </a>
-
+        {/* Mobile Header Actions (Hamburger button) */}
+        <div className="flex items-center gap-2.5 lg:hidden">
           <button
             type="button"
             aria-expanded={mobileMenuOpen}
