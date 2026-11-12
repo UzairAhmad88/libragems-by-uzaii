@@ -2,139 +2,15 @@ const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
 
-// Ultra-Premium Gemstone Icon — Master Cut Architecture
-// Transparent background, photorealistic multi-layer gold facets, specular reflections & light return.
-const premiumGemSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
-  <defs>
-    <!-- Facet Gradients for Optical Brilliance & Total Internal Reflection -->
-    <linearGradient id="tableSparkle" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF" />
-      <stop offset="35%" stop-color="#FFF5DE" />
-      <stop offset="70%" stop-color="#EED7A1" />
-      <stop offset="100%" stop-color="#D4B26F" />
-    </linearGradient>
+// Path to raw generated real gemstone photograph
+const sourceCandidate = 'C:/Users/Dell/.gemini/antigravity/brain/2aa29747-a771-4713-9b7e-906e4d12baab/real_gem_icon_1794483543328.jpg';
+const fallbackCandidate = path.resolve(__dirname, '../apps/web/public/images/branding/real-gem-master.jpg');
 
-    <linearGradient id="facetHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#FFFFFF" />
-      <stop offset="50%" stop-color="#FCECC7" />
-      <stop offset="100%" stop-color="#DEB86C" />
-    </linearGradient>
-
-    <linearGradient id="facetGoldLight" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFF8E7" />
-      <stop offset="50%" stop-color="#E5C57E" />
-      <stop offset="100%" stop-color="#C5A66A" />
-    </linearGradient>
-
-    <linearGradient id="facetGoldMid" x1="0%" y1="100%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#D8B266" />
-      <stop offset="50%" stop-color="#B88F44" />
-      <stop offset="100%" stop-color="#9E752D" />
-    </linearGradient>
-
-    <linearGradient id="facetGoldDeep" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#A47D32" />
-      <stop offset="50%" stop-color="#7A5818" />
-      <stop offset="100%" stop-color="#543A0A" />
-    </linearGradient>
-
-    <linearGradient id="pavilionCenter" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stop-color="#FFF2D1" />
-      <stop offset="40%" stop-color="#DEB768" />
-      <stop offset="85%" stop-color="#B28838" />
-      <stop offset="100%" stop-color="#6E4F14" />
-    </linearGradient>
-
-    <linearGradient id="pavilionDeepL" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#9C772F" />
-      <stop offset="60%" stop-color="#6B4D13" />
-      <stop offset="100%" stop-color="#3D2905" />
-    </linearGradient>
-
-    <linearGradient id="pavilionDeepR" x1="100%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" stop-color="#B89045" />
-      <stop offset="60%" stop-color="#785517" />
-      <stop offset="100%" stop-color="#422D07" />
-    </linearGradient>
-
-    <filter id="gemGlow" x="-15%" y="-15%" width="130%" height="130%">
-      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.35" />
-    </filter>
-  </defs>
-
-  <!-- Transparent Background: Gemstone floats pristinely on any browser tab theme -->
-
-  <g filter="url(#gemGlow)">
-    <!-- Outer Contour Stroke for Crisp Contrast on White & Dark Backgrounds -->
-    <!-- Crown Table (Main octagonal top facet) -->
-    <polygon points="156,92 356,92 408,168 408,204 356,236 156,236 104,204 104,168" fill="url(#tableSparkle)" stroke="#805B16" stroke-width="2" />
-
-    <!-- Crown Star & Kite Facets (Upper crown brilliance) -->
-    <!-- Top center trapezoid -->
-    <polygon points="156,92 356,92 396,44 116,44" fill="url(#facetHighlight)" stroke="#9E752D" stroke-width="2" />
-    <!-- Top right kite -->
-    <polygon points="356,92 408,168 468,110 396,44" fill="url(#facetGoldLight)" stroke="#8A631E" stroke-width="2" />
-    <!-- Top left kite -->
-    <polygon points="156,92 104,168 44,110 116,44" fill="#FFFDF5" stroke="#9E752D" stroke-width="2" />
-
-    <!-- Girdle Upper Facets -->
-    <!-- Left girdle triangle -->
-    <polygon points="104,168 104,204 28,196 44,110" fill="url(#facetGoldMid)" stroke="#7A5515" stroke-width="2" />
-    <!-- Right girdle triangle -->
-    <polygon points="408,168 408,204 484,196 468,110" fill="url(#facetGoldDeep)" stroke="#593C07" stroke-width="2" />
-
-    <!-- Girdle Side Bevels -->
-    <polygon points="104,204 156,236 96,256 28,196" fill="url(#facetGoldDeep)" stroke="#593C07" stroke-width="2" />
-    <polygon points="408,204 356,236 416,256 484,196" fill="#4A3105" stroke="#3D2703" stroke-width="2" />
-
-    <!-- Lower Crown Triangles (Connecting table to girdle) -->
-    <polygon points="156,236 256,256 96,256" fill="url(#facetGoldLight)" stroke="#8A631E" stroke-width="2" />
-    <polygon points="356,236 256,256 416,256" fill="url(#facetGoldMid)" stroke="#704E12" stroke-width="2" />
-    <polygon points="156,236 356,236 256,256" fill="#FFF6DC" stroke="#8A631E" stroke-width="2" />
-
-    <!-- Girdle Edge Line (Subtle narrow horizontal facet) -->
-    <polygon points="28,196 96,256 416,256 484,196 416,260 96,260" fill="#6B4A0E" />
-
-    <!-- Pavilion Facets (Tapering from girdle down to culet at 256, 474) -->
-    <!-- Far-left pavilion facet (Deep amber depth) -->
-    <polygon points="28,196 96,260 256,474" fill="url(#pavilionDeepL)" stroke="#3D2703" stroke-width="2" />
-    <!-- Left-mid pavilion facet (Light return channel) -->
-    <polygon points="96,260 176,260 256,474" fill="url(#facetGoldLight)" stroke="#7A5515" stroke-width="2" />
-    <!-- Center-left pavilion facet (Luminous reflection) -->
-    <polygon points="176,260 256,260 256,474" fill="url(#pavilionCenter)" stroke="#8A631E" stroke-width="2" />
-    <!-- Center-right pavilion facet (Rich gold return) -->
-    <polygon points="256,260 336,260 256,474" fill="url(#facetGoldMid)" stroke="#704E12" stroke-width="2" />
-    <!-- Right-mid pavilion facet (Deep shadow facet) -->
-    <polygon points="336,260 416,260 256,474" fill="url(#pavilionDeepR)" stroke="#593C07" stroke-width="2" />
-    <!-- Far-right pavilion facet (Maximum contrast edge) -->
-    <polygon points="416,260 484,196 256,474" fill="#3D2703" stroke="#2B1A02" stroke-width="2" />
-
-    <!-- Optical Scintillation Stars & Specular Highlights (Natural Gem Fire) -->
-    <!-- Primary Diamond Glint on Upper Crown -->
-    <g transform="translate(196, 126)">
-      <!-- 4-point light star -->
-      <polygon points="0,-32 7,-8 32,0 7,7 0,32 -8,7 -32,0 -8,-8" fill="#FFFFFF" opacity="0.95" />
-      <circle cx="0" cy="0" r="8" fill="#FFFFFF" />
-      <circle cx="0" cy="0" r="16" fill="#FFFFFF" opacity="0.35" />
-    </g>
-
-    <!-- Secondary Light Glint on Girdle Corner -->
-    <g transform="translate(346, 108)">
-      <polygon points="0,-18 4,-4 18,0 4,4 0,18 -4,4 -18,0 -4,-4" fill="#FFFFFF" opacity="0.8" />
-      <circle cx="0" cy="0" r="4" fill="#FFFFFF" />
-    </g>
-
-    <!-- Tertiary Sparkle on Culet -->
-    <circle cx="256" cy="470" r="4" fill="#FFFFFF" opacity="0.9" />
-  </g>
-</svg>`;
-
-// Helper function to build a valid multi-image ICO file from PNG buffer
 function createIcoFromPngs(pngBuffers) {
   const count = pngBuffers.length;
   const headerSize = 6;
   const dirEntrySize = 16;
-  let offset = headerSize + (count * dirEntrySize);
+  let offset = headerSize + dirEntrySize * count;
 
   const header = Buffer.alloc(headerSize);
   header.writeUInt16LE(0, 0); // reserved
@@ -156,52 +32,193 @@ function createIcoFromPngs(pngBuffers) {
     offset += img.buffer.length;
   }
 
-  return Buffer.concat([header, ...dirEntries, ...pngBuffers.map(p => p.buffer)]);
+  return Buffer.concat([header, ...dirEntries, ...pngBuffers.map((p) => p.buffer)]);
+}
+
+async function extractTransparentGemstone(inputPath) {
+  const { data, info } = await sharp(inputPath).raw().toBuffer({ resolveWithObject: true });
+  const { width, height } = info;
+
+  // 1. Calculate active gemstone bounding box
+  let minX = width;
+  let maxX = 0;
+  let minY = height;
+  let maxY = 0;
+
+  for (let y = 0; y < height; y++) {
+    for (let x = 0; x < width; x++) {
+      const idx = (y * width + x) * 3;
+      const r = data[idx];
+      const g = data[idx + 1];
+      const b = data[idx + 2];
+      if (Math.max(r, g, b) > 18) {
+        if (x < minX) minX = x;
+        if (x > maxX) maxX = x;
+        if (y < minY) minY = y;
+        if (y > maxY) maxY = y;
+      }
+    }
+  }
+
+  // 2. Square crop with balanced 4% luxury breathing margin
+  const gemW = maxX - minX;
+  const gemH = maxY - minY;
+  const size = Math.max(gemW, gemH);
+  const pad = Math.round(size * 0.04);
+  const totalSize = size + pad * 2;
+  const centerX = Math.round((minX + maxX) / 2);
+  const centerY = Math.round((minY + maxY) / 2);
+  const startX = centerX - Math.round(totalSize / 2);
+  const startY = centerY - Math.round(totalSize / 2);
+
+  const outBuf = Buffer.alloc(totalSize * totalSize * 4);
+
+  // 3. Smooth unmultiplied alpha extraction (eliminates dark edge halos)
+  for (let outY = 0; outY < totalSize; outY++) {
+    for (let outX = 0; outX < totalSize; outX++) {
+      const srcX = startX + outX;
+      const srcY = startY + outY;
+      const outIdx = (outY * totalSize + outX) * 4;
+
+      if (srcX < 0 || srcX >= width || srcY < 0 || srcY >= height) {
+        outBuf[outIdx] = 0;
+        outBuf[outIdx + 1] = 0;
+        outBuf[outIdx + 2] = 0;
+        outBuf[outIdx + 3] = 0;
+        continue;
+      }
+
+      const srcIdx = (srcY * width + srcX) * 3;
+      const r = data[srcIdx];
+      const g = data[srcIdx + 1];
+      const b = data[srcIdx + 2];
+
+      const brightness = Math.max(r, g, b);
+
+      if (brightness <= 14) {
+        outBuf[outIdx] = 0;
+        outBuf[outIdx + 1] = 0;
+        outBuf[outIdx + 2] = 0;
+        outBuf[outIdx + 3] = 0;
+      } else if (brightness < 42) {
+        const factor = (brightness - 14) / (42 - 14);
+        outBuf[outIdx] = Math.min(255, Math.round(r / Math.max(0.1, factor)));
+        outBuf[outIdx + 1] = Math.min(255, Math.round(g / Math.max(0.1, factor)));
+        outBuf[outIdx + 2] = Math.min(255, Math.round(b / Math.max(0.1, factor)));
+        outBuf[outIdx + 3] = Math.round(factor * 255);
+      } else {
+        outBuf[outIdx] = r;
+        outBuf[outIdx + 1] = g;
+        outBuf[outIdx + 2] = b;
+        outBuf[outIdx + 3] = 255;
+      }
+    }
+  }
+
+  return sharp(outBuf, { raw: { width: totalSize, height: totalSize, channels: 4 } });
 }
 
 async function generate() {
   const publicDir = path.resolve(__dirname, '../apps/web/public');
   const appDir = path.resolve(__dirname, '../apps/web/src/app');
+  const brandingDir = path.join(publicDir, 'images/branding');
 
-  if (!fs.existsSync(publicDir)) {
-    fs.mkdirSync(publicDir, { recursive: true });
+  if (!fs.existsSync(brandingDir)) {
+    fs.mkdirSync(brandingDir, { recursive: true });
   }
 
-  console.log('[favicon] Writing master SVG files...');
-  fs.writeFileSync(path.join(publicDir, 'icon.svg'), premiumGemSvg, 'utf8');
-  fs.writeFileSync(path.join(appDir, 'icon.svg'), premiumGemSvg, 'utf8');
+  const inputPhoto = fs.existsSync(sourceCandidate) ? sourceCandidate : fallbackCandidate;
+  if (!fs.existsSync(inputPhoto)) {
+    throw new Error(`Real gemstone photograph not found at: ${inputPhoto}`);
+  }
 
-  console.log('[favicon] Rendering crisp multi-resolution PNG variants...');
-  const png16 = await sharp(Buffer.from(premiumGemSvg)).resize(16, 16).png().toBuffer();
-  const png32 = await sharp(Buffer.from(premiumGemSvg)).resize(32, 32).png().toBuffer();
-  const png48 = await sharp(Buffer.from(premiumGemSvg)).resize(48, 48).png().toBuffer();
-  const png180 = await sharp(Buffer.from(premiumGemSvg)).resize(180, 180).png().toBuffer();
-  const png192 = await sharp(Buffer.from(premiumGemSvg)).resize(192, 192).png().toBuffer();
-  const png512 = await sharp(Buffer.from(premiumGemSvg)).resize(512, 512).png().toBuffer();
+  // Preserve raw master photo in branding directory
+  const permanentMaster = path.join(brandingDir, 'real-gem-master.jpg');
+  if (inputPhoto !== permanentMaster) {
+    fs.copyFileSync(inputPhoto, permanentMaster);
+  }
 
-  fs.writeFileSync(path.join(publicDir, 'favicon-16x16.png'), png16);
-  fs.writeFileSync(path.join(publicDir, 'favicon-32x32.png'), png32);
-  fs.writeFileSync(path.join(publicDir, 'apple-touch-icon.png'), png180);
-  fs.writeFileSync(path.join(publicDir, 'icon-192.png'), png192);
-  fs.writeFileSync(path.join(publicDir, 'icon-512.png'), png512);
+  console.log('[favicon] Processing real gemstone photograph with optical transparency...');
+  const transparentGem = await extractTransparentGemstone(permanentMaster);
 
-  // Next.js App Router icons
-  fs.writeFileSync(path.join(appDir, 'apple-icon.png'), png180);
+  // Master 512x512 with subtle micro-contrast enhancement for maximum brilliance
+  const gem512 = await transparentGem
+    .clone()
+    .resize(512, 512, { kernel: 'lanczos3' })
+    .sharpen({ sigma: 1.0, m1: 1.2, m2: 0.5 })
+    .png()
+    .toBuffer();
 
-  console.log('[favicon] Generating multi-size favicon.ico (16, 32, 48)...');
+  fs.writeFileSync(path.join(brandingDir, 'real-gem-icon.png'), gem512);
+  fs.writeFileSync(path.join(publicDir, 'icon-512.png'), gem512);
+
+  // 192x192 (PWA Icon)
+  const gem192 = await transparentGem
+    .clone()
+    .resize(192, 192, { kernel: 'lanczos3' })
+    .sharpen({ sigma: 1.0, m1: 1.2, m2: 0.5 })
+    .png()
+    .toBuffer();
+  fs.writeFileSync(path.join(publicDir, 'icon-192.png'), gem192);
+
+  // 180x180 (Apple Touch Icon)
+  const gem180 = await transparentGem
+    .clone()
+    .resize(180, 180, { kernel: 'lanczos3' })
+    .sharpen({ sigma: 1.0, m1: 1.3, m2: 0.5 })
+    .png()
+    .toBuffer();
+  fs.writeFileSync(path.join(publicDir, 'apple-touch-icon.png'), gem180);
+  fs.writeFileSync(path.join(appDir, 'apple-icon.png'), gem180);
+
+  // 48x48 (High-DPI Browser Tab Icon)
+  const gem48 = await transparentGem
+    .clone()
+    .resize(48, 48, { kernel: 'lanczos3' })
+    .sharpen({ sigma: 1.1, m1: 1.8, m2: 0.7 })
+    .png()
+    .toBuffer();
+
+  // 32x32 (Standard Browser Tab Icon)
+  const gem32 = await transparentGem
+    .clone()
+    .resize(32, 32, { kernel: 'lanczos3' })
+    .sharpen({ sigma: 1.2, m1: 2.0, m2: 0.8 })
+    .png()
+    .toBuffer();
+  fs.writeFileSync(path.join(publicDir, 'favicon-32x32.png'), gem32);
+
+  // 16x16 (Compact Browser Tab Icon)
+  const gem16 = await transparentGem
+    .clone()
+    .resize(16, 16, { kernel: 'lanczos3' })
+    .sharpen({ sigma: 1.2, m1: 2.2, m2: 0.8 })
+    .png()
+    .toBuffer();
+  fs.writeFileSync(path.join(publicDir, 'favicon-16x16.png'), gem16);
+
+  console.log('[favicon] Packing multi-resolution Windows ICO (16px, 32px, 48px)...');
   const icoBuffer = createIcoFromPngs([
-    { width: 16, height: 16, buffer: png16 },
-    { width: 32, height: 32, buffer: png32 },
-    { width: 48, height: 48, buffer: png48 },
+    { width: 16, height: 16, buffer: gem16 },
+    { width: 32, height: 32, buffer: gem32 },
+    { width: 48, height: 48, buffer: gem48 },
   ]);
-
   fs.writeFileSync(path.join(publicDir, 'favicon.ico'), icoBuffer);
   fs.writeFileSync(path.join(appDir, 'favicon.ico'), icoBuffer);
 
-  console.log('[favicon] Successfully generated all premium gemstone favicon and tab icon assets!');
+  console.log('[favicon] Embedding photorealistic real gem into modern vector SVG icon...');
+  const base64Data = gem512.toString('base64');
+  const realGemSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <image href="data:image/png;base64,${base64Data}" x="0" y="0" width="512" height="512" preserveAspectRatio="xMidYMid meet" />
+</svg>`;
+
+  fs.writeFileSync(path.join(publicDir, 'icon.svg'), realGemSvg, 'utf8');
+  fs.writeFileSync(path.join(appDir, 'icon.svg'), realGemSvg, 'utf8');
+
+  console.log('[favicon] Successfully generated all real gemstone icons and favicons!');
 }
 
-generate().catch(err => {
+generate().catch((err) => {
   console.error('[favicon] Error:', err);
   process.exit(1);
 });

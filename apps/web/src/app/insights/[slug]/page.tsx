@@ -223,3 +223,4 @@ export default async function InsightDetailPage({ params }: InsightDetailPagePro
     </>
   );
 }
+
