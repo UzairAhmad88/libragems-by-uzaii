@@ -4,7 +4,8 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu, X, ArrowRight, ShieldCheck } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { cn, buildWhatsAppLink } from "@/lib/utils";
+import { CONTACT_CONFIG } from "@/config/contact";
 
 const NAV_LINKS = [
   { label: "About", href: "/about" },
@@ -32,6 +33,10 @@ export function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const drawerRef = React.useRef<HTMLDivElement>(null);
   const closeButtonRef = React.useRef<HTMLButtonElement>(null);
+
+  const whatsAppPhone = CONTACT_CONFIG.whatsapp.primaryNumber;
+  const whatsAppMessage = CONTACT_CONFIG.whatsapp.defaultPrefilledMessage;
+  const whatsAppUrl = buildWhatsAppLink(whatsAppPhone, whatsAppMessage);
 
   // Close drawer on path change
   React.useEffect(() => {
@@ -62,21 +67,21 @@ export function SiteHeader() {
   }, [mobileMenuOpen]);
 
   return (
-    <header className="sticky top-0 z-40 border-b border-[#214B3B] bg-[#102C23] text-white shadow-md">
+    <header className="sticky top-0 z-40 border-b border-[#E5E3D9] bg-[#F5F3EB] shadow-sm transition-shadow">
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 md:py-4.5">
         {/* Brand Logotype */}
         <Link
           href="/"
-          className="group flex flex-col focus-visible:outline-champagne"
+          className="group flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173D30] rounded-sm"
           aria-label="LibraGems Homepage"
         >
           <div className="flex items-center gap-1.5">
-            <span className="font-heading text-2xl font-bold tracking-tight text-white transition-colors group-hover:text-champagne md:text-3xl">
+            <span className="font-heading text-2xl font-bold tracking-tight text-[#173D30] transition-colors group-hover:text-[#214B3B] md:text-3xl">
               LibraGems
             </span>
-            <span className="h-2 w-2 rounded-full bg-champagne inline-block"></span>
+            <span className="h-2 w-2 rounded-full bg-[#C5A66A] inline-block" />
           </div>
-          <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#FAF9F4]/80">
+          <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[#59615C]">
             Bangkok • Est. Thailand
           </span>
         </Link>
@@ -84,7 +89,7 @@ export function SiteHeader() {
         {/* Desktop Navigation Links */}
         <nav
           aria-label="Main navigation"
-          className="hidden items-center gap-8 text-sm font-medium lg:flex"
+          className="hidden items-center gap-8 text-sm font-semibold lg:flex"
         >
           {NAV_LINKS.map(({ label, href }) => {
             const isActive = pathname === href || (href !== "/" && pathname.startsWith(href));
@@ -94,10 +99,10 @@ export function SiteHeader() {
                 href={href}
                 aria-current={isActive ? "page" : undefined}
                 className={cn(
-                  "relative py-1 font-medium transition-colors hover:text-champagne focus-visible:outline-champagne",
+                  "relative py-1 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173D30] rounded-sm",
                   isActive
-                    ? "font-bold text-champagne after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-champagne"
-                    : "text-[#FAF9F4]/85"
+                    ? "text-[#173D30] after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-full after:bg-[#C5A66A]"
+                    : "text-[#173D30] hover:text-[#C5A66A]"
                 )}
               >
                 {label}
@@ -106,50 +111,25 @@ export function SiteHeader() {
           })}
         </nav>
 
-        {/* Desktop Header Actions: WhatsApp Desk Pill + Enquire CTA */}
+        {/* Desktop Header Action: Enquire CTA */}
         <div className="hidden items-center gap-3.5 lg:flex">
-          {/* Direct WhatsApp Desk Link */}
-          <a
-            href="https://wa.me/66846674833?text=Hello%20LibraGems%20Trading%20Desk%2C%20I%20would%20like%20to%20inquire%20about%20your%20gemstone%20inventory."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex min-h-[42px] items-center gap-2 rounded-full border border-emerald-500/40 bg-emerald-950/40 px-3.5 py-2 text-xs font-semibold text-emerald-300 transition-all hover:bg-emerald-900/60 hover:text-white hover:border-emerald-400 focus-visible:outline-champagne"
-            title="Chat directly with our Bangkok Trading Desk via WhatsApp"
-          >
-            <WhatsAppIcon className="h-4 w-4 text-[#25D366] shrink-0" />
-            <span className="font-mono text-[11px] tracking-tight text-white">+66 84 667 4833</span>
-          </a>
-
-          {/* Enquire on Lots CTA */}
           <Link
             href="/contact"
-            className="inline-flex min-h-[42px] items-center justify-center rounded-full bg-champagne px-5 py-2 text-xs font-bold uppercase tracking-wider text-forest-deep transition-all duration-200 hover:bg-champagne-light hover:shadow-md focus-visible:outline-champagne"
+            className="inline-flex min-h-[42px] items-center justify-center rounded-full bg-[#C5A66A] px-5 py-2 text-xs font-bold uppercase tracking-wider text-[#173D30] shadow-sm transition-all duration-200 hover:bg-[#B89555] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#173D30]"
           >
             Enquire on Lots
           </Link>
         </div>
 
-        {/* Mobile Header Actions (WhatsApp quick chat + Hamburger) */}
-        <div className="flex items-center gap-2 lg:hidden">
-          <a
-            href="https://wa.me/66846674833?text=Hello%20LibraGems%20Trading%20Desk%2C%20I%20would%20like%20to%20inquire%20about%20your%20gemstone%20inventory."
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex h-10 items-center gap-1.5 rounded-full border border-emerald-500/40 bg-emerald-950/50 px-2.5 text-xs font-semibold text-emerald-300 hover:text-white focus-visible:outline-champagne"
-            aria-label="Chat on WhatsApp +66 84 667 4833"
-          >
-            <WhatsAppIcon className="h-4 w-4 text-[#25D366]" />
-            <span className="font-mono text-[10px] text-white sm:inline hidden">+66 84 667 4833</span>
-            <span className="text-[10px] font-bold sm:hidden">WhatsApp</span>
-          </a>
-
+        {/* Mobile Header Actions (Hamburger button) */}
+        <div className="flex items-center gap-2.5 lg:hidden">
           <button
             type="button"
             aria-expanded={mobileMenuOpen}
             aria-controls="mobile-nav-drawer"
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-forest-mid bg-forest/40 text-ivory transition-colors hover:bg-forest hover:text-champagne focus-visible:outline-champagne"
+            className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#E5E3D9] bg-[#FAF9F4] text-[#173D30] transition-colors hover:bg-[#EEECE2] hover:text-[#C5A66A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173D30]"
           >
             {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -175,24 +155,26 @@ export function SiteHeader() {
           {/* Drawer Panel */}
           <div
             ref={drawerRef}
-            className="relative flex h-full w-[85%] max-w-[380px] flex-col justify-between border-l border-border bg-ivory p-6 shadow-2xl overflow-y-auto"
+            className="relative flex h-full w-[85%] max-w-[380px] flex-col justify-between border-l border-[#E5E3D9] bg-[#FAF9F4] p-6 shadow-2xl overflow-y-auto"
           >
             <div>
               {/* Drawer Header */}
-              <div className="flex items-center justify-between border-b border-border pb-4">
+              <div className="flex items-center justify-between border-b border-[#E5E3D9] pb-4">
                 <div>
                   <div className="flex items-center gap-1.5">
-                    <span className="font-heading text-xl font-bold text-forest-deep">LibraGems</span>
-                    <span className="h-1.5 w-1.5 rounded-full bg-champagne inline-block"></span>
+                    <span className="font-heading text-xl font-bold text-[#173D30]">LibraGems</span>
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#C5A66A] inline-block" />
                   </div>
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-stone">Trading Desk • Bangkok</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-[#59615C]">
+                    Trading Desk • Bangkok
+                  </p>
                 </div>
                 <button
                   ref={closeButtonRef}
                   type="button"
                   onClick={() => setMobileMenuOpen(false)}
                   aria-label="Close navigation"
-                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-border text-stone transition-colors hover:text-forest-deep hover:border-forest focus-visible:outline-champagne"
+                  className="flex h-10 w-10 items-center justify-center rounded-lg border border-[#E5E3D9] bg-[#FAF9F4] text-[#173D30] transition-colors hover:bg-[#EEECE2] hover:text-[#C5A66A] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173D30]"
                 >
                   <X className="h-5 w-5" />
                 </button>
@@ -209,43 +191,43 @@ export function SiteHeader() {
                       aria-current={isActive ? "page" : undefined}
                       onClick={() => setMobileMenuOpen(false)}
                       className={cn(
-                        "flex min-h-[46px] items-center justify-between rounded-lg px-3 py-2 font-heading text-base transition-colors focus-visible:outline-champagne",
+                        "flex min-h-[46px] items-center justify-between rounded-lg px-3 py-2 font-heading text-base font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173D30]",
                         isActive
-                          ? "bg-forest/10 font-bold text-forest-deep"
-                          : "text-ink hover:bg-beige"
+                          ? "bg-[#173D30]/10 font-bold text-[#173D30] border-l-4 border-[#C5A66A]"
+                          : "text-[#173D30] hover:bg-[#EEECE2]"
                       )}
                     >
                       <span>{label}</span>
-                      <ArrowRight className="h-4 w-4 text-stone/60" />
+                      <ArrowRight className="h-4 w-4 text-[#59615C]" />
                     </Link>
                   );
                 })}
               </nav>
 
               {/* Gemstone Quick Links */}
-              <div className="mt-6 border-t border-border pt-4">
-                <p className="text-xs font-semibold uppercase tracking-wider text-champagne">
+              <div className="mt-6 border-t border-[#E5E3D9] pt-4">
+                <p className="text-xs font-semibold uppercase tracking-wider text-[#C5A66A]">
                   Current Holdings
                 </p>
-                <div className="mt-2.5 space-y-1 text-sm text-stone">
+                <div className="mt-2.5 space-y-1 text-sm text-[#59615C]">
                   <Link
                     href="/gemstones/hessonite-garnet"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block py-1 hover:text-forest transition-colors"
+                    className="block py-1 hover:text-[#173D30] transition-colors font-medium"
                   >
                     Ceylon Rough Hessonite
                   </Link>
                   <Link
                     href="/gemstones/turquoise"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block py-1 hover:text-forest transition-colors"
+                    className="block py-1 hover:text-[#173D30] transition-colors font-medium"
                   >
                     Natural Matrix Turquoise
                   </Link>
                   <Link
                     href="/gemstones/afghanistan-rubellite"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block py-1 hover:text-forest transition-colors"
+                    className="block py-1 hover:text-[#173D30] transition-colors font-medium"
                   >
                     Afghanistan Cut Rubellite
                   </Link>
@@ -254,20 +236,22 @@ export function SiteHeader() {
             </div>
 
             {/* Drawer Bottom Actions: WhatsApp Desk Card + Contact CTA */}
-            <div className="border-t border-border pt-5 space-y-3">
+            <div className="border-t border-[#E5E3D9] pt-5 space-y-3">
               {/* WhatsApp Direct Desk Card */}
               <a
-                href="https://wa.me/66846674833?text=Hello%20LibraGems%20Trading%20Desk%2C%20I%20would%20like%20to%20inquire%20about%20your%20gemstone%20inventory."
+                href={whatsAppUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between rounded-xl border border-emerald-500/30 bg-emerald-50/70 p-3 transition-all hover:bg-emerald-100/80"
+                className="flex items-center justify-between rounded-xl border border-emerald-500/30 bg-emerald-50/90 p-3 transition-all hover:bg-emerald-100"
               >
                 <div className="flex items-center gap-2.5">
                   <WhatsAppIcon className="h-5 w-5 text-[#25D366] shrink-0" />
                   <div>
-                    <span className="block text-xs font-bold text-forest-deep">WhatsApp Direct Desk</span>
-                    <span className="block font-mono text-[11px] font-semibold text-emerald-800">+66 84 667 4833</span>
+                    <span className="block text-xs font-bold text-[#173D30]">WhatsApp Direct Desk</span>
+                    <span className="block font-mono text-[11px] font-semibold text-emerald-800">
+                      {CONTACT_CONFIG.whatsapp.displayNumber}
+                    </span>
                   </div>
                 </div>
                 <span className="rounded-full bg-[#25D366] px-2.5 py-1 text-[10px] font-bold text-white shadow-sm">
@@ -278,13 +262,13 @@ export function SiteHeader() {
               <Link
                 href="/contact"
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex min-h-[46px] w-full items-center justify-center rounded-full bg-forest-deep px-4 py-2.5 text-center text-xs font-bold uppercase tracking-wider text-white hover:bg-forest focus-visible:outline-champagne shadow-md"
+                className="flex min-h-[46px] w-full items-center justify-center rounded-full bg-[#C5A66A] px-4 py-2.5 text-center text-xs font-bold uppercase tracking-wider text-[#173D30] hover:bg-[#B89555] shadow-md transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#173D30]"
               >
-                Contact Trading Desk
+                Enquire on Lots
               </Link>
 
-              <div className="flex items-center justify-center gap-1.5 text-center text-[11px] text-stone">
-                <ShieldCheck className="h-3.5 w-3.5 text-forest" />
+              <div className="flex items-center justify-center gap-1.5 text-center text-[11px] text-[#59615C]">
+                <ShieldCheck className="h-3.5 w-3.5 text-[#173D30]" />
                 <span>Bang Rak Trading District • Bangkok</span>
               </div>
             </div>

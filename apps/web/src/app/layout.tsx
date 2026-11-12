@@ -3,6 +3,7 @@ import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import { getSiteUrl, getCanonicalUrl } from "@/lib/seo/site-url";
 import { JsonLd, createOrganizationSchema, createWebSiteSchema } from "@/lib/seo/json-ld";
+import { FloatingWhatsAppButton } from "@/components/ui/floating-whatsapp-button";
 
 const headingFont = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -88,6 +89,7 @@ export default function RootLayout({
           Skip to main content
         </a>
         <div className="flex min-h-screen flex-col">{children}</div>
+        <FloatingWhatsAppButton />
       </body>
     </html>
   );
