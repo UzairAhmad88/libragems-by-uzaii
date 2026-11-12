@@ -8,9 +8,9 @@ import { buildPageMetadata } from "@/lib/seo/metadata";
 import { JsonLd, createBreadcrumbSchema } from "@/lib/seo/json-ld";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "About Us | Bangkok Gemstone Trading & Sourcing",
+  title: "About Libra Gems | Gemstone Trading & Sourcing Bangkok",
   description:
-    "Learn about Libra Gems & Trading Co., Ltd., based in Bangkok's gemstone trading district. Built on gemological integrity, CIBJO disclosure, and physical inventory.",
+    "Learn about Libra Gems & Trading Co., Ltd., based in Bangkok's historic Bang Rak gem trading district. Built on gemological rigor, CIBJO treatment disclosure, and verified physical inventory.",
   path: "/about",
 });
 

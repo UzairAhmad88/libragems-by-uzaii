@@ -58,21 +58,21 @@ export const GEMSTONE_PRODUCTS: GemstoneProduct[] = [
     images: [
       {
         src: "/images/gemstones/hessonite-parcel-overview.jpg",
-        alt: "Overview of commercial rough hessonite garnet parcel showing cinnamon-orange pebbles",
+        alt: "Wholesale commercial rough hessonite garnet parcel (5,000g) showing natural cinnamon-orange alluvial grossular pebbles under 5500K daylight illumination",
         caption: "Entire 5,000g parcel overview photographed under standardized 5500K daylight lighting.",
         view: "overview",
         isPlaceholder: false,
       },
       {
         src: "/images/gemstones/hessonite-macro.jpg",
-        alt: "Macro close-up of rough hessonite garnet showing natural surface luster and internal color",
+        alt: "Macro examination of untreated rough hessonite grossular garnet showing characteristic treacle swirl inclusions and natural vitreous luster",
         caption: "Macro examination reveals authentic resinous-to-vitreous luster and typical internal swirls.",
         view: "macro",
         isPlaceholder: false,
       },
       {
         src: "/images/gemstones/hessonite-scale.jpg",
-        alt: "Hessonite garnet rough rough pieces aligned against a millimeter trade ruler",
+        alt: "Sri Lanka rough hessonite garnet pebbles aligned against metric millimeter ruler verifying 8mm to 22mm sieve grading",
         caption: "Piece size distribution verified against metric millimeter scale (8mm to 22mm).",
         view: "scale",
         isPlaceholder: false,
@@ -150,21 +150,21 @@ export const GEMSTONE_PRODUCTS: GemstoneProduct[] = [
     images: [
       {
         src: "/images/gemstones/turquoise-overview.jpg",
-        alt: "Commercial turquoise rough nodules showing vibrant cyan-blue matrix",
+        alt: "Commercial wholesale natural matrix turquoise rough nodules exhibiting sky-blue color and contrasting spiderweb limonite matrix",
         caption: "Nodular turquoise specimens demonstrating characteristic spiderweb matrix contrast.",
         view: "overview",
         isPlaceholder: false,
       },
       {
         src: "/images/gemstones/turquoise-macro.jpg",
-        alt: "Macro photograph of turquoise matrix and polished slab surface",
+        alt: "Macro photograph of stabilized turquoise polished slab surface and intricate spiderweb limonite network",
         caption: "Close-up examination of limonite vein network and surface density.",
         view: "macro",
         isPlaceholder: false,
       },
       {
         src: "/images/gemstones/turquoise-matrix.jpg",
-        alt: "Sawed turquoise slab displaying uniform color distribution",
+        alt: "Sawed commercial turquoise lapidary slab ready for calibrated cabochon preforming and designer jewelry inlay",
         caption: "Cross-sectional slab ready for cabochon preforming and lapidary shaping.",
         view: "matrix",
         isPlaceholder: false,
@@ -241,21 +241,21 @@ export const GEMSTONE_PRODUCTS: GemstoneProduct[] = [
     images: [
       {
         src: "/images/gemstones/rubellite-table-view.jpg",
-        alt: "Faceted Afghanistan rubellite tourmaline viewed directly through the crown table",
+        alt: "Fine precision-cut faceted Afghanistan rubellite tourmaline viewed through the crown table exhibiting vivid purplish-red saturation",
         caption: "Direct crown table view exhibiting vivid purplish-red saturation and facet symmetry.",
         view: "table",
         isPlaceholder: false,
       },
       {
         src: "/images/gemstones/rubellite-profile-view.jpg",
-        alt: "Side profile view of cut rubellite tourmaline showing crown and pavilion proportions",
+        alt: "Side profile view of custom oval mixed-cut rubellite tourmaline showing balanced crown angles, girdle, and step pavilion depth",
         caption: "Profile perspective demonstrating girdle thickness and depth ratio balance.",
         view: "pavilion",
         isPlaceholder: false,
       },
       {
         src: "/images/gemstones/rubellite-facet-flash.jpg",
-        alt: "Rubellite tourmaline tilted under daylight lamp showing fiery internal red flash",
+        alt: "Afghanistan rubellite tourmaline illuminated under daylight spectrum lamp demonstrating intense red optical scintillation and pleochroic fire",
         caption: "Dynamic optical scintillation and dichroism under daylight illumination.",
         view: "facet",
         isPlaceholder: false,

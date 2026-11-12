@@ -26,7 +26,7 @@ describe("robots.txt Generator", () => {
 
   it("points to the canonical sitemap.xml location", () => {
     const config = robots();
-    expect(config.sitemap).toBe("https://libragems.net/sitemap.xml");
+    expect(config.sitemap).toBe("https://libragems1.com/sitemap.xml");
   });
 });
 

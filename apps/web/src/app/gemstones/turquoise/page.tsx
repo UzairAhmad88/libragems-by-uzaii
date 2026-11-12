@@ -18,9 +18,9 @@ import { buildPageMetadata } from "@/lib/seo/metadata";
 import { JsonLd, createGemstoneProductSchema, createBreadcrumbSchema } from "@/lib/seo/json-ld";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Commercial-Quality Turquoise | Rough Nodules & Slabs LG-TQ-001",
+  title: "Commercial Turquoise Wholesale | Natural Matrix Slabs & Rough | Libra Gems",
   description:
-    "Commercial-quality stabilized turquoise rough nodules and slabs (12.5 kg lot). Spiderweb limonite matrix material conforming strictly to CIBJO Code T disclosure.",
+    "Commercial wholesale natural matrix turquoise rough nodules and sawed slabs (12.5 kg parcel). Stabilized to CIBJO Code T standards for high-yield lapidary and jewelry fabrication.",
   path: "/gemstones/turquoise",
 });
 

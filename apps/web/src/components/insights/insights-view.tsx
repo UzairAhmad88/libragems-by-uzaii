@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { Clock, BookOpen, ArrowRight } from "lucide-react";
 import { InsightArticle } from "@/types/insight";
 import { Badge } from "@/components/ui/badge";
@@ -74,9 +75,11 @@ export function InsightsView({ initialArticles }: InsightsViewProps) {
                 </span>
               </div>
 
-              <h3 className="mt-4 font-heading text-lg sm:text-xl font-bold leading-snug text-forest-deep group-hover:text-forest transition-colors">
-                {article.title}
-              </h3>
+              <Link href={`/insights/${article.slug}`}>
+                <h3 className="mt-4 font-heading text-lg sm:text-xl font-bold leading-snug text-forest-deep group-hover:text-forest transition-colors">
+                  {article.title}
+                </h3>
+              </Link>
 
               <p className="mt-3 text-xs leading-relaxed text-stone line-clamp-3">
                 {article.excerpt}
@@ -84,9 +87,8 @@ export function InsightsView({ initialArticles }: InsightsViewProps) {
             </div>
 
             <div className="mt-6 border-t border-border pt-4">
-              <button
-                type="button"
-                onClick={() => setActiveArticle(article)}
+              <Link
+                href={`/insights/${article.slug}`}
                 aria-label={`Read complete guide: ${article.title}`}
                 className="inline-flex min-h-[44px] w-full items-center justify-between text-xs font-semibold uppercase tracking-wider text-forest group-hover:text-forest-deep focus-visible:outline-champagne"
               >
@@ -95,7 +97,7 @@ export function InsightsView({ initialArticles }: InsightsViewProps) {
                   Read Full Editorial Guide
                 </span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </button>
+              </Link>
             </div>
           </article>
         ))}

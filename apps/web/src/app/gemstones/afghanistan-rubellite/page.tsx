@@ -18,9 +18,9 @@ import { buildPageMetadata } from "@/lib/seo/metadata";
 import { JsonLd, createGemstoneProductSchema, createBreadcrumbSchema } from "@/lib/seo/json-ld";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Afghanistan Cut-Stone Rubellite | Elbaite Tourmaline LG-RUB-AFGHAN",
+  title: "Afghanistan Cut Rubellite Tourmaline | Precision Faceted Gems | Libra Gems",
   description:
-    "Precision-cut Afghanistan rubellite tourmaline featuring vivid purplish-red color saturation and custom oval mixed faceting. Independent laboratory memo available.",
+    "Fine precision-cut Afghanistan rubellite tourmaline featuring vivid purplish-red saturation and custom oval mixed faceting. Independent Bangkok laboratory memo available.",
   path: "/gemstones/afghanistan-rubellite",
 });
 

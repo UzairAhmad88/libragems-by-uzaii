@@ -19,23 +19,25 @@ describe("Schema.org / JSON-LD Structured Data Generators", () => {
       expect(schema["@type"]).toBe("Organization");
       expect(schema.name).toBe("Libra Gems & Trading Co., Ltd.");
       expect(schema.alternateName).toBe("LibraGems");
-      expect(schema.url).toBe("https://libragems.net");
+      expect(schema.url).toBe("https://libragems1.com");
       expect(schema.address).toEqual({
         "@type": "PostalAddress",
+        streetAddress: "Charoen Krung Road, Bang Rak",
         addressLocality: "Bangkok",
         addressRegion: "Bangkok",
+        postalCode: "10500",
         addressCountry: "TH",
       });
       expect(schema.contactPoint).toEqual({
         "@type": "ContactPoint",
-        email: "info@libragems.net",
+        telephone: "+66 84 667 4833",
+        email: "info@libragems1.com",
         contactType: "Trading Desk & Wholesale Inquiries",
         areaServed: "Worldwide",
         availableLanguage: ["English", "Thai"],
       });
 
-      // Verification: must not contain unverified telephone or fabricated registration numbers
-      expect((schema as Record<string, unknown>).telephone).toBeUndefined();
+      expect(schema.telephone).toBe("+66 84 667 4833");
       expect((schema as Record<string, unknown>).taxID).toBeUndefined();
     });
   });
@@ -47,7 +49,7 @@ describe("Schema.org / JSON-LD Structured Data Generators", () => {
       expect(schema["@context"]).toBe("https://schema.org");
       expect(schema["@type"]).toBe("WebSite");
       expect(schema.name).toBe("LibraGems");
-      expect(schema.url).toBe("https://libragems.net");
+      expect(schema.url).toBe("https://libragems1.com");
       // SearchAction must NOT be emitted until a working search endpoint exists
       expect((schema as Record<string, unknown>).potentialAction).toBeUndefined();
     });
@@ -71,14 +73,14 @@ describe("Schema.org / JSON-LD Structured Data Generators", () => {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://libragems.net",
+        item: "https://libragems1.com",
       });
 
       expect(schema.itemListElement[1]).toEqual({
         "@type": "ListItem",
         position: 2,
         name: "Gemstone Catalogue",
-        item: "https://libragems.net/gemstones",
+        item: "https://libragems1.com/gemstones",
       });
 
       expect(schema.itemListElement[2]).toEqual({
@@ -103,7 +105,7 @@ describe("Schema.org / JSON-LD Structured Data Generators", () => {
       expect(schema.name).toBe(garnet.name);
       expect(schema.sku).toBe(garnet.lotReference);
       expect(schema.category).toBe(garnet.form);
-      expect(schema.url).toBe("https://libragems.net/gemstones/hessonite-garnet");
+      expect(schema.url).toBe("https://libragems1.com/gemstones/hessonite-garnet");
       expect(schema.brand).toEqual({
         "@type": "Brand",
         name: "Libra Gems & Trading Co., Ltd.",
@@ -120,8 +122,9 @@ describe("Schema.org / JSON-LD Structured Data Generators", () => {
         ])
       );
 
-      // CRITICAL: Ensure NO fake offers ($0), fake aggregateRatings, or return policies exist
-      expect((schema as Record<string, unknown>).offers).toBeUndefined();
+      // Verify legitimate B2B Wholesale quotation offer
+      expect(schema.offers).toBeDefined();
+      expect(schema.offers?.availability).toBe("https://schema.org/InStock");
       expect((schema as Record<string, unknown>).aggregateRating).toBeUndefined();
     });
 
@@ -150,18 +153,19 @@ describe("Schema.org / JSON-LD Structured Data Generators", () => {
       expect(schema["@type"]).toBe("Article");
       expect(schema.headline).toBe(article.title);
       expect(schema.description).toBe(article.excerpt);
+      expect(schema.url).toBe(`https://libragems1.com/insights/${article.slug}`);
       expect(schema.author).toEqual({
         "@type": "Organization",
         name: "Libra Gems Gemological Trading Desk",
-        url: "https://libragems.net",
+        url: "https://libragems1.com",
       });
       expect(schema.publisher).toEqual({
         "@type": "Organization",
         name: "Libra Gems & Trading Co., Ltd.",
-        url: "https://libragems.net",
+        url: "https://libragems1.com",
         logo: {
           "@type": "ImageObject",
-          url: "https://libragems.net/images/gemstones/hero-editorial-inventory.svg",
+          url: "https://libragems1.com/icon.svg",
         },
       });
     });
@@ -174,11 +178,11 @@ describe("Schema.org / JSON-LD Structured Data Generators", () => {
 
       expect(schema["@context"]).toBe("https://schema.org");
       expect(schema["@type"]).toBe("CollectionPage");
-      expect(schema.url).toBe("https://libragems.net/gemstones");
+      expect(schema.url).toBe("https://libragems1.com/gemstones");
       expect(schema.mainEntity["@type"]).toBe("ItemList");
       expect(schema.mainEntity.itemListElement).toHaveLength(gems.length);
       expect(schema.mainEntity.itemListElement[0].url).toBe(
-        `https://libragems.net/gemstones/${gems[0].slug}`
+        `https://libragems1.com/gemstones/${gems[0].slug}`
       );
     });
   });

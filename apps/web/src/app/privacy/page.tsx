@@ -7,7 +7,7 @@ import { buildPageMetadata } from "@/lib/seo/metadata";
 import { JsonLd, createBreadcrumbSchema } from "@/lib/seo/json-ld";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Privacy Policy | LibraGems Bangkok",
+  title: "Privacy Policy | Libra Gems & Trading Co.",
   description:
     "Privacy Policy and B2B commercial data protection practices for Libra Gems & Trading Co., Ltd. (Bangkok, Thailand).",
   path: "/privacy",

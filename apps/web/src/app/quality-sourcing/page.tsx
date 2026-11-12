@@ -8,9 +8,9 @@ import { buildPageMetadata } from "@/lib/seo/metadata";
 import { JsonLd, createBreadcrumbSchema } from "@/lib/seo/json-ld";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Quality & Sourcing Standards | Gemological Discipline",
+  title: "Ethical Sourcing & Gemological Quality Standards | Libra Gems",
   description:
-    "Discover LibraGems' gemological testing protocols, CIBJO ethical treatment disclosure standards, and Bangkok laboratory memo procedures.",
+    "Explore Libra Gems' rigorous gemological testing protocols, CIBJO ethical treatment disclosure standards, and accredited Bangkok laboratory verification procedures.",
   path: "/quality-sourcing",
 });
 

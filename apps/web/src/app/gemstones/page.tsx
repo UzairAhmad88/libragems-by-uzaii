@@ -10,9 +10,9 @@ import { buildPageMetadata } from "@/lib/seo/metadata";
 import { JsonLd, createCollectionPageSchema, createBreadcrumbSchema } from "@/lib/seo/json-ld";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Gemstone Catalogue | Commercial Rough, Minerals & Cut Stones",
+  title: "Wholesale Gemstones Catalogue | Rough & Cut Gems Bangkok | Libra Gems",
   description:
-    "Explore LibraGems' verified physical inventory: commercial-quality rough Hessonite garnet, stabilized turquoise, and precision-cut Afghanistan rubellite tourmaline.",
+    "Explore physical wholesale gemstone lots held in Bangkok: natural rough hessonite garnet, stabilized matrix turquoise slabs, and precision-cut Afghanistan rubellite tourmaline.",
   path: "/gemstones",
 });
 
@@ -42,7 +42,7 @@ export default function GemstonesCataloguePage() {
                 Current Physical Inventory
               </span>
               <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-white">
-                Selected Gemstone Offerings
+                Wholesale Gemstone Inventory
               </h1>
               <p className="text-sm sm:text-base leading-relaxed text-ivory/85 md:text-lg">
                 Carefully evaluated commercial parcels and cut gems held at our Bang Rak facility in

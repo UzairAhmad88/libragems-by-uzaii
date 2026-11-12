@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Inter } from "next/font/google";
 import "./globals.css";
 import { getSiteUrl, getCanonicalUrl } from "@/lib/seo/site-url";
-import { JsonLd, createOrganizationSchema, createWebSiteSchema } from "@/lib/seo/json-ld";
+import { JsonLd, createOrganizationSchema, createWebSiteSchema, createLocalBusinessSchema } from "@/lib/seo/json-ld";
 import { FloatingWhatsAppButton } from "@/components/ui/floating-whatsapp-button";
 
 const headingFont = Plus_Jakarta_Sans({
@@ -25,18 +25,22 @@ const ogImageUrl = getCanonicalUrl("/images/gemstones/hero-editorial-inventory.j
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "LibraGems | International Gemstone Trading & Sourcing",
-    template: "%s | LibraGems",
+    default: "Libra Gems & Trading Co. | Natural & Wholesale Gemstones",
+    template: "%s | Libra Gems & Trading Co.",
   },
   description:
-    "Bangkok-based international B2B gemstone trading company specializing in commercial rough stones, mineral specimens, and precision-cut colored gems.",
+    "Bangkok-based international B2B gemstone trading company specializing in commercial rough stones, mineral specimens, and precision-cut colored gems directly from Thailand's gemological trading district.",
   alternates: {
     canonical: siteUrl,
+    languages: {
+      en: siteUrl,
+      "x-default": siteUrl,
+    },
   },
   openGraph: {
-    title: "LibraGems | International Gemstone Trading & Sourcing",
+    title: "Libra Gems & Trading Co. | Natural & Wholesale Gemstones",
     description:
-      "Bangkok-based international B2B gemstone trading company specializing in commercial rough stones, mineral specimens, and precision-cut colored gems.",
+      "Bangkok-based international B2B gemstone trading company specializing in commercial rough stones, mineral specimens, and precision-cut colored gems directly from Thailand's gemological trading district.",
     url: siteUrl,
     siteName: "Libra Gems & Trading Co., Ltd.",
     locale: "en_US",
@@ -46,13 +50,13 @@ export const metadata: Metadata = {
         url: ogImageUrl,
         width: 1200,
         height: 630,
-        alt: "LibraGems International Gemstone Trading | Bangkok Desk",
+        alt: "Libra Gems & Trading Co. Bangkok Desk",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "LibraGems | International Gemstone Trading & Sourcing",
+    title: "Libra Gems & Trading Co. | Natural & Wholesale Gemstones",
     description:
       "B2B gemstone trading platform based in Bangkok, Thailand. Commercial rough parcels, mineral specimens, and cut colored gems.",
     images: [ogImageUrl],
@@ -90,7 +94,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${headingFont.variable} ${inter.variable}`}>
       <head>
-        <JsonLd data={[createOrganizationSchema(), createWebSiteSchema()]} />
+        <JsonLd data={[createOrganizationSchema(), createWebSiteSchema(), createLocalBusinessSchema()]} />
       </head>
       <body className="min-h-screen bg-ivory text-ink antialiased">
         {/* Accessible skip to main content landmark */}

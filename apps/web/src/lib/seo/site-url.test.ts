@@ -18,22 +18,22 @@ describe("SEO Site URL Utility", () => {
 
   describe("getSiteUrl()", () => {
     it("returns default production URL when NEXT_PUBLIC_SITE_URL is not set", () => {
-      expect(getSiteUrl()).toBe("https://libragems.net");
+      expect(getSiteUrl()).toBe("https://libragems1.com");
     });
 
     it("strips trailing slash from configured environment URL", () => {
-      process.env.NEXT_PUBLIC_SITE_URL = "https://libragems.net/";
-      expect(getSiteUrl()).toBe("https://libragems.net");
+      process.env.NEXT_PUBLIC_SITE_URL = "https://libragems1.com/";
+      expect(getSiteUrl()).toBe("https://libragems1.com");
     });
 
     it("strips multiple trailing slashes from configured URL", () => {
-      process.env.NEXT_PUBLIC_SITE_URL = "https://preview.libragems.net///";
-      expect(getSiteUrl()).toBe("https://preview.libragems.net");
+      process.env.NEXT_PUBLIC_SITE_URL = "https://preview.libragems1.com///";
+      expect(getSiteUrl()).toBe("https://preview.libragems1.com");
     });
 
     it("ensures https protocol when domain is provided without protocol", () => {
-      process.env.NEXT_PUBLIC_SITE_URL = "libragems.net";
-      expect(getSiteUrl()).toBe("https://libragems.net");
+      process.env.NEXT_PUBLIC_SITE_URL = "libragems1.com";
+      expect(getSiteUrl()).toBe("https://libragems1.com");
     });
 
     it("preserves http protocol for local development URLs", () => {
@@ -44,30 +44,30 @@ describe("SEO Site URL Utility", () => {
 
   describe("getCanonicalUrl()", () => {
     it("returns root base URL when path is empty, undefined, or whitespace", () => {
-      expect(getCanonicalUrl()).toBe("https://libragems.net");
-      expect(getCanonicalUrl("")).toBe("https://libragems.net");
-      expect(getCanonicalUrl("   ")).toBe("https://libragems.net");
+      expect(getCanonicalUrl()).toBe("https://libragems1.com");
+      expect(getCanonicalUrl("")).toBe("https://libragems1.com");
+      expect(getCanonicalUrl("   ")).toBe("https://libragems1.com");
     });
 
     it("returns root base URL when path is single slash", () => {
-      expect(getCanonicalUrl("/")).toBe("https://libragems.net");
+      expect(getCanonicalUrl("/")).toBe("https://libragems1.com");
     });
 
     it("normalizes path with leading slash and removes trailing slash", () => {
-      expect(getCanonicalUrl("about")).toBe("https://libragems.net/about");
-      expect(getCanonicalUrl("/about")).toBe("https://libragems.net/about");
-      expect(getCanonicalUrl("/about/")).toBe("https://libragems.net/about");
+      expect(getCanonicalUrl("about")).toBe("https://libragems1.com/about");
+      expect(getCanonicalUrl("/about")).toBe("https://libragems1.com/about");
+      expect(getCanonicalUrl("/about/")).toBe("https://libragems1.com/about");
       expect(getCanonicalUrl("gemstones/hessonite-garnet/")).toBe(
-        "https://libragems.net/gemstones/hessonite-garnet"
+        "https://libragems1.com/gemstones/hessonite-garnet"
       );
     });
 
     it("accurately constructs nested canonical paths", () => {
       expect(getCanonicalUrl("/quality-sourcing")).toBe(
-        "https://libragems.net/quality-sourcing"
+        "https://libragems1.com/quality-sourcing"
       );
       expect(getCanonicalUrl("/gemstones/turquoise")).toBe(
-        "https://libragems.net/gemstones/turquoise"
+        "https://libragems1.com/gemstones/turquoise"
       );
     });
   });

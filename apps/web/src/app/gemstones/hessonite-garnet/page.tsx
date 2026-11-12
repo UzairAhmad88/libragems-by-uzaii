@@ -18,9 +18,9 @@ import { buildPageMetadata } from "@/lib/seo/metadata";
 import { JsonLd, createGemstoneProductSchema, createBreadcrumbSchema } from "@/lib/seo/json-ld";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Rough Hessonite Garnet | Commercial Parcel LG-HG-001",
+  title: "Rough Hessonite Garnet Wholesale | Sri Lanka Alluvial Grossular | Libra Gems",
   description:
-    "Commercial-quality rough hessonite garnet parcel (5,000g). Natural untreated grossular garnet from Sri Lanka featuring warm cinnamon-orange hues and diagnostic treacle inclusions.",
+    "Commercial wholesale rough hessonite garnet parcel (5,000g). Natural untreated grossular garnet from Sri Lanka featuring warm cinnamon-orange hues and diagnostic treacle inclusions.",
   path: "/gemstones/hessonite-garnet",
 });
 

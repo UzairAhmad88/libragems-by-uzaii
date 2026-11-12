@@ -9,7 +9,7 @@ import { buildPageMetadata } from "@/lib/seo/metadata";
 import { JsonLd, createBreadcrumbSchema, createArticleSchema } from "@/lib/seo/json-ld";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Gemstone Insights | Educational Knowledge & Market Observations",
+  title: "Gemstone Market Insights & Gemology Intelligence | Libra Gems",
   description:
     "Authoritative educational guides on CIBJO treatment disclosure, lapidary cutting yields, geographic origin analysis, and Bangkok laboratory testing protocols.",
   path: "/insights",

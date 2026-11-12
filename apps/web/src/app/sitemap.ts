@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getCanonicalUrl } from "@/lib/seo/site-url";
 import { getAllGemstones } from "@/data/gemstones";
+import { getAllInsights } from "@/data/insights";
 
 /**
  * Dynamic XML Sitemap Generation for LibraGems
@@ -10,12 +11,14 @@ import { getAllGemstones } from "@/data/gemstones";
  */
 export default function sitemap(): MetadataRoute.Sitemap {
   const publishedGemstones = getAllGemstones();
+  const publishedInsights = getAllInsights();
 
   // Baseline stable dates for static sections
   const coreReleaseDate = new Date("2026-11-10T00:00:00.000Z");
   const institutionalDate = new Date("2026-11-07T00:00:00.000Z");
   const legalDate = new Date("2026-10-15T00:00:00.000Z");
   const catalogueLotDate = new Date("2026-11-08T00:00:00.000Z");
+  const insightEntryDate = new Date("2026-11-11T00:00:00.000Z");
 
   const staticEntries: MetadataRoute.Sitemap = [
     {
@@ -76,5 +79,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
-  return [...staticEntries, ...gemstoneEntries];
+  // Dynamic published educational insights
+  const insightEntries: MetadataRoute.Sitemap = publishedInsights.map((article) => ({
+    url: getCanonicalUrl(`/insights/${article.slug}`),
+    lastModified: insightEntryDate,
+    changeFrequency: "weekly",
+    priority: 0.8,
+  }));
+
+  return [...staticEntries, ...gemstoneEntries, ...insightEntries];
 }

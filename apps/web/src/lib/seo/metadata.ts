@@ -31,6 +31,10 @@ export function buildPageMetadata({
     description,
     alternates: {
       canonical: canonicalUrl,
+      languages: {
+        en: canonicalUrl,
+        "x-default": canonicalUrl,
+      },
     },
     openGraph: {
       title,
@@ -44,7 +48,7 @@ export function buildPageMetadata({
           url: imageUrl,
           width: 1200,
           height: 630,
-          alt: `${title} | LibraGems Bangkok`,
+          alt: `${title} | Libra Gems & Trading Co.`,
         },
       ],
     },

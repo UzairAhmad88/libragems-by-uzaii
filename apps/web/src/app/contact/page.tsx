@@ -6,12 +6,12 @@ import { SiteFooter } from "@/components/layout/site-footer";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { EnquiryForm } from "@/components/forms/enquiry-form";
 import { buildPageMetadata } from "@/lib/seo/metadata";
-import { JsonLd, createBreadcrumbSchema } from "@/lib/seo/json-ld";
+import { JsonLd, createBreadcrumbSchema, createLocalBusinessSchema } from "@/lib/seo/json-ld";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "Contact Trading Desk | Bangkok Showroom & Inquiries",
+  title: "Contact Gemstone Trading Desk | Bangkok Office | Libra Gems",
   description:
-    "Contact Libra Gems & Trading Co., Ltd. in Bangkok. Submit commercial lot inquiries, request parcel splits, or schedule a showroom viewing.",
+    "Direct commercial communication with Libra Gems & Trading Co., Ltd. in Bangkok. Submit wholesale parcel inquiries, lot splits, or schedule an in-person viewing.",
   path: "/contact",
 });
 
@@ -23,7 +23,7 @@ export default function ContactPage() {
 
   return (
     <>
-      <JsonLd data={createBreadcrumbSchema(breadcrumbs)} />
+      <JsonLd data={[createBreadcrumbSchema(breadcrumbs), createLocalBusinessSchema()]} />
       <SiteHeader />
 
       <main id="main-content" className="flex-1">

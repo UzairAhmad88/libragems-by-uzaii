@@ -1,30 +1,37 @@
 import { describe, it, expect } from "vitest";
 import sitemap from "./sitemap";
 import { getAllGemstones } from "@/data/gemstones";
+import { getAllInsights } from "@/data/insights";
 
 describe("Dynamic XML Sitemap Generator", () => {
-  it("generates complete sitemap entries covering all public static and dynamic lot routes", () => {
+  it("generates complete sitemap entries covering all public static, lot, and insight routes", () => {
     const entries = sitemap();
     const publishedGemstones = getAllGemstones();
+    const publishedInsights = getAllInsights();
 
     // Verify static routes
     const urls = entries.map((e) => e.url);
-    expect(urls).toContain("https://libragems.net");
-    expect(urls).toContain("https://libragems.net/gemstones");
-    expect(urls).toContain("https://libragems.net/quality-sourcing");
-    expect(urls).toContain("https://libragems.net/insights");
-    expect(urls).toContain("https://libragems.net/about");
-    expect(urls).toContain("https://libragems.net/contact");
-    expect(urls).toContain("https://libragems.net/privacy");
-    expect(urls).toContain("https://libragems.net/terms");
+    expect(urls).toContain("https://libragems1.com");
+    expect(urls).toContain("https://libragems1.com/gemstones");
+    expect(urls).toContain("https://libragems1.com/quality-sourcing");
+    expect(urls).toContain("https://libragems1.com/insights");
+    expect(urls).toContain("https://libragems1.com/about");
+    expect(urls).toContain("https://libragems1.com/contact");
+    expect(urls).toContain("https://libragems1.com/privacy");
+    expect(urls).toContain("https://libragems1.com/terms");
 
     // Verify each gemstone slug is indexed
     publishedGemstones.forEach((gem) => {
-      expect(urls).toContain(`https://libragems.net/gemstones/${gem.slug}`);
+      expect(urls).toContain(`https://libragems1.com/gemstones/${gem.slug}`);
     });
 
-    // Total should equal 8 static pages + dynamic gemstone count
-    expect(entries.length).toBe(8 + publishedGemstones.length);
+    // Verify each educational insight article is indexed
+    publishedInsights.forEach((article) => {
+      expect(urls).toContain(`https://libragems1.com/insights/${article.slug}`);
+    });
+
+    // Total should equal 8 static pages + dynamic gemstone count + dynamic insights count
+    expect(entries.length).toBe(8 + publishedGemstones.length + publishedInsights.length);
   });
 
   it("assigns stable, non-volatile modification dates", () => {
@@ -36,7 +43,7 @@ describe("Dynamic XML Sitemap Generator", () => {
     });
 
     // Home page should have the stable core release date
-    const homeEntry = entries.find((e) => e.url === "https://libragems.net");
+    const homeEntry = entries.find((e) => e.url === "https://libragems1.com");
     expect(homeEntry?.lastModified).toEqual(new Date("2026-11-10T00:00:00.000Z"));
   });
 

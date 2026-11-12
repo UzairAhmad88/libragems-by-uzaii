@@ -27,16 +27,22 @@ export function createOrganizationSchema() {
     name: "Libra Gems & Trading Co., Ltd.",
     alternateName: "LibraGems",
     url: siteUrl,
-    logo: `${siteUrl}/images/gemstones/hero-editorial-inventory.svg`,
+    logo: `${siteUrl}/icon.svg`,
+    image: `${siteUrl}/images/gemstones/hero-editorial-inventory.jpg`,
+    telephone: "+66 84 667 4833",
+    email: "info@libragems1.com",
     address: {
       "@type": "PostalAddress",
+      streetAddress: "Charoen Krung Road, Bang Rak",
       addressLocality: "Bangkok",
       addressRegion: "Bangkok",
+      postalCode: "10500",
       addressCountry: "TH",
     },
     contactPoint: {
       "@type": "ContactPoint",
-      email: "info@libragems.net",
+      telephone: "+66 84 667 4833",
+      email: "info@libragems1.com",
       contactType: "Trading Desk & Wholesale Inquiries",
       areaServed: "Worldwide",
       availableLanguage: ["English", "Thai"],
@@ -51,6 +57,50 @@ export function createOrganizationSchema() {
       "Rubellite Tourmaline",
       "CIBJO Treatment Standards",
       "Lapidary Yield Science",
+    ],
+  };
+}
+
+/**
+ * LocalBusiness / WholesaleStore Schema
+ * Captures the verified Bangkok physical trading presence in Bang Rak gem district.
+ */
+export function createLocalBusinessSchema() {
+  const siteUrl = getSiteUrl();
+
+  return {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "WholesaleStore"],
+    name: "Libra Gems & Trading Co., Ltd.",
+    alternateName: "Libra Gems Bangkok Trading Desk",
+    url: siteUrl,
+    logo: `${siteUrl}/icon.svg`,
+    image: `${siteUrl}/images/gemstones/hero-editorial-inventory.jpg`,
+    telephone: "+66 84 667 4833",
+    email: "info@libragems1.com",
+    priceRange: "$$$$",
+    currenciesAccepted: "USD, THB, EUR",
+    paymentAccepted: "Bank Wire Transfer, Commercial Escrow",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Charoen Krung Road, Bang Rak",
+      addressLocality: "Bangkok",
+      addressRegion: "Bangkok",
+      postalCode: "10500",
+      addressCountry: "TH",
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 13.7234,
+      longitude: 100.518,
+    },
+    openingHoursSpecification: [
+      {
+        "@type": "OpeningHoursSpecification",
+        dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        opens: "09:00",
+        closes: "18:00",
+      },
     ],
   };
 }
@@ -163,6 +213,22 @@ export function createGemstoneProductSchema(gemstone: Gemstone) {
       name: "Libra Gems & Trading Co., Ltd.",
     },
     additionalProperty: additionalProperties,
+    offers: {
+      "@type": "Offer",
+      url: pageUrl,
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      itemCondition: "https://schema.org/NewCondition",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        priceCurrency: "USD",
+        description: "B2B Wholesale / Price on Application upon parcel inquiry",
+      },
+      seller: {
+        "@type": "Organization",
+        name: "Libra Gems & Trading Co., Ltd.",
+      },
+    },
   };
 }
 
@@ -171,7 +237,7 @@ export function createGemstoneProductSchema(gemstone: Gemstone) {
  */
 export function createArticleSchema(article: InsightArticle) {
   const siteUrl = getSiteUrl();
-  const articleUrl = getCanonicalUrl("/insights");
+  const articleUrl = getCanonicalUrl(`/insights/${article.slug}`);
 
   return {
     "@context": "https://schema.org",
@@ -194,7 +260,7 @@ export function createArticleSchema(article: InsightArticle) {
       url: siteUrl,
       logo: {
         "@type": "ImageObject",
-        url: `${siteUrl}/images/gemstones/hero-editorial-inventory.svg`,
+        url: `${siteUrl}/icon.svg`,
       },
     },
     articleSection: article.categoryLabel,

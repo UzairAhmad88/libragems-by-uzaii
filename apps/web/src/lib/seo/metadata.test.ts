@@ -14,7 +14,7 @@ describe("SEO Metadata Factory", () => {
       "Direct B2B supply of wholesale unheated grossular hessonite garnet lots from Bangkok."
     );
     expect(meta.alternates?.canonical).toBe(
-      "https://libragems.net/gemstones/hessonite-garnet"
+      "https://libragems1.com/gemstones/hessonite-garnet"
     );
   });
 
@@ -28,7 +28,7 @@ describe("SEO Metadata Factory", () => {
 
     expect(meta.openGraph).toBeDefined();
     expect(meta.openGraph?.title).toBe("Wholesale Gemstone Catalogue");
-    expect(meta.openGraph?.url).toBe("https://libragems.net/gemstones");
+    expect(meta.openGraph?.url).toBe("https://libragems1.com/gemstones");
     expect(meta.openGraph?.siteName).toBe("Libra Gems & Trading Co., Ltd.");
     expect(meta.openGraph?.locale).toBe("en_US");
     expect((meta.openGraph as Record<string, unknown>)?.type).toBe("website");
@@ -41,7 +41,7 @@ describe("SEO Metadata Factory", () => {
     }>;
     expect(ogImages).toBeDefined();
     expect(ogImages[0].url).toBe(
-      "https://libragems.net/images/gemstones/hero-editorial-inventory.svg"
+      "https://libragems1.com/images/gemstones/hero-editorial-inventory.svg"
     );
     expect(ogImages[0].width).toBe(1200);
     expect(ogImages[0].height).toBe(630);

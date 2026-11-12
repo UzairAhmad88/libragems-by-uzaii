@@ -3,7 +3,7 @@
  * Ensures single source of truth for all canonical tags, sitemaps, robots, and Open Graph metadata.
  */
 
-const DEFAULT_PRODUCTION_URL = "https://libragems.net";
+const DEFAULT_PRODUCTION_URL = "https://libragems1.com";
 
 /**
  * Normalizes and returns the base site URL without trailing slash.

@@ -10,9 +10,9 @@ import { getAllInsights } from "@/data/insights";
 import { buildPageMetadata } from "@/lib/seo/metadata";
 
 export const metadata: Metadata = buildPageMetadata({
-  title: "LibraGems | International Gemstone Trading & Sourcing | Bangkok",
+  title: "Libra Gems & Trading Co. | Natural & Wholesale Gemstones",
   description:
-    "Bangkok-based international B2B gemstone trading company specializing in commercial rough stones, mineral specimens, and precision-cut colored gems.",
+    "Bangkok-based international B2B gemstone supplier offering commercial rough parcels, natural matrix turquoise, and precision-cut colored gems. Sourced with transparent CIBJO treatment disclosures.",
   path: "/",
 });
 
