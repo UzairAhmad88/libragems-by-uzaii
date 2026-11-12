@@ -13,6 +13,8 @@ describe("Dynamic XML Sitemap Generator", () => {
     const urls = entries.map((e) => e.url);
     expect(urls).toContain("https://libragems1.com");
     expect(urls).toContain("https://libragems1.com/gemstones");
+    expect(urls).toContain("https://libragems1.com/gemstones/faceted-single-stones");
+    expect(urls).toContain("https://libragems1.com/gemstones/gemstone-lots");
     expect(urls).toContain("https://libragems1.com/quality-sourcing");
     expect(urls).toContain("https://libragems1.com/insights");
     expect(urls).toContain("https://libragems1.com/about");
@@ -30,8 +32,8 @@ describe("Dynamic XML Sitemap Generator", () => {
       expect(urls).toContain(`https://libragems1.com/insights/${article.slug}`);
     });
 
-    // Total should equal 8 static pages + dynamic gemstone count + dynamic insights count
-    expect(entries.length).toBe(8 + publishedGemstones.length + publishedInsights.length);
+    // Total should equal 10 static pages + dynamic gemstone count + dynamic insights count
+    expect(entries.length).toBe(10 + publishedGemstones.length + publishedInsights.length);
   });
 
   it("assigns stable, non-volatile modification dates", () => {

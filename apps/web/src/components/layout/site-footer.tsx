@@ -38,31 +38,42 @@ export function SiteFooter() {
           {/* Col 2: Gemstone Catalogue */}
           <div>
             <h3 className="text-xs font-semibold uppercase tracking-widest text-champagne">
-              Active Materials
+              Trading Categories
             </h3>
             <ul className="mt-4 space-y-2.5 text-xs text-white/80">
               <li>
                 <Link
-                  href="/gemstones/hessonite-garnet"
-                  className="hover:text-white transition-colors"
+                  href="/gemstones/faceted-single-stones"
+                  className="hover:text-white transition-colors font-medium text-ivory"
                 >
-                  Rough Hessonite Garnet (Lot LG-HG-001)
+                  Faceted Single Stones
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/gemstones/turquoise"
-                  className="hover:text-white transition-colors"
+                  href="/gemstones/gemstone-lots"
+                  className="hover:text-white transition-colors font-medium text-ivory"
                 >
-                  Commercial Turquoise (Lot LG-TQ-001)
+                  Gemstone Lots &amp; Parcels
                 </Link>
+              </li>
+              <li className="pt-1 text-white/50 text-[11px] uppercase tracking-wider">
+                Active Offerings:
               </li>
               <li>
                 <Link
                   href="/gemstones/afghanistan-rubellite"
                   className="hover:text-white transition-colors"
                 >
-                  Afghanistan Cut Rubellite (LG-RUB-AFGHAN)
+                  Afghanistan Cut Rubellite
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/gemstones/hessonite-garnet"
+                  className="hover:text-white transition-colors"
+                >
+                  Ceylon Rough Hessonite (5kg)
                 </Link>
               </li>
               <li className="pt-2">

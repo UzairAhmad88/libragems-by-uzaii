@@ -4,6 +4,7 @@ import { ShieldCheck, Video } from "lucide-react";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
+import { CategoryCards } from "@/components/gemstones/category-cards";
 import { CatalogueGrid } from "@/components/gemstones/catalogue-grid";
 import { getAllGemstones } from "@/data/gemstones";
 import { buildPageMetadata } from "@/lib/seo/metadata";
@@ -56,6 +57,10 @@ export default function GemstonesCataloguePage() {
         {/* Catalogue Content Area (Off-White Background) */}
         <section className="border-b border-border bg-offwhite py-12 sm:py-16 lg:py-20">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            {/* Category Showcase Cards */}
+            <CategoryCards />
+
+            {/* Complete Product Grid */}
             <CatalogueGrid initialGemstones={gemstones} />
 
             {/* Trade Inquiries Notice Box */}

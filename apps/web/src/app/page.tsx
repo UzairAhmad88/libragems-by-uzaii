@@ -122,32 +122,43 @@ export default function HomePage() {
 
             {/* Editorial 3-Pillar Presentation with Clean Numerals */}
             <div className="mt-10 sm:mt-14 grid gap-6 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
-              <div className="rounded-2xl border border-border bg-white p-6 sm:p-8 shadow-subtle transition-all duration-300 hover:border-champagne">
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-champagne">
-                  Division 01
-                </span>
-                <h3 className="mt-3 font-heading text-xl font-bold text-forest-deep">
-                  Commercial Rough Lots
+              <Link
+                href="/gemstones/gemstone-lots"
+                className="group rounded-2xl border border-border bg-white p-6 sm:p-8 shadow-subtle transition-all duration-300 hover:border-champagne hover:shadow-md block"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-xs font-bold uppercase tracking-widest text-champagne">
+                    Division 01
+                  </span>
+                  <ArrowRight className="h-4 w-4 text-champagne transition-transform group-hover:translate-x-1" />
+                </div>
+                <h3 className="mt-3 font-heading text-xl font-bold text-forest-deep group-hover:text-forest transition-colors">
+                  Gemstone Lots &amp; Parcels
                 </h3>
                 <p className="mt-3 text-xs leading-relaxed text-stone">
-                  Direct parcel acquisitions curated for cutting factories and lapidary ateliers.
-                  Consistent sizing, honest cutting yields, and transparent internal character
-                  disclosures.
+                  Direct commercial parcels and curated suites for cutting factories and lapidary ateliers.
+                  Consistent sizing, verified cutting yields, and transparent disclosures.
                 </p>
-              </div>
+              </Link>
 
-              <div className="rounded-2xl border border-border bg-white p-6 sm:p-8 shadow-subtle transition-all duration-300 hover:border-champagne">
-                <span className="font-mono text-xs font-bold uppercase tracking-widest text-champagne">
-                  Division 02
-                </span>
-                <h3 className="mt-3 font-heading text-xl font-bold text-forest-deep">
+              <Link
+                href="/gemstones/faceted-single-stones"
+                className="group rounded-2xl border border-border bg-white p-6 sm:p-8 shadow-subtle transition-all duration-300 hover:border-champagne hover:shadow-md block"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-xs font-bold uppercase tracking-widest text-champagne">
+                    Division 02
+                  </span>
+                  <ArrowRight className="h-4 w-4 text-champagne transition-transform group-hover:translate-x-1" />
+                </div>
+                <h3 className="mt-3 font-heading text-xl font-bold text-forest-deep group-hover:text-forest transition-colors">
                   Faceted Single Stones
                 </h3>
                 <p className="mt-3 text-xs leading-relaxed text-stone">
-                  Precision-cut single stones and matched suites proportioned for maximum brilliance
+                  Precision-cut single stones and suites proportioned for maximum brilliance
                   and optical scintillation, accompanied by accredited Bangkok gemological memos.
                 </p>
-              </div>
+              </Link>
 
               <div className="rounded-2xl border border-border bg-white p-6 sm:p-8 shadow-subtle transition-all duration-300 hover:border-champagne md:col-span-2 lg:col-span-1">
                 <span className="font-mono text-xs font-bold uppercase tracking-widest text-champagne">

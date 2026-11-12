@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ExternalLink, CheckCircle2 } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
+import { getFacetedSingleStones, getGemstoneLots } from "@/data/gemstones";
 
 interface AdminCategory {
   id: string;
@@ -16,11 +17,29 @@ interface AdminCategory {
 
 const DEFAULT_CATEGORIES: AdminCategory[] = [
   {
+    id: "a1000000-0000-0000-0000-000000000005",
+    name: "Faceted Single Stones",
+    slug: "faceted-single-stones",
+    description: "Individually selected precision-cut faceted gemstones presented with individual optical specs and laboratory memo verification.",
+    display_order: 1,
+    is_active: true,
+    lot_count: getFacetedSingleStones().length,
+  },
+  {
+    id: "a1000000-0000-0000-0000-000000000006",
+    name: "Gemstone Lots",
+    slug: "gemstone-lots",
+    description: "Curated wholesale gemstone lots, commercial parcels, and suites for jewelers, dealers, and lapidaries.",
+    display_order: 2,
+    is_active: true,
+    lot_count: getGemstoneLots().length,
+  },
+  {
     id: "a1000000-0000-0000-0000-000000000001",
     name: "Rough Gemstones",
     slug: "rough",
     description: "Natural unworked crystals, alluvial pebbles, and rough gemstone parcels suitable for lapidary cutting.",
-    display_order: 1,
+    display_order: 3,
     is_active: true,
     lot_count: 1,
   },
@@ -29,7 +48,7 @@ const DEFAULT_CATEGORIES: AdminCategory[] = [
     name: "Mineral Specimens",
     slug: "mineral",
     description: "Natural mineral specimens and crystalline formations for collectors and lapidaries.",
-    display_order: 2,
+    display_order: 4,
     is_active: true,
     lot_count: 1,
   },
@@ -38,16 +57,16 @@ const DEFAULT_CATEGORIES: AdminCategory[] = [
     name: "Cut Gemstones",
     slug: "cut",
     description: "Precision-cut, faceted colored stones and suites ready for high-jewelry fabrication.",
-    display_order: 3,
+    display_order: 5,
     is_active: true,
-    lot_count: 1,
+    lot_count: 2,
   },
   {
     id: "a1000000-0000-0000-0000-000000000004",
     name: "Stone Beads & Calibrated Material",
     slug: "beads",
     description: "Calibrated gemstone beads, rondelles, and tumbled stone lots for manufacturing.",
-    display_order: 4,
+    display_order: 6,
     is_active: true,
     lot_count: 0,
   },

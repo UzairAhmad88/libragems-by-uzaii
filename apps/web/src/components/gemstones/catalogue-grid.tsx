@@ -13,16 +13,25 @@ export function CatalogueGrid({ initialGemstones }: CatalogueGridProps) {
   const [selectedCategory, setSelectedCategory] = React.useState<string>("all");
 
   const categories = [
-    { id: "all", label: "All Materials" },
+    { id: "all", label: "All Gemstones" },
+    { id: "faceted-single-stones", label: "Faceted Single Stones" },
+    { id: "gemstone-lots", label: "Gemstone Lots" },
     { id: "rough", label: "Rough Gemstones" },
-    { id: "mineral", label: "Minerals / Rough" },
-    { id: "cut", label: "Cut Gemstones" },
+    { id: "mineral", label: "Minerals & Rough" },
   ];
 
-  const filteredGemstones =
-    selectedCategory === "all"
-      ? initialGemstones
-      : initialGemstones.filter((g) => g.category === selectedCategory);
+  const filteredGemstones = React.useMemo(() => {
+    if (selectedCategory === "all") return initialGemstones;
+    if (selectedCategory === "faceted-single-stones") {
+      return initialGemstones.filter((g) => g.catalogCategory === "faceted-single-stones");
+    }
+    if (selectedCategory === "gemstone-lots") {
+      return initialGemstones.filter((g) => g.catalogCategory === "gemstone-lots");
+    }
+    return initialGemstones.filter(
+      (g) => g.category === selectedCategory || g.catalogCategory === selectedCategory
+    );
+  }, [initialGemstones, selectedCategory]);
 
   return (
     <div>

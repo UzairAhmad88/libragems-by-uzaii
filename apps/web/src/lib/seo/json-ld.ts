@@ -274,16 +274,20 @@ export function createArticleSchema(article: InsightArticle) {
 }
 
 /**
- * CollectionPage Schema for the Wholesale Gemstone Catalogue
+ * CollectionPage Schema for the Wholesale Gemstone Catalogue and Category Collections
  */
-export function createCollectionPageSchema(gemstones: Gemstone[]) {
-  const catalogueUrl = getCanonicalUrl("/gemstones");
+export function createCollectionPageSchema(
+  gemstones: Gemstone[],
+  options?: { title?: string; description?: string; path?: string }
+) {
+  const catalogueUrl = getCanonicalUrl(options?.path || "/gemstones");
 
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    name: "LibraGems Wholesale Gemstone Catalogue",
+    name: options?.title || "LibraGems Wholesale Gemstone Catalogue",
     description:
+      options?.description ||
       "Physical commercial gemstone inventory held in Bangkok: rough grossular hessonite garnet, matrix turquoise, and precision-cut rubellite tourmaline.",
     url: catalogueUrl,
     mainEntity: {

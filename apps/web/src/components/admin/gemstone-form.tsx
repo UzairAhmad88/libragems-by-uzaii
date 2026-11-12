@@ -148,7 +148,7 @@ export function GemstoneForm({ initialData, isEditing = false }: GemstoneFormPro
           1. Commercial &amp; Lot Identity
         </h3>
 
-        <div className="grid gap-4 sm:grid-cols-3">
+        <div className="grid gap-4 sm:grid-cols-4">
           <div>
             <label className="block text-xs font-semibold uppercase tracking-wider text-stone">
               Lot Reference Code *
@@ -189,6 +189,24 @@ export function GemstoneForm({ initialData, isEditing = false }: GemstoneFormPro
               className="mt-1.5 block w-full rounded-lg border border-border bg-ivory/50 px-3.5 py-2 text-xs text-ink focus:border-forest focus:bg-white focus:outline-none"
               placeholder="hessonite-garnet"
             />
+          </div>
+
+          <div>
+            <label className="block text-xs font-semibold uppercase tracking-wider text-stone">
+              Trading Category *
+            </label>
+            <select
+              value={formData.category_id}
+              onChange={(e) => setFormData({ ...formData, category_id: e.target.value })}
+              className="mt-1.5 block w-full rounded-lg border border-border bg-ivory/50 px-3.5 py-2 text-xs text-ink focus:border-forest focus:bg-white focus:outline-none font-medium"
+            >
+              <option value="a1000000-0000-0000-0000-000000000005">Faceted Single Stones</option>
+              <option value="a1000000-0000-0000-0000-000000000006">Gemstone Lots</option>
+              <option value="a1000000-0000-0000-0000-000000000001">Rough Gemstones</option>
+              <option value="a1000000-0000-0000-0000-000000000002">Mineral Specimens</option>
+              <option value="a1000000-0000-0000-0000-000000000003">Cut Gemstones</option>
+              <option value="a1000000-0000-0000-0000-000000000004">Beads &amp; Calibrated</option>
+            </select>
           </div>
         </div>
 
@@ -239,9 +257,10 @@ export function GemstoneForm({ initialData, isEditing = false }: GemstoneFormPro
               onChange={(e) => setFormData({ ...formData, form: e.target.value })}
               className="mt-1.5 block w-full rounded-lg border border-border bg-ivory/50 px-3.5 py-2 text-xs text-ink focus:border-forest focus:bg-white focus:outline-none"
             >
+              <option value="cut_stone">Precision Cut Stone (Single)</option>
+              <option value="faceted_suite_lot">Faceted Suite Lot (Multiple)</option>
               <option value="rough_parcel">Rough Parcel</option>
               <option value="mineral_rough">Mineral Rough</option>
-              <option value="cut_stone">Cut Stone</option>
               <option value="calibrated_beads">Calibrated Beads</option>
             </select>
           </div>

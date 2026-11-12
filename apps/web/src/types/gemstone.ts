@@ -1,6 +1,19 @@
-export type GemstoneCategory = "rough" | "mineral" | "cut" | "beads";
+export type GemstoneCategory =
+  | "rough"
+  | "mineral"
+  | "cut"
+  | "beads"
+  | "faceted-single-stones"
+  | "gemstone-lots";
 
-export type GemstoneForm = "Rough Parcel" | "Mineral / Rough" | "Precision Cut Stone" | "Calibrated Beads";
+export type GemstoneCatalogSection = "faceted-single-stones" | "gemstone-lots" | "rough-minerals";
+
+export type GemstoneForm =
+  | "Rough Parcel"
+  | "Mineral / Rough"
+  | "Precision Cut Stone"
+  | "Calibrated Beads"
+  | "Faceted Suite Lot";
 
 export type OriginStatus = "verified" | "trade_consensus" | "unverified";
 
@@ -31,7 +44,9 @@ export interface GemstoneProduct {
   tradeTitle: string;
   subtitle: string;
   category: GemstoneCategory;
+  catalogCategory?: GemstoneCatalogSection;
   form: GemstoneForm;
+  stoneCount?: number;
   
   // Gemological identity
   species: string;

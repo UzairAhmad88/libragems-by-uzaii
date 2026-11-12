@@ -34,6 +34,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: getCanonicalUrl("/gemstones/faceted-single-stones"),
+      lastModified: coreReleaseDate,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: getCanonicalUrl("/gemstones/gemstone-lots"),
+      lastModified: coreReleaseDate,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
       url: getCanonicalUrl("/quality-sourcing"),
       lastModified: institutionalDate,
       changeFrequency: "monthly",

@@ -214,29 +214,29 @@ export function SiteHeader() {
               {/* Gemstone Quick Links */}
               <div className="mt-6 border-t border-[#E5E3D9] pt-4">
                 <p className="text-xs font-semibold uppercase tracking-wider text-[#C5A66A]">
-                  Current Holdings
+                  Gemstone Collections
                 </p>
                 <div className="mt-2.5 space-y-1 text-sm text-[#59615C]">
                   <Link
-                    href="/gemstones/hessonite-garnet"
+                    href="/gemstones/faceted-single-stones"
                     onClick={() => setMobileMenuOpen(false)}
                     className="block py-1 hover:text-[#173D30] transition-colors font-medium"
                   >
-                    Ceylon Rough Hessonite
+                    Faceted Single Stones
                   </Link>
                   <Link
-                    href="/gemstones/turquoise"
+                    href="/gemstones/gemstone-lots"
                     onClick={() => setMobileMenuOpen(false)}
                     className="block py-1 hover:text-[#173D30] transition-colors font-medium"
                   >
-                    Natural Matrix Turquoise
+                    Gemstone Lots &amp; Parcels
                   </Link>
                   <Link
-                    href="/gemstones/afghanistan-rubellite"
+                    href="/gemstones"
                     onClick={() => setMobileMenuOpen(false)}
-                    className="block py-1 hover:text-[#173D30] transition-colors font-medium"
+                    className="block py-1 text-xs text-[#173D30] font-semibold hover:text-[#C5A66A] transition-colors"
                   >
-                    Afghanistan Cut Rubellite
+                    View Complete Catalogue &rarr;
                   </Link>
                 </div>
               </div>
