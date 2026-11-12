@@ -10,48 +10,48 @@ const config: Config = {
     extend: {
       colors: {
         forest: {
-          DEFAULT: "var(--forest)",
-          deep: "var(--forest-deep)",
-          mid: "var(--forest-mid)",
-          muted: "var(--forest-muted)",
-          light: "var(--forest-light)",
+          DEFAULT: "#173D30",
+          deep: "#102C23",
+          mid: "#214B3B",
+          muted: "#456B59",
+          light: "#214B3B",
         },
         offwhite: {
-          DEFAULT: "var(--offwhite)",
+          DEFAULT: "#F5F3EB",
         },
         ivory: {
-          DEFAULT: "var(--ivory)",
+          DEFAULT: "#FAF9F4",
         },
         cream: {
-          DEFAULT: "var(--cream)",
+          DEFAULT: "#EEECE2",
         },
         neutral: {
-          light: "var(--neutral-light)",
+          light: "#E5E3D9",
         },
         beige: {
-          DEFAULT: "var(--beige)",
+          DEFAULT: "#F5F3EB",
         },
         champagne: {
-          DEFAULT: "var(--champagne)",
-          light: "var(--champagne-light)",
+          DEFAULT: "#C5A66A",
+          light: "#DFCCA4",
         },
         charcoal: {
-          DEFAULT: "var(--charcoal)",
+          DEFAULT: "#252A27",
         },
         ink: {
-          DEFAULT: "var(--ink)",
+          DEFAULT: "#252A27",
         },
         stone: {
-          DEFAULT: "var(--stone)",
+          DEFAULT: "#59615C",
         },
         border: {
-          DEFAULT: "var(--border)",
-          subtle: "var(--border-subtle)",
+          DEFAULT: "#E5E3D9",
+          subtle: "#EEECE2",
         },
         state: {
-          success: "var(--success)",
-          warning: "var(--warning)",
-          error: "var(--error)",
+          success: "#2D6A4F",
+          warning: "#A36A00",
+          error: "#9E2A2B",
         },
       },
       fontFamily: {
