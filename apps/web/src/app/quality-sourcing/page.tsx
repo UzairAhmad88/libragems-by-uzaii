@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ShieldCheck, Scale, Microscope, CheckCircle2, Award, Clock } from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
@@ -34,7 +34,7 @@ export default function QualitySourcingPage() {
             </div>
 
             <div className="mt-6 max-w-3xl space-y-4">
-              <span className="inline-flex items-center gap-2 rounded-full border border-champagne/40 bg-forest/50 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-champagne">
+              <span className="text-xs font-bold uppercase tracking-[0.22em] text-champagne">
                 Gemological Governance &amp; Ethics
               </span>
               <h1 className="font-heading text-3xl font-extrabold leading-tight tracking-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
@@ -67,10 +67,10 @@ export default function QualitySourcingPage() {
 
             <div className="mt-10 sm:mt-12 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
               <div className="rounded-2xl border border-border bg-white p-5 sm:p-6 shadow-subtle hover:border-champagne transition-all duration-300 space-y-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-forest/10 text-forest">
-                  <Scale className="h-5 w-5" />
-                </div>
-                <h3 className="font-heading text-xl font-bold text-forest-deep">
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-champagne">
+                  Phase 01
+                </span>
+                <h3 className="font-heading text-lg sm:text-xl font-bold text-forest-deep">
                   Hydrostatic Weighing
                 </h3>
                 <p className="text-xs leading-relaxed text-stone">
@@ -80,10 +80,10 @@ export default function QualitySourcingPage() {
               </div>
 
               <div className="rounded-2xl border border-border bg-white p-5 sm:p-6 shadow-subtle hover:border-champagne transition-all duration-300 space-y-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-forest/10 text-forest">
-                  <Microscope className="h-5 w-5" />
-                </div>
-                <h3 className="font-heading text-xl font-bold text-forest-deep">
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-champagne">
+                  Phase 02
+                </span>
+                <h3 className="font-heading text-lg sm:text-xl font-bold text-forest-deep">
                   Immersion Microscopy
                 </h3>
                 <p className="text-xs leading-relaxed text-stone">
@@ -93,10 +93,10 @@ export default function QualitySourcingPage() {
               </div>
 
               <div className="rounded-2xl border border-border bg-white p-5 sm:p-6 shadow-subtle hover:border-champagne transition-all duration-300 space-y-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-forest/10 text-forest">
-                  <Award className="h-5 w-5 text-champagne" />
-                </div>
-                <h3 className="font-heading text-xl font-bold text-forest-deep">
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-champagne">
+                  Phase 03
+                </span>
+                <h3 className="font-heading text-lg sm:text-xl font-bold text-forest-deep">
                   Refractometry &amp; ADR
                 </h3>
                 <p className="text-xs leading-relaxed text-stone">
@@ -106,10 +106,10 @@ export default function QualitySourcingPage() {
               </div>
 
               <div className="rounded-2xl border border-border bg-white p-5 sm:p-6 shadow-subtle hover:border-champagne transition-all duration-300 space-y-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-forest/10 text-forest">
-                  <Clock className="h-5 w-5" />
-                </div>
-                <h3 className="font-heading text-xl font-bold text-forest-deep">
+                <span className="font-mono text-xs font-bold uppercase tracking-widest text-champagne">
+                  Phase 04
+                </span>
+                <h3 className="font-heading text-lg sm:text-xl font-bold text-forest-deep">
                   Daylight Standard (D65)
                 </h3>
                 <p className="text-xs leading-relaxed text-stone">
@@ -245,23 +245,23 @@ export default function QualitySourcingPage() {
                   facilities. For approved corporate accounts, LibraGems operates under a formal
                   commercial return policy:
                 </p>
-                <div className="space-y-3 border-t border-border pt-4 text-xs text-stone">
-                  <div className="flex items-start gap-2">
-                    <ShieldCheck className="h-4 w-4 text-forest shrink-0 mt-0.5" />
+                <div className="space-y-3.5 border-t border-border pt-4 text-xs text-stone">
+                  <div className="flex items-start gap-3">
+                    <span className="font-mono text-xs font-bold text-champagne mt-0.5">01</span>
                     <span>
                       <strong>48-Hour Inspection Window:</strong> Trade buyers have 48 hours from
                       confirmed delivery to verify parcel weight, sieve size, and inclusion distribution.
                     </span>
                   </div>
-                  <div className="flex items-start gap-2">
-                    <ShieldCheck className="h-4 w-4 text-forest shrink-0 mt-0.5" />
+                  <div className="flex items-start gap-3">
+                    <span className="font-mono text-xs font-bold text-champagne mt-0.5">02</span>
                     <span>
                       <strong>Intact Seal Protection:</strong> Parcel seals must remain untampered if a
                       full return is requested.
                     </span>
                   </div>
-                  <div className="flex items-start gap-2">
-                    <ShieldCheck className="h-4 w-4 text-forest shrink-0 mt-0.5" />
+                  <div className="flex items-start gap-3">
+                    <span className="font-mono text-xs font-bold text-champagne mt-0.5">03</span>
                     <span>
                       <strong>Insured International Transit:</strong> All export consignments are
                       cleared through Thai Customs with comprehensive transit insurance.

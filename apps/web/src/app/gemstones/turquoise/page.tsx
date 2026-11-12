@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Sparkles, AlertTriangle } from "lucide-react";
+import { AlertTriangle } from "lucide-react";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
@@ -196,7 +196,7 @@ export default function TurquoisePage() {
               <ul className="mt-4 grid gap-3 sm:grid-cols-2 text-xs text-stone">
                 {product.commercialApplications.map((app, idx) => (
                   <li key={idx} className="flex items-start gap-2.5">
-                    <Sparkles className="h-4 w-4 text-champagne shrink-0 mt-0.5" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-champagne shrink-0 mt-1.5 inline-block" />
                     <span>{app}</span>
                   </li>
                 ))}

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ShieldCheck, MapPin, UserCheck } from "lucide-react";
+import { MapPin } from "lucide-react";
 import { SiteHeader } from "@/components/layout/site-header";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
@@ -34,7 +34,7 @@ export default function AboutPage() {
             </div>
 
             <div className="mt-6 max-w-3xl space-y-4">
-              <span className="inline-flex items-center gap-2 rounded-full border border-champagne/40 bg-forest/50 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-champagne">
+              <span className="text-xs font-bold uppercase tracking-[0.22em] text-champagne">
                 Corporate Profile &amp; Trading Philosophy
               </span>
               <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-white">
@@ -87,23 +87,23 @@ export default function AboutPage() {
                 mine-direct narratives, and disguised heat treatments. LibraGems operates under a
                 foundational governance charter:
               </p>
-              <ul className="space-y-3 text-xs text-ink/80 pt-2">
-                <li className="flex items-start gap-2.5">
-                  <ShieldCheck className="h-4 w-4 shrink-0 text-forest mt-0.5" />
+              <ul className="space-y-3.5 text-xs text-ink/80 pt-2">
+                <li className="flex items-start gap-3">
+                  <span className="font-mono text-xs font-bold text-champagne mt-0.5">01</span>
                   <span>
                     <strong>Zero Mine-Direct Fiction:</strong> We never fabricate personal relationships
                     with remote artisanal miners unless verified by unbroken customs documentation.
                   </span>
                 </li>
-                <li className="flex items-start gap-2.5">
-                  <ShieldCheck className="h-4 w-4 shrink-0 text-forest mt-0.5" />
+                <li className="flex items-start gap-3">
+                  <span className="font-mono text-xs font-bold text-champagne mt-0.5">02</span>
                   <span>
                     <strong>CIBJO Treatment Codes:</strong> All enhancements, stabilizations, and heat
                     treatments are explicitly disclosed on every proforma invoice.
                   </span>
                 </li>
-                <li className="flex items-start gap-2.5">
-                  <ShieldCheck className="h-4 w-4 shrink-0 text-forest mt-0.5" />
+                <li className="flex items-start gap-3">
+                  <span className="font-mono text-xs font-bold text-champagne mt-0.5">03</span>
                   <span>
                     <strong>No Speculative Guarantees:</strong> We sell natural geological materials on
                     their authentic physical merits, never promising investment appreciation.
@@ -204,8 +204,8 @@ export default function AboutPage() {
             <div className="mt-8 sm:mt-10 grid gap-6 sm:gap-8 grid-cols-1 sm:grid-cols-2 max-w-3xl">
               <div className="rounded-2xl border border-border bg-white p-5 sm:p-6 shadow-subtle space-y-3">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-forest text-white shrink-0">
-                    <UserCheck className="h-5 w-5" />
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-forest-deep text-champagne font-heading font-bold text-sm tracking-wider shrink-0 border border-champagne/30">
+                    NK
                   </div>
                   <div>
                     <h3 className="font-heading text-lg font-bold text-forest-deep">Naeem Khan</h3>
@@ -230,8 +230,8 @@ export default function AboutPage() {
 
               <div className="rounded-2xl border border-border bg-white p-5 sm:p-6 shadow-subtle space-y-3">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-forest text-white shrink-0">
-                    <UserCheck className="h-5 w-5" />
+                  <div className="flex h-11 w-11 items-center justify-center rounded-full bg-forest-deep text-champagne font-heading font-bold text-sm tracking-wider shrink-0 border border-champagne/30">
+                    SK
                   </div>
                   <div>
                     <h3 className="font-heading text-lg font-bold text-forest-deep">Sana Khan</h3>

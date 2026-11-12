@@ -38,7 +38,7 @@ export default function GemstonesCataloguePage() {
             </div>
 
             <div className="mt-6 max-w-3xl space-y-4">
-              <span className="inline-flex items-center gap-2 rounded-full border border-champagne/40 bg-forest/50 px-3.5 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-champagne">
+              <span className="text-xs font-bold uppercase tracking-[0.22em] text-champagne">
                 Current Physical Inventory
               </span>
               <h1 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight tracking-tight text-white">
