@@ -1,85 +1,116 @@
-# Resend Provider Setup & Domain Authentication Guide
-**Project:** Libra Gems & Trading Co., Ltd.  
-**Phase:** 05 – Enquiry Communications & Transactional Automation  
-**Classification:** Operational & Developer Setup Guide  
+# Hostinger SMTP & Transactional Email Integration Guide
+**Project:** Libra Gems & Trading Co. (Bangkok, Thailand)  
+**Production URL:** https://libragems1.com/  
+**Primary Provider:** Hostinger Business SMTP (Port 465 SSL/TLS)  
 **Status:** Approved & Production-Ready  
 
 ---
 
-## 1. Prerequisites
+## 1. Primary Architecture: Hostinger SMTP
 
-Before connecting production email automation for Libra Gems, ensure you have:
-1. Access to the DNS management console for `libragems.net`.
-2. An active account at [resend.com](https://resend.com).
-3. Production environment access on Vercel or your hosting platform.
+Libra Gems uses Hostinger's high-reputation business SMTP mail servers as the primary transactional email delivery mechanism. Every customer trade enquiry automatically dispatches an immediate internal notification to `info@libragems1.com` as well as an official customer acknowledgement receipt.
 
----
-
-## 2. Domain Verification & DNS Authentication (DKIM, SPF, DMARC)
-
-To achieve maximum inbox deliverability and prevent corporate spam filtering by international jewelry buyers:
-
-1. Log into **Resend Dashboard** > **Domains** > **Add Domain**.
-2. Enter: `libragems.net` (Region: `Singapore / sin1` recommended for Southeast Asia trading desk proximity).
-3. Add the following records to your DNS provider (Cloudflare, Route 53, or Namecheap):
-
-| Record Type | Host / Name | Value / Target | Purpose |
-|---|---|---|---|
-| `TXT` | `resend._domainkey` | `p=MIGfMA0GCSqGSIb3DQE...` | DKIM Cryptographic Key |
-| `MX` | `send` | `feedback-smtp.resend.com` | Mail Routing Priority 10 |
-| `TXT` | `send` | `v=spf1 include:amazonses.com ~all` | SPF Authorized Sender |
-| `TXT` | `_dmarc` | `v=DMARC1; p=reject; rua=mailto:dmarc@libragems.net` | DMARC Enforcement |
-
-4. Click **Verify DNS Records** in Resend. DNS propagation typically resolves in 5 to 15 minutes.
+### Hostinger SMTP Specifications
+| Parameter | Setting | Notes |
+|---|---|---|
+| **SMTP Host** | `smtp.hostinger.com` | Official Hostinger Mail Cluster |
+| **SMTP Port** | `465` | Direct SSL/TLS Encrypted Socket |
+| **SMTP Security** | `SSL/TLS` (`secure = true`) | Strict certificate verification enforced |
+| **SMTP Authentication** | Required | Standard SASL PLAIN/LOGIN |
+| **SMTP Username** | `info@libragems1.com` | Official business mailbox |
+| **SMTP Password** | `SMTP_PASSWORD` | Configured in Hostinger Cloud / Node.js env |
+| **Sender Header (From)** | `Libra Gems <info@libragems1.com>` | SPF & DMARC aligned with `libragems1.com` |
+| **Reply-To Address** | `info@libragems1.com` | Directly routes customer responses to trading desk |
+| **Admin Recipients** | `info@libragems1.com` | Configurable via `ENQUIRY_NOTIFICATION_EMAILS` |
 
 ---
 
-## 3. Generating API Key & Webhook Secret
+## 2. Hostinger Node.js Environment Configuration
 
-### A. API Key
-1. Navigate to **Resend Dashboard** > **API Keys** > **Create API Key**.
-2. **Name:** `LibraGems Production Web App`.
-3. **Permissions:** `Sending access` (Domain: `libragems.net`).
-4. Copy the key (format: `re_xxxxxxxxxxxxxxxxxxxx`).
-
-### B. Webhooks Configuration
-1. Navigate to **Resend Dashboard** > **Webhooks** > **Add Webhook**.
-2. **Endpoint URL:** `https://libragems.net/api/webhooks/resend`
-3. **Events to listen:**
-   - `email.sent`
-   - `email.delivered`
-   - `email.delivery_delayed`
-   - `email.bounced`
-   - `email.complained`
-4. Save the webhook and copy the **Signing Secret** (format: `whsec_xxxxxxxxxxxx`).
-
----
-
-## 4. Environment Variables Checklist
-
-Add these variables to your production environment (`.env.production` or Vercel Environment Variables):
+Configure the following environment variables in Hostinger HPanel > **Advanced** > **Node.js Web App** > **Environment Variables**:
 
 ```bash
-# Transactional Email Credentials
-RESEND_API_KEY="re_live_xxxxxxxxxxxxxxxxxxxxxxxx"
-EMAIL_FROM="Libra Gems Trading Desk <enquiries@libragems.net>"
-EMAIL_REPLY_TO="info@libragems.net"
+# Primary Transactional Email Provider
+EMAIL_PROVIDER="smtp"
+SMTP_HOST="smtp.hostinger.com"
+SMTP_PORT="465"
+SMTP_SECURE="true"
+SMTP_USER="info@libragems1.com"
+SMTP_PASSWORD="YOUR_REAL_MAILBOX_PASSWORD"
 
-# Trading Desk Notification Inboxes (Comma-separated)
-ENQUIRY_NOTIFICATION_EMAILS="trading-desk@libragems.net,gemologist@libragems.net"
+# Sender Identity & Routing
+EMAIL_FROM="Libra Gems <info@libragems1.com>"
+EMAIL_REPLY_TO="info@libragems1.com"
+ENQUIRY_NOTIFICATION_EMAILS="info@libragems1.com"
 
-# Webhook Cryptographic Signing Secret
-RESEND_WEBHOOK_SECRET="whsec_xxxxxxxxxxxxxxxxxxxxxxxx"
+# Public Site Configuration
+NEXT_PUBLIC_SITE_URL="https://libragems1.com"
 
-# Scheduled Outbox Queue Worker Secret
-CRON_SECRET="sec_cron_random_64_character_hex_key"
+# Outbox Cron Worker Secret
+CRON_SECRET="generate_a_random_32_or_64_character_hex_key"
+
+# Database & Storage (Supabase)
+NEXT_PUBLIC_SUPABASE_URL="https://your-project.supabase.co"
+NEXT_PUBLIC_SUPABASE_ANON_KEY="your-anon-key"
+SUPABASE_SERVICE_ROLE_KEY="your-service-role-key"
+```
+
+> **Security Rule:** Never commit `.env.production` or actual mailbox passwords to GitHub. Use Hostinger's environment manager.
+
+---
+
+## 3. Provider Abstraction & Fallback Switching
+
+The email system uses the `EmailProvider` interface (`src/lib/email/provider.ts`):
+* `SmtpEmailProvider` (`src/lib/email/smtp-provider.ts`): Active by default.
+* `ResendEmailProvider` (`src/lib/email/resend-provider.ts`): Maintained as a secondary fallback.
+
+To switch providers without modifying code:
+* For Hostinger SMTP: Set `EMAIL_PROVIDER=smtp` (or leave unset).
+* For Resend API: Set `EMAIL_PROVIDER=resend` and supply `RESEND_API_KEY`.
+
+---
+
+## 4. Notification Outbox & Resilience Architecture
+
+The application ensures customer enquiries are **never lost** even if SMTP is temporarily unreachable:
+1. **Submission:** Customer submits an enquiry via `/contact` or any gemstone page.
+2. **Persistence:** Enquiry is stored in `public.enquiries`.
+3. **Queueing:** Two jobs are enqueued into `public.notification_outbox`:
+   - `customer_acknowledgement`
+   - `admin_notification`
+4. **Immediate Attempt:** Asynchronous background dispatch attempts immediate delivery.
+5. **Scheduled Retry:** If the SMTP server experiences a temporary timeout, the outbox worker retries with exponential backoff:
+   - Attempt 1: Immediate
+   - Attempt 2: 2 minutes
+   - Attempt 3: 4 minutes
+   - Attempt 4: 8 minutes
+   - Attempt 5: 16 minutes
+6. **Audit Trail:** Every delivery attempt is logged in `public.email_events` with status `'sent'` or `'failed'`.
+
+---
+
+## 5. Hostinger Scheduled Cron Setup
+
+To ensure queued and retried outbox items process automatically, configure a Cron Job in Hostinger HPanel:
+
+* **Frequency:** Every 5 minutes (`*/5 * * * *`)
+* **Command:**
+```bash
+curl -X POST "https://libragems1.com/api/cron/process-outbox" \
+  -H "Authorization: Bearer YOUR_CRON_SECRET"
 ```
 
 ---
 
-## 5. Delivery Verification Testing
+## 6. Verification & Troubleshooting Checklist
 
-1. Submit a test enquiry via the public website: `/contact`.
-2. Inspect your trading inbox (`trading-desk@libragems.net`) for the internal alert.
-3. Inspect your test customer email for the acknowledgement receipt with reference `ENQ-2026-XXXXX`.
-4. Check the Admin Dashboard at `/admin/communications/email-events` to verify the event transitioned from `sent` to `delivered`.
+| Test Item | Command / URL | Expected Outcome |
+|---|---|---|
+| **Automated Test Suite** | `npm test` | All 29 test suites (127 tests) pass |
+| **TypeScript Validation** | `npm run typecheck` | 0 errors |
+| **Contact Form Test** | `https://libragems1.com/contact` | Generates `ENQ-2026-XXXXX` |
+| **Admin Delivery** | Check `info@libragems1.com` | Internal dossier arrives within seconds |
+| **Customer Receipt** | Check submitted email | Luxury HTML receipt arrives with ref code |
+| **Admin Reply Test** | `/admin/enquiries/[id]` | Admin response sent to customer |
+| **Audit Logs** | `/admin/communications` | Shows `sent` status and event records |

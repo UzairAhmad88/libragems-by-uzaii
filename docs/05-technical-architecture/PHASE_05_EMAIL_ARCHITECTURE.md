@@ -1,25 +1,27 @@
 # Transactional Email Architecture & Provider Design
-**Project:** Libra Gems & Trading Co., Ltd.  
+**Project:** Libra Gems & Trading Co. (Bangkok, Thailand)  
 **Phase:** 05 – Enquiry Communications & Transactional Automation  
 **Classification:** Technical Architecture Specification  
+**Primary Provider:** Hostinger Business SMTP (`smtp.hostinger.com:465` SSL/TLS)  
 **Status:** Approved & Production-Ready  
 
 ---
 
 ## 1. Executive Overview
 
-Libra Gems operates an international B2B gemstone trading desk based in Silom, Bangkok. The business model is strictly enquiry-led—facilitating commercial negotiations for wholesale gemstone parcels, lapidary lots, and high-value single stones (such as Ceylon Hessonite Garnet, Sleeping Beauty/Persian Matrix Turquoise, and Afghan Rubellite).
+Libra Gems operates an international B2B gemstone trading desk based in Bangkok, Thailand. The commercial model is enquiry-led—facilitating commercial negotiations for wholesale gemstone parcels, lapidary lots, and high-value single stones (such as Ceylon Hessonite Garnet, Sleeping Beauty/Persian Matrix Turquoise, and Afghan Rubellite).
 
-Because commercial gemstone transactions often involve tens or hundreds of thousands of dollars in bilateral contracts, transactional communications must reflect:
+Because commercial gemstone transactions often involve substantial commercial commitments, transactional communications must reflect:
 1. **Unconditional Reliability:** A customer inquiry must never be lost or blocked because an email service is degraded or rate-limited.
-2. **Quiet Luxury Editorial Identity:** Emails must echo the brand's aesthetic standards (Deep Forest `#103729`, Forest Green `#174C38`, Champagne `#B99B68`, Soft Ivory `#FAF8F2`) with refined typography and official gemological sign-offs.
+2. **Quiet Luxury Editorial Identity:** Emails echo the brand's aesthetic standards (Deep Forest `#173D30`, Champagne Gold `#C5A66A`, Soft Parchment `#F5F3EB`) with refined typography and official gemological sign-offs.
 3. **Enterprise Defense & Anti-Spoofing:** Robust protection against SMTP header injection, XSS payload execution, address forgery, and credential exposure.
+4. **Direct Delivery to Trading Desk:** Every valid website enquiry is automatically dispatched to `info@libragems1.com`, and customers receive automated branded receipts.
 
 ---
 
 ## 2. Universal Email Provider Abstraction
 
-To decouple business workflows from third-party vendor APIs (e.g., Resend, AWS SES, Postmark), all transactional dispatch is routed through a vendor-agnostic abstraction defined in `apps/web/src/lib/email/provider.ts`:
+All transactional dispatch is routed through a vendor-agnostic abstraction defined in `apps/web/src/lib/email/provider.ts`:
 
 ```typescript
 export interface SendEmailOptions {
@@ -59,46 +61,58 @@ export interface EmailProvider {
 }
 ```
 
-### Benefits:
-- **Zero Lock-In:** The application can seamlessly switch or fail over to AWS SES or private SMTP without modifying intake routes or admin response composers.
-- **Deterministic Mocking:** Test suites simulate provider dispatches deterministically without executing live network requests.
-- **Graceful Local Simulation:** In developer environments or offline review without `RESEND_API_KEY`, the provider logs transactions and returns `{ success: false, isSimulated: true }`, ensuring local workflows continue without crashing.
-
 ---
 
-## 3. Provider Implementation: Resend SDK v6.38.0
+## 3. Provider Implementations
 
-The production provider is implemented in `apps/web/src/lib/email/resend-provider.ts` using the official `resend@6.38.0` SDK.
+### A. Primary Provider: Hostinger SMTP (`SmtpEmailProvider`)
+Located in `apps/web/src/lib/email/smtp-provider.ts` using `nodemailer`:
+* **Host:** `smtp.hostinger.com`
+* **Port:** `465` (SSL/TLS direct socket)
+* **Authentication:** Mandatory SASL with `info@libragems1.com`
+* **Security:** `tls.rejectUnauthorized = true` (strict certificate verification enforced; never disabled)
+* **Timeouts:** `connectionTimeout: 10000`, `greetingTimeout: 10000`, `socketTimeout: 15000`
+* **Address Normalization:** All headers sanitized with `sanitizeHeader()` to prevent CRLF injection.
+* **Error Sanitization:** Structured error logging without leaking passwords or sensitive tokens.
 
-### Key Operational Characteristics:
-- **Lazy Initialization:** Only instantiates the Resend client if `RESEND_API_KEY` is non-empty and valid.
-- **Native Webhook Signature Verification:** Uses `client.webhooks.verify(...)` powered by standard webhooks, verifying Svix cryptographic signatures (`svix-id`, `svix-timestamp`, `svix-signature`).
-- **Tagging & Metadata:** Every dispatch includes category tags (`customer_acknowledgement`, `admin_notification`, `admin_response`, `status_update`) and the commercial dossier tracking reference (e.g., `ENQ-2026-XXXXX`).
+### B. Secondary / Fallback Provider: Resend (`ResendEmailProvider`)
+Located in `apps/web/src/lib/email/resend-provider.ts`:
+* Used when `EMAIL_PROVIDER=resend` is set.
+* Supports webhook signature verification for delivery lifecycle tracking.
+
+### C. Provider Factory (`provider-factory.ts`)
+Resolves the active provider dynamically:
+```typescript
+export function getActiveEmailProvider(): EmailProvider {
+  const providerType = getEmailProviderType();
+  if (providerType === "resend") return new ResendEmailProvider();
+  return defaultSmtpProvider;
+}
+```
 
 ---
 
 ## 4. Email Security & Anti-Abuse Controls
 
 Implemented in `apps/web/src/lib/email/email-validation.ts`:
-
 1. **SMTP Header Injection Defense (`sanitizeHeader`):**
    - Strips `\r`, `\n`, and `\t` from dynamic headers (subject, to, from, reply-to).
-   - Prevents attackers from injecting arbitrary headers (`Bcc:`, `Cc:`, `Content-Type:`) into the mail transport agent.
+   - Prevents attackers from injecting arbitrary headers (`Bcc:`, `Cc:`) into the mail transport agent.
 2. **HTML Entity Escaping (`escapeHtml`):**
-   - Sanitizes user input fields (`customerName`, `gemstoneInterest`, `companyName`, `message`) converting `&`, `<`, `>`, `"`, and `'` to safe HTML entities.
+   - Sanitizes user input fields (`customerName`, `gemstoneInterest`, `companyName`, `message`).
    - Prevents malicious HTML/JavaScript execution in webmail clients.
 3. **Strict RFC Address Syntax (`isValidEmail`):**
    - Validates email strings against RFC-compliant regex patterns and length limits (max 254 chars).
    - Suppresses invalid email addresses before making external network calls, preventing bounce reputation decay.
-4. **Credential Isolation:**
-   - Secret keys (`RESEND_API_KEY`, `RESEND_WEBHOOK_SECRET`, `CRON_SECRET`) are never included in `NEXT_PUBLIC_` variables and are never bundled into client-side code.
+4. **Zero Client-Side Secret Leakage:**
+   - Secret keys (`SMTP_PASSWORD`, `RESEND_API_KEY`, `CRON_SECRET`) are never included in `NEXT_PUBLIC_` variables.
 
 ---
 
-## 5. Luxury Editorial Email Template System
+## 5. Notification Outbox & Fault Tolerance
 
-All email communications follow the LibraGems design system:
-- **Wrapper Layout (`layout.ts`):** 600px max-width container, table-based responsive rendering, Soft Ivory `#FAF8F2` background, Warm Beige border `#DDD8CC`.
-- **Top Brand Banner:** Deep Forest `#103729` background with Champagne `#B99B68` subheaders and tracking reference badges.
-- **Official Sign-off:** Bangkok Gemological Trading Desk signature with CIBJO ethical disclosure reminders.
-- **Dual Format:** Every email generates both rich inline-styled HTML and a clean, legible plain-text counterpart.
+1. **Enquiry Persistence:** Enquiries are stored in Supabase before email dispatch.
+2. **Outbox Enqueueing:** Customer receipt and admin notification jobs enter `public.notification_outbox`.
+3. **Optimistic Locking:** Outbox processor locks jobs with `status = 'processing'`.
+4. **Exponential Backoff:** Retries failed jobs up to 5 times (2m, 4m, 8m, 16m).
+5. **Event Logging:** Every dispatch attempt is logged to `public.email_events` with status `'sent'`, `'pending'`, or `'failed'`.

@@ -1,5 +1,5 @@
 import { EmailProvider } from "./provider";
-import { SmtpEmailProvider, defaultSmtpProvider } from "./smtp-provider";
+import { defaultSmtpProvider } from "./smtp-provider";
 import { ResendEmailProvider } from "./resend-provider";
 import { getEmailProviderType } from "./email-config";
 

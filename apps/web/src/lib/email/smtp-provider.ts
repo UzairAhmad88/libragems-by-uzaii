@@ -9,7 +9,6 @@ import {
 import {
   SmtpConfig,
   getSmtpConfig,
-  isSmtpConfigured,
   getDefaultFromEmail,
   getDefaultReplyToEmail,
 } from "./email-config";
@@ -175,7 +174,11 @@ export class SmtpEmailProvider implements EmailProvider {
   /**
    * SMTP does not support inbound webhooks (satisfies EmailProvider interface).
    */
-  async verifyWebhook(): Promise<WebhookVerificationResult> {
+  async verifyWebhook(
+    _payload?: string,
+    _headers?: Record<string, string>,
+    _secret?: string
+  ): Promise<WebhookVerificationResult> {
     return {
       isValid: false,
       error: "Webhooks are not supported for standard SMTP delivery.",
