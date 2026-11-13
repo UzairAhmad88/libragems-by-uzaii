@@ -23,6 +23,8 @@ const enquirySchema = z.object({
   websiteUrlTrap: z.string().optional().default(""), // Honeypot field
 });
 
+export const dynamic = "force-dynamic";
+
 // In-memory sliding window fallback for environments without an active database
 const inMemoryRateLimit = new Map<string, number[]>();
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000; // 10 minutes
@@ -40,10 +42,19 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const json = await request.json();
+    let json: Record<string, unknown>;
+    try {
+      json = await request.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, error: "Malformed JSON in request body." },
+        { status: 400 }
+      );
+    }
 
     // 1. Honeypot check: If the hidden honeypot is filled, silently return simulated success
-    if (json.websiteUrlTrap && json.websiteUrlTrap.trim().length > 0) {
+    const trap = typeof json?.websiteUrlTrap === "string" ? json.websiteUrlTrap.trim() : "";
+    if (trap.length > 0) {
       return NextResponse.json({
         success: true,
         referenceNumber: `ENQ-${new Date().getFullYear()}-00000`,
@@ -67,7 +78,7 @@ export async function POST(request: NextRequest) {
 
     // 3. Compute client IP hash for audit trail and rate limiting
     const forwardedFor = request.headers.get("x-forwarded-for");
-    const clientIp = forwardedFor ? forwardedFor.split(",")[0].trim() : "127.0.0.1";
+    const clientIp = forwardedFor ? (forwardedFor.split(",")[0] ?? "").trim() || "127.0.0.1" : "127.0.0.1";
     const ipHash = crypto.createHash("sha256").update(clientIp + "libragems-salt").digest("hex").slice(0, 16);
 
     // 4. Rate Limiting Enforcement (5 submissions per 10 minutes)

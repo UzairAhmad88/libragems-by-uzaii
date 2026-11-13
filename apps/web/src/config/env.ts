@@ -90,18 +90,18 @@ const envSchema = z.object({
     .string()
     .optional()
     .default("smtp")
-    .transform((v) => (v && v.trim().toLowerCase() === "resend" ? "resend" : "smtp")),
+    .transform((v) => (v && (v ?? "").trim().toLowerCase() === "resend" ? "resend" : "smtp")),
   SMTP_HOST: z
     .string()
     .optional()
     .default("smtp.hostinger.com")
-    .transform((v) => (v ? v.trim() : "smtp.hostinger.com")),
+    .transform((v) => ((v ?? "").trim() || "smtp.hostinger.com")),
   SMTP_PORT: z
     .union([z.string(), z.number()])
     .optional()
     .default(465)
     .transform((val) => {
-      const parsed = typeof val === "number" ? val : parseInt(String(val).trim(), 10);
+      const parsed = typeof val === "number" ? val : parseInt(String(val ?? "").trim(), 10);
       return isNaN(parsed) || parsed <= 0 || parsed > 65535 ? 465 : parsed;
     }),
   SMTP_SECURE: z
@@ -111,7 +111,7 @@ const envSchema = z.object({
     .transform((val) => {
       if (typeof val === "boolean") return val;
       if (typeof val === "string") {
-        const lower = val.trim().toLowerCase();
+        const lower = (val ?? "").trim().toLowerCase();
         if (lower === "false" || lower === "0") return false;
       }
       return true;
@@ -120,66 +120,66 @@ const envSchema = z.object({
     .string()
     .optional()
     .default("info@libragems1.com")
-    .transform((v) => (v ? v.trim() : "info@libragems1.com")),
+    .transform((v) => ((v ?? "").trim() || "info@libragems1.com")),
   SMTP_PASSWORD: z
     .string()
     .optional()
     .default("")
-    .transform((v) => (v ? v.trim() : "")),
+    .transform((v) => (v ?? "").trim()),
   RESEND_API_KEY: z
     .string()
     .optional()
     .default("")
-    .transform((v) => (v ? v.trim() : "")),
+    .transform((v) => (v ?? "").trim()),
   EMAIL_FROM: z
     .string()
     .optional()
     .default("Libra Gems <info@libragems1.com>")
     .transform((v) =>
-      v && v.trim() !== "" ? v.trim() : "Libra Gems <info@libragems1.com>"
+      v && (v ?? "").trim() !== "" ? (v ?? "").trim() : "Libra Gems <info@libragems1.com>"
     ),
   EMAIL_REPLY_TO: z
     .string()
     .optional()
     .default("info@libragems1.com")
-    .transform((v) => (v && v.trim() !== "" ? v.trim() : "info@libragems1.com")),
+    .transform((v) => (v && (v ?? "").trim() !== "" ? (v ?? "").trim() : "info@libragems1.com")),
   ENQUIRY_NOTIFICATION_EMAILS: z
     .string()
     .optional()
     .default("info@libragems1.com")
-    .transform((v) => (v && v.trim() !== "" ? v.trim() : "info@libragems1.com")),
+    .transform((v) => (v && (v ?? "").trim() !== "" ? (v ?? "").trim() : "info@libragems1.com")),
   RESEND_WEBHOOK_SECRET: z
     .string()
     .optional()
     .default("")
-    .transform((v) => (v ? v.trim() : "")),
+    .transform((v) => (v ?? "").trim()),
   CRON_SECRET: z
     .string()
     .optional()
     .default("")
-    .transform((v) => (v ? v.trim() : "")),
+    .transform((v) => (v ?? "").trim()),
   ENQUIRY_TO_EMAIL: z
     .string()
     .optional()
     .default("")
-    .transform((v) => (v ? v.trim() : "")),
+    .transform((v) => (v ?? "").trim()),
   ENQUIRY_FROM_EMAIL: z
     .string()
     .optional()
     .default("")
-    .transform((v) => (v ? v.trim() : "")),
+    .transform((v) => (v ?? "").trim()),
 
   // WhatsApp Business Numbers (Unverified in Phase 02; sanitized in Phase 05)
   WHATSAPP_PRIMARY_NUMBER: z
     .string()
     .optional()
     .default("")
-    .transform((v) => (v ? v.trim() : "")),
+    .transform((v) => (v ?? "").trim()),
   WHATSAPP_SECONDARY_NUMBER: z
     .string()
     .optional()
     .default("")
-    .transform((v) => (v ? v.trim() : "")),
+    .transform((v) => (v ?? "").trim()),
 
   // Node Environment
   NODE_ENV: z

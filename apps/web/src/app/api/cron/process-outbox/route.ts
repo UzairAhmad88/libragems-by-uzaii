@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { processOutbox } from "@/lib/email/outbox-processor";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: NextRequest) {
   return handleOutboxCron(request);
 }
@@ -10,7 +12,7 @@ export async function POST(request: NextRequest) {
 }
 
 async function handleOutboxCron(request: NextRequest) {
-  const cronSecret = process.env.CRON_SECRET?.trim();
+  const cronSecret = (process.env.CRON_SECRET ?? "").trim();
 
   // 1. Mandatory server secret validation (fails closed)
   if (!cronSecret) {

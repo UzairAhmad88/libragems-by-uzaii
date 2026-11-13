@@ -142,6 +142,106 @@ describe("Admin Enquiries API RBAC & Security", () => {
       const data = await response.json();
       expect(data.success).toBe(true);
     });
+
+    it("rejects empty payload with 400 Bad Request", async () => {
+      vi.spyOn(sessionModule, "getCurrentAdmin").mockResolvedValue({
+        id: "em-user-id",
+        email: "em@libragems.internal",
+        fullName: "Enquiry Manager",
+        role: "enquiry_manager",
+        isActive: true,
+      });
+
+      const request = new NextRequest("http://localhost:3000/api/admin/enquiries/test-id/status", {
+        method: "POST",
+        body: JSON.stringify({}),
+      });
+
+      const response = await handleStatus(request, {
+        params: Promise.resolve({ id: "test-id" }),
+      });
+
+      expect(response.status).toBe(400);
+      const data = await response.json();
+      expect(data.success).toBe(false);
+      expect(data.error).toContain("At least one field to update");
+    });
+
+    it("rejects invalid status value with 400 Bad Request", async () => {
+      vi.spyOn(sessionModule, "getCurrentAdmin").mockResolvedValue({
+        id: "em-user-id",
+        email: "em@libragems.internal",
+        fullName: "Enquiry Manager",
+        role: "enquiry_manager",
+        isActive: true,
+      });
+
+      const request = new NextRequest("http://localhost:3000/api/admin/enquiries/test-id/status", {
+        method: "POST",
+        body: JSON.stringify({ status: "bogus_status" }),
+      });
+
+      const response = await handleStatus(request, {
+        params: Promise.resolve({ id: "test-id" }),
+      });
+
+      expect(response.status).toBe(400);
+      const data = await response.json();
+      expect(data.success).toBe(false);
+      expect(data.error).toContain("Invalid status");
+    });
+
+    it("rejects invalid priority value with 400 Bad Request", async () => {
+      vi.spyOn(sessionModule, "getCurrentAdmin").mockResolvedValue({
+        id: "em-user-id",
+        email: "em@libragems.internal",
+        fullName: "Enquiry Manager",
+        role: "enquiry_manager",
+        isActive: true,
+      });
+
+      const request = new NextRequest("http://localhost:3000/api/admin/enquiries/test-id/status", {
+        method: "POST",
+        body: JSON.stringify({ priority: "super_high" }),
+      });
+
+      const response = await handleStatus(request, {
+        params: Promise.resolve({ id: "test-id" }),
+      });
+
+      expect(response.status).toBe(400);
+      const data = await response.json();
+      expect(data.success).toBe(false);
+      expect(data.error).toContain("Invalid priority");
+    });
+
+    it("handles null or missing env variables safely without throwing .trim errors", async () => {
+      const origKey = process.env.RESEND_API_KEY;
+      delete process.env.RESEND_API_KEY;
+
+      vi.spyOn(sessionModule, "getCurrentAdmin").mockResolvedValue({
+        id: "em-user-id",
+        email: "em@libragems.internal",
+        fullName: "Enquiry Manager",
+        role: "enquiry_manager",
+        isActive: true,
+      });
+
+      const request = new NextRequest("http://localhost:3000/api/admin/enquiries/test-id/status", {
+        method: "POST",
+        body: JSON.stringify({ status: "qualified" }),
+      });
+
+      const response = await handleStatus(request, {
+        params: Promise.resolve({ id: "test-id" }),
+      });
+
+      expect(response.status).toBe(200);
+
+      if (origKey !== undefined) {
+        process.env.RESEND_API_KEY = origKey;
+      }
+    });
   });
 });
 

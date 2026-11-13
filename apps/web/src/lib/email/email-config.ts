@@ -21,7 +21,7 @@ export interface SmtpConfig {
  * Defaults to 'smtp' (Hostinger SMTP).
  */
 export function getEmailProviderType(): EmailProviderType {
-  const explicit = process.env.EMAIL_PROVIDER?.trim().toLowerCase();
+  const explicit = (process.env.EMAIL_PROVIDER ?? "").trim().toLowerCase();
   if (explicit === "resend") return "resend";
   if (explicit === "simulated") return "simulated";
   return "smtp";
@@ -31,19 +31,19 @@ export function getEmailProviderType(): EmailProviderType {
  * Returns structured Hostinger / Standard SMTP connection settings.
  */
 export function getSmtpConfig(): SmtpConfig {
-  const host = process.env.SMTP_HOST?.trim() || "smtp.hostinger.com";
-  const rawPort = process.env.SMTP_PORT?.trim();
+  const host = (process.env.SMTP_HOST ?? "").trim() || "smtp.hostinger.com";
+  const rawPort = (process.env.SMTP_PORT ?? "").trim();
   const parsedPort = rawPort ? parseInt(rawPort, 10) : 465;
   const port = isNaN(parsedPort) || parsedPort <= 0 || parsedPort > 65535 ? 465 : parsedPort;
 
-  const rawSecure = process.env.SMTP_SECURE?.trim().toLowerCase();
+  const rawSecure = (process.env.SMTP_SECURE ?? "").trim().toLowerCase();
   // Port 465 is SSL/TLS by default; port 587 is STARTTLS (secure = false)
-  const secure = rawSecure !== undefined && rawSecure !== ""
+  const secure = rawSecure !== ""
     ? rawSecure !== "false" && rawSecure !== "0"
     : port === 465;
 
-  const user = process.env.SMTP_USER?.trim() || "info@libragems1.com";
-  const pass = process.env.SMTP_PASSWORD?.trim() || "";
+  const user = (process.env.SMTP_USER ?? "").trim() || "info@libragems1.com";
+  const pass = (process.env.SMTP_PASSWORD ?? "").trim();
 
   return {
     host,
@@ -78,8 +78,8 @@ export function isSmtpConfigured(): boolean {
  * Verifies if Resend credentials are provided.
  */
 export function isResendConfigured(): boolean {
-  const apiKey = process.env.RESEND_API_KEY;
-  return Boolean(apiKey && apiKey.trim().length > 0 && !apiKey.includes("your-api-key"));
+  const apiKey = (process.env.RESEND_API_KEY ?? "").trim();
+  return Boolean(apiKey.length > 0 && !apiKey.includes("your-api-key"));
 }
 
 /**
@@ -98,10 +98,8 @@ export function isEmailConfigured(): boolean {
  * Default: Libra Gems <info@libragems1.com>
  */
 export function getDefaultFromEmail(): string {
-  return (
-    process.env.EMAIL_FROM?.trim() ||
-    "Libra Gems <info@libragems1.com>"
-  );
+  const from = (process.env.EMAIL_FROM ?? "").trim();
+  return from || "Libra Gems <info@libragems1.com>";
 }
 
 /**
@@ -109,7 +107,8 @@ export function getDefaultFromEmail(): string {
  * Default: info@libragems1.com
  */
 export function getDefaultReplyToEmail(): string {
-  return process.env.EMAIL_REPLY_TO?.trim() || "info@libragems1.com";
+  const replyTo = (process.env.EMAIL_REPLY_TO ?? "").trim();
+  return replyTo || "info@libragems1.com";
 }
 
 /**
@@ -118,14 +117,14 @@ export function getDefaultReplyToEmail(): string {
  */
 export function getAdminNotificationRecipients(): string[] {
   const raw =
-    process.env.ENQUIRY_NOTIFICATION_EMAILS?.trim() ||
-    process.env.ENQUIRY_TO_EMAIL?.trim() ||
+    (process.env.ENQUIRY_NOTIFICATION_EMAILS ?? "").trim() ||
+    (process.env.ENQUIRY_TO_EMAIL ?? "").trim() ||
     "info@libragems1.com";
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const recipients = raw
     .split(",")
-    .map((e) => e.trim())
+    .map((e) => (e ?? "").trim())
     .filter((e) => e.length > 0 && emailRegex.test(e));
 
   return recipients.length > 0 ? recipients : ["info@libragems1.com"];
@@ -135,6 +134,6 @@ export function getAdminNotificationRecipients(): string[] {
  * Webhook cryptographic secret for Resend inbound notifications (if enabled).
  */
 export function getWebhookSecret(): string | null {
-  const secret = process.env.RESEND_WEBHOOK_SECRET?.trim();
-  return secret && secret.length > 0 ? secret : null;
+  const secret = (process.env.RESEND_WEBHOOK_SECRET ?? "").trim();
+  return secret.length > 0 ? secret : null;
 }

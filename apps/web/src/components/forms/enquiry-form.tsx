@@ -52,12 +52,14 @@ export function EnquiryForm({ initialGemstone = "", className }: EnquiryFormProp
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
 
-    if (!formData.fullName.trim() || formData.fullName.trim().length < 2) {
+    const name = (formData.fullName ?? "").trim();
+    if (!name || name.length < 2) {
       newErrors.fullName = "Please enter your full name (minimum 2 characters).";
     }
 
+    const email = (formData.businessEmail ?? "").trim();
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!formData.businessEmail.trim() || !emailRegex.test(formData.businessEmail.trim())) {
+    if (!email || !emailRegex.test(email)) {
       newErrors.businessEmail = "Please enter a valid commercial email address.";
     }
 
@@ -65,7 +67,8 @@ export function EnquiryForm({ initialGemstone = "", className }: EnquiryFormProp
       newErrors.gemstoneInterest = "Please select a material of interest.";
     }
 
-    if (!formData.message.trim() || formData.message.trim().length < 10) {
+    const msg = (formData.message ?? "").trim();
+    if (!msg || msg.length < 10) {
       newErrors.message = "Please include a specific trade requirement (minimum 10 characters).";
     }
 

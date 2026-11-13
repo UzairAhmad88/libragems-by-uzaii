@@ -5,7 +5,7 @@ import {
   EmailResult,
   WebhookVerificationResult,
 } from "./provider";
-import { isEmailConfigured, getDefaultFromEmail, getDefaultReplyToEmail } from "./email-config";
+import { getDefaultFromEmail, getDefaultReplyToEmail } from "./email-config";
 import { sanitizeHeader } from "./email-validation";
 
 export class ResendEmailProvider implements EmailProvider {
@@ -13,13 +13,15 @@ export class ResendEmailProvider implements EmailProvider {
   private client: Resend | null = null;
 
   constructor() {
-    if (isEmailConfigured()) {
-      this.client = new Resend(process.env.RESEND_API_KEY!.trim());
+    const apiKey = (process.env.RESEND_API_KEY ?? "").trim();
+    if (apiKey && !apiKey.includes("your-api-key")) {
+      this.client = new Resend(apiKey);
     }
   }
 
   async send(options: SendEmailOptions): Promise<EmailResult> {
-    if (!this.client || !isEmailConfigured()) {
+    const apiKey = (process.env.RESEND_API_KEY ?? "").trim();
+    if (!this.client || !apiKey || apiKey.includes("your-api-key")) {
       return {
         success: false,
         error: "Resend provider is not configured in this environment (missing RESEND_API_KEY).",

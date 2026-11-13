@@ -5,12 +5,22 @@ import { createAdminClient } from "@/lib/supabase/admin";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 import { defaultEmailService } from "@/lib/email/email-service";
 
+export const dynamic = "force-dynamic";
+
 export async function POST(
   request: NextRequest,
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const { id } = await params;
+    const safeId = (id ?? "").trim();
+    if (!safeId) {
+      return NextResponse.json(
+        { success: false, error: "Enquiry ID or reference number is required." },
+        { status: 400 }
+      );
+    }
+
     const admin = await getCurrentAdmin();
 
     // 1. Mandatory authentication check
@@ -32,8 +42,17 @@ export async function POST(
       );
     }
 
-    const json = await request.json();
-    const responseMessage = json.responseMessage?.trim();
+    let json: Record<string, unknown>;
+    try {
+      json = await request.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, error: "Malformed JSON in request body." },
+        { status: 400 }
+      );
+    }
+
+    const responseMessage = (typeof json?.responseMessage === "string" ? json.responseMessage : "").trim();
 
     if (!responseMessage || responseMessage.length < 10) {
       return NextResponse.json(
@@ -45,7 +64,8 @@ export async function POST(
       );
     }
 
-    const adminName = admin?.fullName || json.adminName || "Trading Desk";
+    const adminName =
+      admin?.fullName || (typeof json?.adminName === "string" ? json.adminName : "") || "Trading Desk";
     const adminTitle = "Bangkok Gemological Trading Desk";
 
     let enquiryData: {
@@ -54,7 +74,7 @@ export async function POST(
       customer_name: string;
       email: string;
       gemstone_interest: string;
-    } | null = null;
+    };
 
     if (isSupabaseConfigured()) {
       const adminClient = createAdminClient();
@@ -62,7 +82,7 @@ export async function POST(
         const { data: dbEnq, error: fetchErr } = await adminClient
           .from("enquiries")
           .select("*")
-          .or(`id.eq.${id},reference_number.eq.${id}`)
+          .or(`id.eq.${safeId},reference_number.eq.${safeId}`)
           .single();
 
         if (fetchErr || !dbEnq) {
@@ -73,17 +93,26 @@ export async function POST(
         }
 
         enquiryData = dbEnq;
+      } else {
+        enquiryData = {
+          id: safeId,
+          reference_number: safeId.startsWith("ENQ-") ? safeId : `ENQ-2026-${safeId}`,
+          customer_name: (typeof json?.customerName === "string" ? json.customerName : "") || "Julian Vance",
+          email: (typeof json?.customerEmail === "string" ? json.customerEmail : "") || "j.vance@vancegems.co.uk",
+          gemstone_interest:
+            (typeof json?.gemstoneInterest === "string" ? json.gemstoneInterest : "") ||
+            "Commercial-Quality Rough Hessonite Garnet",
+        };
       }
-    }
-
-    if (!enquiryData) {
-      // Demo / fallback mode
+    } else {
       enquiryData = {
-        id,
-        reference_number: id.startsWith("ENQ-") ? id : `ENQ-2026-${id}`,
-        customer_name: json.customerName || "Julian Vance",
-        email: json.customerEmail || "j.vance@vancegems.co.uk",
-        gemstone_interest: json.gemstoneInterest || "Commercial-Quality Rough Hessonite Garnet",
+        id: safeId,
+        reference_number: safeId.startsWith("ENQ-") ? safeId : `ENQ-2026-${safeId}`,
+        customer_name: (typeof json?.customerName === "string" ? json.customerName : "") || "Julian Vance",
+        email: (typeof json?.customerEmail === "string" ? json.customerEmail : "") || "j.vance@vancegems.co.uk",
+        gemstone_interest:
+          (typeof json?.gemstoneInterest === "string" ? json.gemstoneInterest : "") ||
+          "Commercial-Quality Rough Hessonite Garnet",
       };
     }
 

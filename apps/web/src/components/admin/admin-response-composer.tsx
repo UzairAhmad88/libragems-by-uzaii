@@ -73,7 +73,8 @@ export function AdminResponseComposer({
   };
 
   const handleSend = async () => {
-    if (!message || message.trim().length < 10) {
+    const trimmedMessage = (message ?? "").trim();
+    if (trimmedMessage.length < 10) {
       setResultStatus({
         success: false,
         error: "Response message must contain at least 10 characters.",
@@ -89,7 +90,7 @@ export function AdminResponseComposer({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          responseMessage: message.trim(),
+          responseMessage: trimmedMessage,
           customerName,
           customerEmail,
           gemstoneInterest,
@@ -316,7 +317,7 @@ export function AdminResponseComposer({
 
           <button
             type="button"
-            disabled={isSubmitting || !message.trim()}
+            disabled={isSubmitting || !(message ?? "").trim()}
             onClick={handleSend}
             className="inline-flex items-center gap-2 rounded-full bg-forest px-6 py-2.5 text-xs font-semibold uppercase tracking-wider text-white shadow-sm hover:bg-forest-deep transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >

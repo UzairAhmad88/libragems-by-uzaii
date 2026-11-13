@@ -9,7 +9,7 @@ const DEFAULT_PRODUCTION_URL = "https://libragems1.com";
  * Normalizes and returns the base site URL without trailing slash.
  */
 export function getSiteUrl(): string {
-  const envUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  const envUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "").trim();
 
   if (!envUrl) {
     return DEFAULT_PRODUCTION_URL;
@@ -37,7 +37,7 @@ export function getSiteUrl(): string {
 export function getCanonicalUrl(path = ""): string {
   const baseUrl = getSiteUrl();
 
-  if (!path || path === "/" || path.trim() === "") {
+  if (!path || typeof path !== "string" || path === "/" || path.trim() === "") {
     return baseUrl;
   }
 
