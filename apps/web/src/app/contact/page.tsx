@@ -88,10 +88,10 @@ export default function ContactPage() {
                       <div>
                         <p className="font-semibold text-forest-deep">Corporate Email</p>
                         <a
-                          href="mailto:info@libragems.net"
+                          href="mailto:info@libragems.com"
                           className="text-forest font-medium hover:underline"
                         >
-                          info@libragems.net
+                          info@libragems.com
                         </a>
                         <p className="text-[11px] text-stone/75">Monitored during trading hours</p>
                       </div>
