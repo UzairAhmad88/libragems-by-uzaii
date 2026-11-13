@@ -111,3 +111,4 @@ git checkout <previous-commit-sha>
 npm run build
 ```
 3. Click **Restart** in Hostinger HPanel.
+

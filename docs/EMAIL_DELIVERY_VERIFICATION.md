@@ -76,3 +76,4 @@ This document defines the 7 mandatory verification test procedures for verifying
    - SPF: `v=spf1 include:_spf.hostinger.com ~all` -> **PASS**
    - DKIM: `hostingermail-a._domainkey.libragems1.com` -> **PASS**
    - DMARC: `v=DMARC1; p=quarantine;` -> **PASS**
+
