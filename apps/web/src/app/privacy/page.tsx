@@ -67,7 +67,7 @@ export default function PrivacyPolicyPage() {
               <p className="text-stone">
                 This policy outlines how <strong>Libra Gems &amp; Trading Co., Ltd.</strong> (operating
                 from 1394 Charoen Krung Road, Bang Rak, Bangkok 10500, Thailand) collects, processes, and
-                protects commercial data transmitted through this website platform (libragems.net).
+                protects commercial data transmitted through this website platform (libragems1.com).
               </p>
               <p className="text-stone">
                 LibraGems operates strictly as an international Business-to-Business (B2B) gemstone
@@ -130,8 +130,8 @@ export default function PrivacyPolicyPage() {
                 (PDPA). Trade contacts retain the right to request access to their stored communication
                 history, request data rectification, or request complete erasure from active quotation
                 records by contacting our data desk at{" "}
-                <a href="mailto:info@libragems.net" className="text-forest underline">
-                  info@libragems.net
+                <a href="mailto:info@libragems1.com" className="text-forest underline">
+                  info@libragems1.com
                 </a>
                 .
               </p>
@@ -149,7 +149,7 @@ export default function PrivacyPolicyPage() {
                 <br />
                 1394 Charoen Krung Road, Bang Rak, Bangkok 10500, Thailand
                 <br />
-                Email: info@libragems.net
+                Email: info@libragems1.com
               </p>
             </section>
           </div>

@@ -24,7 +24,7 @@ const DEMO_EMAIL_EVENTS: EmailEventItem[] = [
     provider: "resend",
     provider_message_id: "res_notif_991824",
     email_type: "admin_notification",
-    recipient: "trading-desk@libragems.net",
+    recipient: "info@libragems1.com",
     subject: "[New Trade Enquiry] ENQ-2026-10001 – Commercial Hessonite",
     status: "delivered",
     sent_at: new Date(Date.now() - 3600000 * 2).toISOString(),

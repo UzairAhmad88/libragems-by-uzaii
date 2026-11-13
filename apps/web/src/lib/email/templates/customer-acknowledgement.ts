@@ -104,7 +104,7 @@ Sincerely,
 Trading Desk & Commercial Relations
 Libra Gems & Trading Co., Ltd.
 Bangkok, Thailand
-https://libragems.net
+https://libragems1.com
   `.trim();
 
   return { subject, html, text };

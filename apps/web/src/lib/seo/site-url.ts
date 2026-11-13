@@ -31,8 +31,8 @@ export function getSiteUrl(): string {
  * Guarantees consistent trailing-slash policy (no trailing slash except root).
  *
  * @example
- * getCanonicalUrl("/gemstones/hessonite-garnet") // "https://libragems.net/gemstones/hessonite-garnet"
- * getCanonicalUrl("/") // "https://libragems.net"
+ * getCanonicalUrl("/gemstones/hessonite-garnet") // "https://libragems1.com/gemstones/hessonite-garnet"
+ * getCanonicalUrl("/") // "https://libragems1.com"
  */
 export function getCanonicalUrl(path = ""): string {
   const baseUrl = getSiteUrl();

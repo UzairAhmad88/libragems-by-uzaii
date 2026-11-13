@@ -79,13 +79,13 @@ export function WhatsAppCta({ productTitle, lotReference, className }: WhatsAppC
                   <ArrowRight className="h-3.5 w-3.5" />
                 </Link>
                 <a
-                  href={`mailto:info@libragems.net?subject=${encodeURIComponent(
+                  href={`mailto:info@libragems1.com?subject=${encodeURIComponent(
                     `Enquiry: ${productTitle} (${lotReference})`
                   )}`}
                   className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-border px-3.5 py-2 text-xs font-medium text-forest-deep hover:bg-beige transition-colors"
                 >
                   <Mail className="h-3.5 w-3.5 text-forest" />
-                  <span>Email: info@libragems.net</span>
+                  <span>Email: info@libragems1.com</span>
                 </a>
               </div>
             </div>

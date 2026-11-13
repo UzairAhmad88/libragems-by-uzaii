@@ -52,7 +52,7 @@ export function renderEnquiryResponseEmail(data: EnquiryResponseData) {
         Libra Gems &amp; Trading Co., Ltd. • Bangkok, Thailand
       </p>
       <p style="margin: 0; font-size: 11px; color: #6E756F;">
-        Direct Inquiries: <a href="mailto:info@libragems.net" style="color: #174C38;">info@libragems.net</a> &bull; <a href="https://libragems.net" style="color: #174C38;">libragems.net</a>
+        Direct Inquiries: <a href="mailto:info@libragems1.com" style="color: #173D30;">info@libragems1.com</a> &bull; <a href="https://libragems1.com" style="color: #173D30;">libragems1.com</a>
       </p>
     </div>
   `;
@@ -79,7 +79,7 @@ ${data.adminName || "Trading Lead"}
 ${data.adminTitle || "Bangkok Gemological Trading Desk"}
 Libra Gems & Trading Co., Ltd.
 Bangkok, Thailand
-https://libragems.net
+https://libragems1.com
   `.trim();
 
   return { subject, html, text };

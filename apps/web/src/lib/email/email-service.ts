@@ -188,7 +188,7 @@ export class EmailService {
       await this.logEmailEvent({
         enquiryId: payload.enquiryId,
         emailType: "admin_notification",
-        recipient: "internal-desk@libragems.net",
+        recipient: "info@libragems1.com",
         subject: `[New Trade Enquiry] ${payload.referenceNumber} – ${payload.gemstoneInterest}`,
         status: "suppressed",
         lastError:

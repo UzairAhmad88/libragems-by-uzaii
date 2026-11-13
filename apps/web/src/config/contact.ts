@@ -13,8 +13,8 @@ export const CONTACT_CONFIG = {
     district: "Bang Rak Gem Trading District",
   },
   email: {
-    corporate: "info@libragems.net",
-    enquiries: "info@libragems.net",
+    corporate: "info@libragems1.com",
+    enquiries: "info@libragems1.com",
   },
   telephone: {
     bangkokLandline: "+66 2 238 1934",

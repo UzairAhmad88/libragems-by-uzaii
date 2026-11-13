@@ -1,106 +1,99 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 276 67" width="276" height="67">
-  <!-- Master Gemstone Emblem (Octagonal Step Cut) -->
-  <g transform="translate(30, 17) scale(0.31)">
-    
+  <g transform="translate(30, 18) scale(0.06)">
   <defs>
-    <!-- Luxury Color Gradients -->
-    <linearGradient id="gemGoldLight" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#FFF6DF" />
-      <stop offset="25%" stop-color="#F2DD9F" />
-      <stop offset="65%" stop-color="#C5A66A" />
-      <stop offset="100%" stop-color="#9E7E43" />
+    <linearGradient id="emblemTable" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="35%" stop-color="#FFF5DE" />
+      <stop offset="70%" stop-color="#EED7A1" />
+      <stop offset="100%" stop-color="#D4B26F" />
     </linearGradient>
-    <linearGradient id="gemGoldDeep" x1="100%" y1="100%" x2="0%" y2="0%">
-      <stop offset="0%" stop-color="#6B4F1E" />
-      <stop offset="40%" stop-color="#9E7E43" />
-      <stop offset="80%" stop-color="#D4B674" />
-      <stop offset="100%" stop-color="#FAECCB" />
+
+    <linearGradient id="emblemHighlight" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="50%" stop-color="#FCECC7" />
+      <stop offset="100%" stop-color="#DEB86C" />
     </linearGradient>
-    <linearGradient id="gemGreenDepth" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#0E281F" />
-      <stop offset="40%" stop-color="#173D30" />
-      <stop offset="80%" stop-color="#1F4E3E" />
-      <stop offset="100%" stop-color="#0B2018" />
+
+    <linearGradient id="emblemGoldLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF8E7" />
+      <stop offset="50%" stop-color="#E5C57E" />
+      <stop offset="100%" stop-color="#C5A66A" />
     </linearGradient>
-    <linearGradient id="gemTable" x1="20%" y1="0%" x2="80%" y2="100%">
-      <stop offset="0%" stop-color="#1B4637" />
-      <stop offset="40%" stop-color="#173D30" />
-      <stop offset="75%" stop-color="#14372B" />
-      <stop offset="100%" stop-color="#0E281F" />
+
+    <linearGradient id="emblemGoldMid" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#D8B266" />
+      <stop offset="50%" stop-color="#B88F44" />
+      <stop offset="100%" stop-color="#9E752D" />
     </linearGradient>
-    <linearGradient id="specularLine" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.95" />
-      <stop offset="60%" stop-color="#FFF8E7" stop-opacity="0.75" />
-      <stop offset="100%" stop-color="#C5A66A" stop-opacity="0" />
+
+    <linearGradient id="emblemGoldDeep" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A47D32" />
+      <stop offset="50%" stop-color="#7A5818" />
+      <stop offset="100%" stop-color="#543A0A" />
     </linearGradient>
-    <filter id="gemShadow" x="-15%" y="-15%" width="130%" height="130%">
-      <feDropShadow dx="0" dy="1.5" stdDeviation="1.5" flood-color="#000000" flood-opacity="0.22" />
-    </filter>
+
+    <linearGradient id="emblemPavilionCenter" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#FFF2D1" />
+      <stop offset="40%" stop-color="#DEB768" />
+      <stop offset="85%" stop-color="#B28838" />
+      <stop offset="100%" stop-color="#6E4F14" />
+    </linearGradient>
+
+    <linearGradient id="emblemPavilionDeepL" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9C772F" />
+      <stop offset="60%" stop-color="#6B4D13" />
+      <stop offset="100%" stop-color="#3D2905" />
+    </linearGradient>
+
+    <linearGradient id="emblemPavilionDeepR" x1="100%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#B89045" />
+      <stop offset="60%" stop-color="#785517" />
+      <stop offset="100%" stop-color="#422D07" />
+    </linearGradient>
   </defs>
 
-  <g filter="url(#gemShadow)">
-    <!-- Base Octagonal Outer Silhouette (45-degree beveled corners) -->
-    <polygon points="28,6 72,6 94,28 94,72 72,94 28,94 6,72 6,28" fill="#0E281F" stroke="#7A5D28" stroke-width="0.75" />
+  <!-- Crown Table -->
+  <polygon points="156,92 356,92 408,168 408,204 356,236 156,236 104,204 104,168" fill="url(#emblemTable)" stroke="#805B16" stroke-width="3" />
 
-    <!-- Step 1: Outer Crown Facets -->
-    <!-- Top Step -->
-    <polygon points="28,6 72,6 68,18 32,18" fill="url(#gemGoldLight)" />
-    <!-- Bottom Step -->
-    <polygon points="28,94 72,94 68,82 32,82" fill="url(#gemGoldDeep)" opacity="0.92" />
-    <!-- Left Step -->
-    <polygon points="6,28 6,72 18,68 18,32" fill="url(#gemGoldLight)" opacity="0.88" />
-    <!-- Right Step -->
-    <polygon points="94,28 94,72 82,68 82,32" fill="url(#gemGoldDeep)" opacity="0.95" />
-    <!-- Top-Left Corner Cut -->
-    <polygon points="6,28 28,6 32,18 18,32" fill="#FFFBF0" />
-    <!-- Top-Right Corner Cut -->
-    <polygon points="72,6 94,28 82,32 68,18" fill="#E8CE8E" />
-    <!-- Bottom-Right Corner Cut -->
-    <polygon points="94,72 72,94 68,82 82,68" fill="#806227" />
-    <!-- Bottom-Left Corner Cut -->
-    <polygon points="28,94 6,72 18,68 32,82" fill="#BFA162" />
+  <!-- Crown Star & Kite Facets -->
+  <polygon points="156,92 356,92 396,44 116,44" fill="url(#emblemHighlight)" stroke="#9E752D" stroke-width="3" />
+  <polygon points="356,92 408,168 468,110 396,44" fill="url(#emblemGoldLight)" stroke="#8A631E" stroke-width="3" />
+  <polygon points="156,92 104,168 44,110 116,44" fill="#FFFDF5" stroke="#9E752D" stroke-width="3" />
 
-    <!-- Step 2: Intermediate Concentric Step Facets (Forest Green Depth) -->
-    <!-- Top Step 2 -->
-    <polygon points="32,18 68,18 64,28 36,28" fill="#1C4536" />
-    <!-- Bottom Step 2 -->
-    <polygon points="32,82 68,82 64,72 36,72" fill="#102B20" />
-    <!-- Left Step 2 -->
-    <polygon points="18,32 18,68 28,64 28,36" fill="#1E4D3D" />
-    <!-- Right Step 2 -->
-    <polygon points="82,32 82,68 72,64 72,36" fill="#133428" />
-    <!-- Corners Step 2 -->
-    <polygon points="18,32 32,18 36,28 28,36" fill="#DEC382" />
-    <polygon points="68,18 82,32 72,36 64,28" fill="#755823" />
-    <polygon points="82,68 68,82 64,72 72,64" fill="#0C241B" />
-    <polygon points="18,68 32,82 36,72 28,64" fill="#507868" />
+  <!-- Girdle Upper Facets -->
+  <polygon points="104,168 104,204 28,196 44,110" fill="url(#emblemGoldMid)" stroke="#7A5515" stroke-width="3" />
+  <polygon points="408,168 408,204 484,196 468,110" fill="url(#emblemGoldDeep)" stroke="#593C07" stroke-width="3" />
 
-    <!-- Step 3: Crystal Table Facet -->
-    <polygon points="36,28 64,28 72,36 72,64 64,72 36,72 28,64 28,36" fill="url(#gemTable)" />
+  <!-- Girdle Side Bevels -->
+  <polygon points="104,204 156,236 96,256 28,196" fill="url(#emblemGoldDeep)" stroke="#593C07" stroke-width="3" />
+  <polygon points="408,204 356,236 416,256 484,196" fill="#4A3105" stroke="#3D2703" stroke-width="3" />
 
-    <!-- Step 4: Inner Concentric Table Step & Pavilion Reflections -->
-    <polygon points="41,34 59,34 65,40 65,60 59,66 41,66 35,60 35,40" fill="#13362A" stroke="#C5A66A" stroke-width="0.5" stroke-opacity="0.45" />
-    <!-- Center Culet / Brilliant Core -->
-    <polygon points="45,42 55,42 58,46 58,54 55,58 45,58 42,54 42,46" fill="#1A4435" />
-    <!-- Internal Golden Refraction Ray (Hall of Mirrors) -->
-    <polygon points="42,46 58,46 55,42 45,42" fill="#E8D094" opacity="0.75" />
-    <polygon points="35,40 41,34 45,42 42,46" fill="#FFF9EB" opacity="0.6" />
+  <!-- Lower Crown Triangles -->
+  <polygon points="156,236 256,256 96,256" fill="url(#emblemGoldLight)" stroke="#8A631E" stroke-width="3" />
+  <polygon points="356,236 256,256 416,256" fill="url(#emblemGoldMid)" stroke="#704E12" stroke-width="3" />
+  <polygon points="156,236 356,236 256,256" fill="#FFF6DC" stroke="#8A631E" stroke-width="3" />
 
-    <!-- Specular Light Gleams (Razor-Sharp Daylight Glints) -->
-    <line x1="28" y1="6" x2="72" y2="6" stroke="url(#specularLine)" stroke-width="1.3" stroke-linecap="round" />
-    <line x1="6" y1="28" x2="28" y2="6" stroke="#FFFFFF" stroke-width="1.3" stroke-linecap="round" opacity="0.95" />
-    <line x1="6" y1="28" x2="6" y2="72" stroke="#FFFFFF" stroke-width="0.9" stroke-opacity="0.7" />
-    <line x1="36" y1="28" x2="64" y2="28" stroke="#FFFFFF" stroke-width="0.9" stroke-opacity="0.88" />
-    <line x1="28" y1="36" x2="36" y2="28" stroke="#FFFFFF" stroke-width="0.9" stroke-opacity="0.95" />
-    <line x1="28" y1="36" x2="28" y2="64" stroke="#FFF7E3" stroke-width="0.6" stroke-opacity="0.6" />
+  <!-- Girdle Edge Line -->
+  <polygon points="28,196 96,256 416,256 484,196 416,260 96,260" fill="#6B4A0E" />
 
-    <!-- Master Facet Contour Lines (Champagne Gold Facet Wire) -->
-    <polygon points="28,6 72,6 94,28 94,72 72,94 28,94 6,72 6,28" fill="none" stroke="#C5A66A" stroke-width="0.75" opacity="0.85" />
-    <polygon points="32,18 68,18 82,32 82,68 68,82 32,82 18,68 18,32" fill="none" stroke="#C5A66A" stroke-width="0.5" opacity="0.7" />
-    <polygon points="36,28 64,28 72,36 72,64 64,72 36,72 28,64 28,36" fill="none" stroke="#C5A66A" stroke-width="0.6" opacity="0.75" />
+  <!-- Pavilion Facets -->
+  <polygon points="28,196 96,260 256,474" fill="url(#emblemPavilionDeepL)" stroke="#3D2703" stroke-width="3" />
+  <polygon points="96,260 176,260 256,474" fill="url(#emblemGoldLight)" stroke="#7A5515" stroke-width="3" />
+  <polygon points="176,260 256,260 256,474" fill="url(#emblemPavilionCenter)" stroke="#8A631E" stroke-width="3" />
+  <polygon points="256,260 336,260 256,474" fill="url(#emblemGoldMid)" stroke="#704E12" stroke-width="3" />
+  <polygon points="336,260 416,260 256,474" fill="url(#emblemPavilionDeepR)" stroke="#593C07" stroke-width="3" />
+  <polygon points="416,260 484,196 256,474" fill="#3D2703" stroke="#2B1A02" stroke-width="3" />
+
+  <!-- Sparkle Glints -->
+  <g transform="translate(196, 126)">
+    <polygon points="0,-32 7,-8 32,0 7,7 0,32 -8,7 -32,0 -8,-8" fill="#FFFFFF" opacity="0.95" />
+    <circle cx="0" cy="0" r="8" fill="#FFFFFF" />
   </g>
-
+  <g transform="translate(346, 108)">
+    <polygon points="0,-18 4,-4 18,0 4,4 0,18 -4,4 -18,0 -4,-4" fill="#FFFFFF" opacity="0.8" />
+    <circle cx="0" cy="0" r="4" fill="#FFFFFF" />
   </g>
-  <!-- Untouched Reference Wordmark -->
+  <circle cx="256" cy="470" r="4" fill="#FFFFFF" opacity="0.9" />
+</g>
   <image href="data:image/png;base64,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" x="68" y="0" width="208" height="67" />
 </svg>

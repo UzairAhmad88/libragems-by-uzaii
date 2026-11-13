@@ -271,7 +271,7 @@ export function AdminResponseComposer({
               <div className="pt-4 border-t border-border/60 text-[11px] text-stone">
                 <p className="font-bold text-forest-deep">Bangkok Trading Desk</p>
                 <p>Libra Gems &amp; Trading Co., Ltd.</p>
-                <p>Bangkok, Thailand &bull; https://libragems.net</p>
+                <p>Bangkok, Thailand &bull; https://libragems1.com</p>
               </div>
             </div>
           </div>

@@ -218,8 +218,8 @@ export default function AboutPage() {
                   </p>
                   <p>
                     <strong>Email:</strong>{" "}
-                    <a href="mailto:info@libragems.net" className="text-forest hover:underline">
-                      info@libragems.net
+                    <a href="mailto:info@libragems1.com" className="text-forest hover:underline">
+                      info@libragems1.com
                     </a>
                   </p>
                   <p className="text-[11px] text-stone/75">
@@ -244,8 +244,8 @@ export default function AboutPage() {
                   </p>
                   <p>
                     <strong>Email:</strong>{" "}
-                    <a href="mailto:info@libragems.net" className="text-forest hover:underline">
-                      info@libragems.net
+                    <a href="mailto:info@libragems1.com" className="text-forest hover:underline">
+                      info@libragems1.com
                     </a>
                   </p>
                   <p className="text-[11px] text-stone/75">

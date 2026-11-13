@@ -131,10 +131,10 @@ export function SiteFooter() {
               <div className="flex items-center gap-2">
                 <Mail className="h-4 w-4 shrink-0 text-champagne" />
                 <a
-                  href="mailto:info@libragems.net"
+                  href="mailto:info@libragems1.com"
                   className="hover:text-white transition-colors underline-offset-4 hover:underline"
                 >
-                  info@libragems.net
+                  info@libragems1.com
                 </a>
               </div>
               <div className="rounded-lg border border-white/10 bg-white/5 p-3">

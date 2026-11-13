@@ -68,7 +68,7 @@ export function renderEmailLayout({
                 International Colored Gemstone Merchants • Natural Rough Parcels • Fine Precision Cut Stones
               </p>
               <p style="margin: 0; font-size: 10px; color: #6E756F;">
-                Bangkok, Thailand • Registered Commercial Entity • <a href="https://libragems.net" style="color: #174C38; text-decoration: underline;">libragems.net</a>
+                Bangkok, Thailand • Registered Commercial Entity • <a href="https://libragems1.com" style="color: #173D30; text-decoration: underline;">libragems1.com</a>
               </p>
             </td>
           </tr>

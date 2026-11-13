@@ -67,7 +67,7 @@ export default function TermsOfTradePage() {
               <p className="text-stone">
                 These Terms of Trade govern commercial inquiries, product evaluations, and parcel
                 acquisitions initiated with <strong>Libra Gems &amp; Trading Co., Ltd.</strong> (Bangkok,
-                Thailand). All offerings presented on libragems.net are targeted strictly at commercial
+                Thailand). All offerings presented on libragems1.com are targeted strictly at commercial
                 dealers, jewelry manufacturers, lapidary workshops, and accredited collectors. We do not
                 conduct consumer retail sales or provide retail credit.
               </p>

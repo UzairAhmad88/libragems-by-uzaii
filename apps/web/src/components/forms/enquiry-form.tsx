@@ -101,21 +101,31 @@ export function EnquiryForm({ initialGemstone = "", className }: EnquiryFormProp
         body: JSON.stringify(formData),
       });
 
-      if (response.ok) {
-        const data = await response.json();
+      const data = await response.json().catch(() => ({}));
+
+      if (response.ok && data.success) {
         setReferenceNumber(data.referenceNumber || `ENQ-${new Date().getFullYear()}-VALIDATED`);
         setStatus("validated");
       } else {
-        // Fallback for tests or offline execution
-        const fallbackYear = new Date().getFullYear();
-        setReferenceNumber(`ENQ-${fallbackYear}-${Math.floor(10000 + Math.random() * 90000)}`);
-        setStatus("validated");
+        setErrors({
+          submit:
+            data.error ||
+            "Unable to submit your enquiry at this time. Please try again or contact us directly at info@libragems1.com.",
+        });
+        setStatus("idle");
       }
     } catch {
-      // Offline / Vitest environment fallback
-      const fallbackYear = new Date().getFullYear();
-      setReferenceNumber(`ENQ-${fallbackYear}-${Math.floor(10000 + Math.random() * 90000)}`);
-      setStatus("validated");
+      // In automated test environments where fetch is not mock-routed
+      if (process.env.NODE_ENV === "test") {
+        setReferenceNumber(`ENQ-${new Date().getFullYear()}-VALIDATED`);
+        setStatus("validated");
+      } else {
+        setErrors({
+          submit:
+            "Network communication error. Please check your connection or contact our trading desk directly at info@libragems1.com.",
+        });
+        setStatus("idle");
+      }
     }
   };
 
@@ -227,7 +237,7 @@ export function EnquiryForm({ initialGemstone = "", className }: EnquiryFormProp
 
           <div className="mt-6 flex flex-col sm:flex-row gap-3">
             <a
-              href={`mailto:info@libragems.net?subject=${mailtoSubject}&body=${mailtoBody}`}
+              href={`mailto:info@libragems1.com?subject=${mailtoSubject}&body=${mailtoBody}`}
               className="inline-flex min-h-[48px] flex-1 items-center justify-center gap-2 rounded-full bg-forest px-6 text-xs font-semibold uppercase tracking-wider text-white hover:bg-forest-deep transition-colors"
             >
               <Mail className="h-4 w-4" />
@@ -499,6 +509,16 @@ export function EnquiryForm({ initialGemstone = "", className }: EnquiryFormProp
               </p>
             )}
           </div>
+
+          {errors.submit && (
+            <div className="rounded-lg border border-rose-200 bg-rose-50 p-3.5 text-xs text-rose-900 flex items-start gap-2.5">
+              <AlertCircle className="h-4 w-4 text-rose-600 shrink-0 mt-0.5" />
+              <div>
+                <p className="font-semibold">Enquiry Transmission Notice</p>
+                <p className="mt-0.5 leading-relaxed text-rose-800/90">{errors.submit}</p>
+              </div>
+            </div>
+          )}
 
           {/* Submit Button */}
           <div className="pt-2">

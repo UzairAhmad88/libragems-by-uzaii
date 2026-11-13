@@ -4,7 +4,7 @@ import { isValidEmail, sanitizeHeader, escapeHtml } from "./email-validation";
 describe("Email Validation & Sanitization", () => {
   describe("isValidEmail", () => {
     it("accepts valid RFC-compliant commercial email addresses", () => {
-      expect(isValidEmail("trade@libragems.net")).toBe(true);
+      expect(isValidEmail("trade@libragems1.com")).toBe(true);
       expect(isValidEmail("julian.vance@vancegems.co.uk")).toBe(true);
       expect(isValidEmail("buyer+urgent@lapidary-atelier.com")).toBe(true);
       expect(isValidEmail("office_bangkok@thai-gems.org")).toBe(true);

@@ -34,7 +34,7 @@ export default async function CommunicationsOverviewPage() {
     {
       id: "evt-02",
       email_type: "admin_notification",
-      recipient: "trading-desk@libragems.net",
+      recipient: "info@libragems1.com",
       subject: "[New Trade Enquiry] ENQ-2026-10001 – Commercial Hessonite",
       status: "delivered",
       created_at: new Date(Date.now() - 3600000 * 2).toISOString(),

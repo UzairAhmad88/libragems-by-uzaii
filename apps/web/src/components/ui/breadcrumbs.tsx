@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ChevronRight } from "lucide-react";
+import { getSiteUrl } from "@/lib/seo/site-url";
 
 export interface BreadcrumbItem {
   label: string;
@@ -18,7 +19,7 @@ export function Breadcrumbs({ items }: BreadcrumbsProps) {
       "@type": "ListItem",
       position: index + 1,
       name: item.label,
-      item: item.href ? `https://libragems.net${item.href}` : undefined,
+      item: item.href ? `${getSiteUrl()}${item.href}` : undefined,
     })),
   };
 

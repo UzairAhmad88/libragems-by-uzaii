@@ -147,7 +147,7 @@ export default async function AdminEnquiryDetailPage({ params }: EnquiryDetailPa
         provider: "resend",
         provider_message_id: "msg_20261110_in771",
         email_type: "admin_notification",
-        recipient: "trading-desk@libragems.net",
+        recipient: "info@libragems1.com",
         subject: `[New Trade Enquiry] ${enquiry.reference_number} – ${enquiry.gemstone_interest}`,
         status: "delivered",
         sent_at: enquiry.created_at,

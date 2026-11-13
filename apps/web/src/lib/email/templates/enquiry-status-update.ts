@@ -78,7 +78,7 @@ If you have questions, please reply directly to this email or contact our Bangko
 Sincerely,
 Bangkok Trading Desk
 Libra Gems & Trading Co., Ltd.
-https://libragems.net
+https://libragems1.com
   `.trim();
 
   return { subject, html, text };
