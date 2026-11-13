@@ -1,6 +1,6 @@
 import { createAdminClient } from "@/lib/supabase/admin";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
-import { defaultEmailProvider } from "./resend-provider";
+import { defaultEmailProvider } from "./provider-factory";
 import { EmailProvider, EmailResult } from "./provider";
 import { getAdminNotificationRecipients } from "./email-config";
 import { isValidEmail } from "./email-validation";

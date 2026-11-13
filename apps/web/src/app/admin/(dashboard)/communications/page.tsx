@@ -4,7 +4,7 @@ import { Mail, CheckCircle2, Clock, AlertTriangle, ShieldCheck, ArrowRight } fro
 import { CommunicationsNav } from "@/components/admin/communications-nav";
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
-import { isEmailConfigured, getDefaultFromEmail } from "@/lib/email/email-config";
+import { isEmailConfigured, getDefaultFromEmail, getEmailProviderType } from "@/lib/email/email-config";
 
 export default async function CommunicationsOverviewPage() {
   const stats = {
@@ -144,13 +144,17 @@ export default async function CommunicationsOverviewPage() {
           <div>
             <span className="font-semibold block">
               {emailReady
-                ? "Resend Transactional Provider Active & Verified"
+                ? getEmailProviderType() === "smtp"
+                  ? "Hostinger SMTP Active (info@libragems1.com)"
+                  : "Resend Transactional Provider Active & Verified"
+                : getEmailProviderType() === "smtp"
+                ? "Hostinger SMTP Credentials Pending (Simulated Delivery Mode)"
                 : "Simulated Delivery Mode (Local Development / Preview)"}
             </span>
             <span className="text-[11px] opacity-80">
               {emailReady
                 ? `Authorized sender: ${getDefaultFromEmail()}`
-                : "RESEND_API_KEY is not set. Outbox items and delivery events are recorded safely without throwing runtime errors."}
+                : "SMTP_PASSWORD is not set. Outbox items and delivery events are recorded safely without throwing runtime errors."}
             </span>
           </div>
         </div>

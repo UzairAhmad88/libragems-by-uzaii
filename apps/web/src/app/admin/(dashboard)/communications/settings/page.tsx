@@ -1,11 +1,14 @@
 import * as React from "react";
-import { Shield, CheckCircle2, AlertCircle } from "lucide-react";
+import { Shield, CheckCircle2, AlertCircle, Server } from "lucide-react";
 import { CommunicationsNav } from "@/components/admin/communications-nav";
 import {
   getDefaultFromEmail,
   getDefaultReplyToEmail,
   getAdminNotificationRecipients,
   getWebhookSecret,
+  getEmailProviderType,
+  getSmtpConfig,
+  isSmtpConfigured,
 } from "@/lib/email/email-config";
 
 export default function CommunicationSettingsPage() {
@@ -13,8 +16,11 @@ export default function CommunicationSettingsPage() {
   const replyTo = getDefaultReplyToEmail();
   const adminRecipients = getAdminNotificationRecipients();
   const hasWebhookSecret = Boolean(getWebhookSecret());
+  const providerType = getEmailProviderType();
+  const smtpConfig = getSmtpConfig();
+  const smtpReady = isSmtpConfigured();
 
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://libragems.net";
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://libragems1.com";
   const webhookUrl = `${siteUrl}/api/webhooks/resend`;
   const cronUrl = `${siteUrl}/api/cron/process-outbox`;
 
@@ -49,8 +55,86 @@ export default function CommunicationSettingsPage() {
         </div>
 
         <p className="text-xs text-ink leading-relaxed">
-          The Resend provider API key (<code>RESEND_API_KEY</code>) and Webhook Signing Secret (<code>RESEND_WEBHOOK_SECRET</code>) are strictly accessible inside server runtimes. They are never exposed to the client bundle or reflected in admin UI forms.
+          The Hostinger SMTP credentials (<code>SMTP_USER</code>, <code>SMTP_PASSWORD</code>) and transactional keys are strictly accessible inside server runtimes. They are never exposed to the client bundle or reflected in admin UI forms.
         </p>
+      </div>
+
+      {/* Hostinger SMTP Configuration Card */}
+      <div className="rounded-xl border border-border bg-white p-6 shadow-subtle space-y-6">
+        <div className="flex items-center justify-between border-b border-border pb-3">
+          <div className="flex items-center gap-2">
+            <Server className="h-5 w-5 text-forest" />
+            <h3 className="font-serif text-lg font-medium text-forest-deep">
+              Hostinger SMTP Infrastructure (Primary)
+            </h3>
+          </div>
+          <span
+            className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-semibold ${
+              smtpReady
+                ? "bg-emerald-50 text-emerald-800 border border-emerald-200"
+                : "bg-amber-50 text-amber-800 border border-amber-200"
+            }`}
+          >
+            {smtpReady ? (
+              <>
+                <CheckCircle2 className="h-3 w-3 text-emerald-600" />
+                <span>Active ({providerType.toUpperCase()})</span>
+              </>
+            ) : (
+              <>
+                <AlertCircle className="h-3 w-3 text-amber-600" />
+                <span>Password Pending (Simulated Mode)</span>
+              </>
+            )}
+          </span>
+        </div>
+
+        <div className="grid gap-6 sm:grid-cols-3 text-xs">
+          <div>
+            <label className="block text-stone font-semibold uppercase tracking-wider text-[10px] mb-1">
+              SMTP Host
+            </label>
+            <input
+              type="text"
+              readOnly
+              value={smtpConfig.host}
+              className="w-full rounded-lg border border-border bg-ivory/50 px-3 py-2 font-mono text-ink text-xs focus:outline-none"
+            />
+            <span className="text-[11px] text-stone mt-1 block">
+              Default: <code>smtp.hostinger.com</code>
+            </span>
+          </div>
+
+          <div>
+            <label className="block text-stone font-semibold uppercase tracking-wider text-[10px] mb-1">
+              SMTP Port &amp; Protocol
+            </label>
+            <input
+              type="text"
+              readOnly
+              value={`${smtpConfig.port} (${smtpConfig.secure ? "SSL/TLS Direct" : "STARTTLS"})`}
+              className="w-full rounded-lg border border-border bg-ivory/50 px-3 py-2 font-mono text-ink text-xs focus:outline-none"
+            />
+            <span className="text-[11px] text-stone mt-1 block">
+              Port 465 SSL/TLS verified
+            </span>
+          </div>
+
+          <div>
+            <label className="block text-stone font-semibold uppercase tracking-wider text-[10px] mb-1">
+              SMTP Account / Username
+            </label>
+            <input
+              type="text"
+              readOnly
+              value={smtpConfig.user}
+              className="w-full rounded-lg border border-border bg-ivory/50 px-3 py-2 font-mono text-ink text-xs focus:outline-none"
+            />
+            <span className="text-[11px] text-stone mt-1 block">
+              Configured via <code>SMTP_USER</code>
+            </span>
+          </div>
+        </div>
       </div>
 
       {/* Configuration Status Card */}

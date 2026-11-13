@@ -58,8 +58,8 @@ const envSchema = z.object({
   NEXT_PUBLIC_SITE_URL: z
     .string()
     .optional()
-    .default("https://libragems.net")
-    .transform((val) => cleanUrl(val, "https://libragems.net")),
+    .default("https://libragems1.com")
+    .transform((val) => cleanUrl(val, "https://libragems1.com")),
 
   // Analytics (optional in local dev)
   NEXT_PUBLIC_GA_ID: z
@@ -85,7 +85,47 @@ const envSchema = z.object({
     .default("")
     .transform((v) => (v ? v.trim() : "")),
 
-  // Transactional Email (Phase 05 Architecture)
+  // Transactional Email (Hostinger SMTP Primary & Resend Fallback)
+  EMAIL_PROVIDER: z
+    .string()
+    .optional()
+    .default("smtp")
+    .transform((v) => (v && v.trim().toLowerCase() === "resend" ? "resend" : "smtp")),
+  SMTP_HOST: z
+    .string()
+    .optional()
+    .default("smtp.hostinger.com")
+    .transform((v) => (v ? v.trim() : "smtp.hostinger.com")),
+  SMTP_PORT: z
+    .union([z.string(), z.number()])
+    .optional()
+    .default(465)
+    .transform((val) => {
+      const parsed = typeof val === "number" ? val : parseInt(String(val).trim(), 10);
+      return isNaN(parsed) || parsed <= 0 || parsed > 65535 ? 465 : parsed;
+    }),
+  SMTP_SECURE: z
+    .union([z.boolean(), z.string()])
+    .optional()
+    .default(true)
+    .transform((val) => {
+      if (typeof val === "boolean") return val;
+      if (typeof val === "string") {
+        const lower = val.trim().toLowerCase();
+        if (lower === "false" || lower === "0") return false;
+      }
+      return true;
+    }),
+  SMTP_USER: z
+    .string()
+    .optional()
+    .default("info@libragems1.com")
+    .transform((v) => (v ? v.trim() : "info@libragems1.com")),
+  SMTP_PASSWORD: z
+    .string()
+    .optional()
+    .default("")
+    .transform((v) => (v ? v.trim() : "")),
   RESEND_API_KEY: z
     .string()
     .optional()
@@ -94,20 +134,20 @@ const envSchema = z.object({
   EMAIL_FROM: z
     .string()
     .optional()
-    .default("Libra Gems Trading Desk <enquiries@libragems.net>")
+    .default("Libra Gems <info@libragems1.com>")
     .transform((v) =>
-      v && v.trim() !== "" ? v.trim() : "Libra Gems Trading Desk <enquiries@libragems.net>"
+      v && v.trim() !== "" ? v.trim() : "Libra Gems <info@libragems1.com>"
     ),
   EMAIL_REPLY_TO: z
     .string()
     .optional()
-    .default("info@libragems.net")
-    .transform((v) => (v && v.trim() !== "" ? v.trim() : "info@libragems.net")),
+    .default("info@libragems1.com")
+    .transform((v) => (v && v.trim() !== "" ? v.trim() : "info@libragems1.com")),
   ENQUIRY_NOTIFICATION_EMAILS: z
     .string()
     .optional()
-    .default("")
-    .transform((v) => (v ? v.trim() : "")),
+    .default("info@libragems1.com")
+    .transform((v) => (v && v.trim() !== "" ? v.trim() : "info@libragems1.com")),
   RESEND_WEBHOOK_SECRET: z
     .string()
     .optional()
@@ -164,6 +204,12 @@ export function getEnv(): Env {
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     SUPABASE_SERVICE_ROLE_KEY: process.env.SUPABASE_SERVICE_ROLE_KEY,
+    EMAIL_PROVIDER: process.env.EMAIL_PROVIDER,
+    SMTP_HOST: process.env.SMTP_HOST,
+    SMTP_PORT: process.env.SMTP_PORT,
+    SMTP_SECURE: process.env.SMTP_SECURE,
+    SMTP_USER: process.env.SMTP_USER,
+    SMTP_PASSWORD: process.env.SMTP_PASSWORD,
     RESEND_API_KEY: process.env.RESEND_API_KEY,
     EMAIL_FROM: process.env.EMAIL_FROM,
     EMAIL_REPLY_TO: process.env.EMAIL_REPLY_TO,
@@ -186,3 +232,22 @@ export function getEnv(): Env {
 }
 
 export const env = getEnv();
+
+/**
+ * Validates whether SMTP environment credentials are fully configured.
+ */
+export function validateSmtpEnvironment(): { isValid: boolean; error?: string } {
+  const currentEnv = getEnv();
+  if (currentEnv.EMAIL_PROVIDER === "smtp") {
+    if (!currentEnv.SMTP_HOST) {
+      return { isValid: false, error: "SMTP_HOST is required." };
+    }
+    if (!currentEnv.SMTP_USER) {
+      return { isValid: false, error: "SMTP_USER is required." };
+    }
+    if (!currentEnv.SMTP_PASSWORD) {
+      return { isValid: false, error: "SMTP_PASSWORD is required." };
+    }
+  }
+  return { isValid: true };
+}

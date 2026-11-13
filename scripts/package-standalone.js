@@ -82,6 +82,7 @@ const runtimePackages = [
   '@supabase',
   '@stablelib',
   'resend',
+  'nodemailer',
   'zod',
   'clsx',
   'tailwind-merge',
@@ -161,6 +162,14 @@ try {
   console.log(`[package-standalone] ✓ Runtime dependency "@supabase/supabase-js" resolved from standalone: ${resolvedSupabase}`);
 } catch (err) {
   console.error('[package-standalone] ✗ Critical error: Cannot resolve "@supabase/supabase-js" from standalone directory:', err);
+  process.exit(1);
+}
+
+try {
+  const resolvedNodemailer = require.resolve('nodemailer', { paths: [standaloneDir] });
+  console.log(`[package-standalone] ✓ Runtime dependency "nodemailer" resolved from standalone: ${resolvedNodemailer}`);
+} catch (err) {
+  console.error('[package-standalone] ✗ Critical error: Cannot resolve "nodemailer" from standalone directory:', err);
   process.exit(1);
 }
 
